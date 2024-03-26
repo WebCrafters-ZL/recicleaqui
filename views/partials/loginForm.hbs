@@ -1,15 +1,19 @@
+<!-- views/partials/loginForm.hbs -->
+
 <form action="" method="post">
+  <!-- Campo de entrada para o email -->
   <div class="mb-3">
     <label class="form-label" for="inputEmail">E-mail:</label>
     <input
-      required 
+      required
       type="email"
       class="form-control"
       name="inputEmail"
-      id="inputEmail" 
+      id="inputEmail"
       placeholder="nome@exemplo.com"
     />
   </div>
+  <!-- Campo de entrada para a senha -->
   <div class="mb-3">
     <label class="form-label" for="inputSenha">Senha:</label>
     <input
@@ -20,14 +24,16 @@
       id="inputSenha"
     />
   </div>
+  <!-- Checkbox para lembrar as credenciais -->
   <div class="mb-3 form-check">
     <input
       type="checkbox"
-      class="form-check-input"      
+      class="form-check-input"
       name="checkLembrar"
       id="lembrar"
     />
     <label class="form-check-label" for="checkLembrar">Lembrar</label>
   </div>
+  <!-- Botão de submissão do formulário -->
   <button type="submit" class="btn btn-primary">Entrar</button>
 </form>
