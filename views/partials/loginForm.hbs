@@ -1,39 +1,8 @@
 <!-- views/partials/loginForm.hbs -->
 
-<form action="" method="post">
-  <!-- Campo de entrada para o email -->
-  <div class="mb-3">
-    <label class="form-label" for="inputEmail">E-mail:</label>
-    <input
-      required
-      type="email"
-      class="form-control"
-      name="inputEmail"
-      id="inputEmail"
-      placeholder="nome@exemplo.com"
-    />
-  </div>
-  <!-- Campo de entrada para a senha -->
-  <div class="mb-3">
-    <label class="form-label" for="inputSenha">Senha:</label>
-    <input
-      required
-      type="password"
-      class="form-control"
-      name="inputSenha"
-      id="inputSenha"
-    />
-  </div>
-  <!-- Checkbox para lembrar as credenciais -->
-  <div class="mb-3 form-check">
-    <input
-      type="checkbox"
-      class="form-check-input"
-      name="checkLembrar"
-      id="lembrar"
-    />
-    <label class="form-check-label" for="checkLembrar">Lembrar</label>
-  </div>
-  <!-- Botão de submissão do formulário -->
-  <button type="submit" class="btn btn-primary">Entrar</button>
+<form class="formulario">
+  <input type="email" placeholder="Email">
+  <input type="password" placeholder="Senha">
+  <a class="esqueceu-senha" href="#">Esqueci minha senha</a>
+  <button class="btn btn-second">sign in</button>
 </form>

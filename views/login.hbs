@@ -1,15 +1,31 @@
 <!-- views/login.hbs -->
 
-<div class="row">
-    <!-- Coluna vazia -->
-    <div class="col"></div>
-    <!-- Coluna centralizada -->
-    <div class="col">
-        <!-- Título da página de login -->
-        <p class="h1">Login</p>
-        <!-- Inclusão do formulário de login, definido no arquivo parcial loginform.hbs -->
-        {{> loginForm}}
-    </div>
-    <!-- Coluna vazia -->
-    <div class="col"></div>
-</div>
+<div class="content first-content">
+  <div class="first-column">
+      <h2 class = "title title-login">Login</h2>
+      <p class="description description-login">Faça seu login</p>
+      <button id="signin" class="btn btn-primary">sign in</button>
+  </div><!--first column-->
+  
+  <div class="second-column">
+      <h2 class="title title-cadastro">Crie sua conta</h2>
+      <p class="description description-cadastro">Faça seu cadastro</p>
+      <!-- Inclusão do formulário de Cadastro, definido no arquivo parcial Cadastroform.hbs -->
+      {{cadastroForm}}
+  </div><!--second column-->
+</div> <!--first content-->
+
+
+<div class="content second-content">
+  <div class="first-column">
+      <h2 class = "title title-login">Cadastre-se</h2>
+      <p class="description description-login">Faça seu Cadastro</p>
+      <button id="signup" class="btn  btn-primary">sign up</button>
+  </div><!--first column-->
+  
+  <div class="second-column">
+      <h2 class="title title-cadastro">Login</h2>
+      <!-- Inclusão do formulário de login, definido no arquivo parcial loginform.hbs -->
+      {{loginForm}}
+  </div><!--second column-->
+</div><!--second content-->   
