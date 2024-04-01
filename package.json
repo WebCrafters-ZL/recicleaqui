@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node ./bin/www",
-    "devstart": "nodemon ./bin/www",
+    "start": "node --env-file=.env ./bin/www",
+    "devstart": "nodemon --env-file=.env.development.local ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
