@@ -1,31 +1,32 @@
 <!-- views/login.hbs -->
 
-<div class="content first-content">
-  <div class="first-column">
-      <h2 class = "title title-login">Login</h2>
-      <p class="description description-login">Faça seu login</p>
-      <button id="signin" class="btn btn-primary">sign in</button>
-  </div><!--first column-->
-  
-  <div class="second-column">
-      <h2 class="title title-cadastro">Crie sua conta</h2>
-      <p class="description description-cadastro">Faça seu cadastro</p>
-      <!-- Inclusão do formulário de Cadastro, definido no arquivo parcial Cadastroform.hbs -->
-      {{cadastroForm}}
-  </div><!--second column-->
-</div> <!--first content-->
-
-
 <div class="content second-content">
   <div class="first-column">
-      <h2 class = "title title-login">Cadastre-se</h2>
-      <p class="description description-login">Faça seu Cadastro</p>
-      <button id="signup" class="btn  btn-primary">sign up</button>
+    <h2 class="title title-login">Efetuar login</h2>
+    <p class="description description-login">Acesso ao sistema</p>
+    <button type="button" class="btn btn-link" id="recover">Esqueci minha senha</button>
   </div><!--first column-->
-  
+
   <div class="second-column">
-      <h2 class="title title-cadastro">Login</h2>
-      <!-- Inclusão do formulário de login, definido no arquivo parcial loginform.hbs -->
-      {{loginForm}}
+    
+    <!-- Inclusão do formulário de login, definido no arquivo parcial loginform.hbs -->
+    {{> loginForm}}
   </div><!--second column-->
-</div><!--second content-->   
+</div><!--second content-->
+
+<div class="content first-content">
+  <div class="first-column">
+    <h2 class="title title-login">Esqueci minha senha</h2>
+    <p class="description description-login">Recuperação de senha</p>
+    <button type="button" class="btn btn-link" id="login">Efetuar login</button>
+  </div><!--first column-->
+
+  <div class="second-column">
+    {{> recoverForm}}
+  </div><!--second column-->
+</div>
+<!--first content-->
+
+
+<!-- Link para o arquivo JS personalizado -->
+<script src="./assets/js/login.js"></script>

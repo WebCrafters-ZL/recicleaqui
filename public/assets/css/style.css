@@ -162,27 +162,27 @@
 
 
 /*ANIMAÇÃO DE PASSAGEM DO BOTÃO DE LOGIN*/
-    .sign-in-js .first-content .first-column {
+    .login-js .first-content .first-column {
         z-index: -1;
     }
 
 /*ANIMAÇÃO DO CONTEUDO(CADASTRO) QUE PASSA POR TRAS DA TRANSIÇÃO PARA O LADO ESQUERDO*/
-    .sign-in-js .first-content .second-column {
+    .login-js .first-content .second-column {
         z-index: -1;
         position: relative;
         animation: deslocamentoEsq 1.5s;
     }
 
-.sign-in-js .second-content .first-column {
+.login-js .second-content .first-column {
     z-index: 13;
 }
 
 
-.sign-in-js .second-content .second-column {
+.login-js .second-content .second-column {
     z-index: 11;
 }
 
-.sign-in-js .content::before{
+.login-js .content::before{
     left: 60%;
     animation: slidein 1.5s;
     z-index: 12;
@@ -191,27 +191,27 @@
 
 
 /*ANIMAÇÃO DE PASSAGEM DO BOTÃO DE CADASTRO*/
-.sign-up-js .content::before{
+.recover-js .content::before{
     animation: slideup 1.5s;
     z-index: 12;
 }
 
-.sign-up-js .second-content .first-column {
+.recover-js .second-content .first-column {
     z-index: -1;
 }
 
 /*ANIMAÇÃO DO CONTEUDO(LOGIN) QUE PASSA POR TRAS DA TRANSIÇÃO PARA O LADO DIREITO*/
-    .sign-up-js .second-content .second-column {
+    .recover-js .second-content .second-column {
         z-index: -1;
         position: relative;
         animation: deslocamentoDir 1.5s;
     }
 
-.sign-up-js .first-content .second-column {
+.recover-js .first-content .second-column {
     z-index: 11;
 }
 
-.sign-up-js .first-content .first-column {
+.recover-js .first-content .first-column {
     z-index: 13;
 }
 /*termina aqui ANIMAÇÃO DE PASSAGEM DO BOTÃO DE CADASTRO*/
