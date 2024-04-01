@@ -5,7 +5,7 @@ const express = require("express");
 const router = express.Router();
 
 // Definição da rota para o caminho raiz ('/') usando o método GET
-router.get("/", function (req, res) {
+router.get("/", function (req, res, next) {
     // Renderização do template 'home' com os dados passados ({ title: "Demo do Bootstrap" })
     res.render("home", { title: "Demo do Bootstrap" });
 })
