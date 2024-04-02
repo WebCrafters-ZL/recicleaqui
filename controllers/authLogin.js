@@ -27,13 +27,13 @@ app.post('/cadastrar', async (req, res) => {
 app.post('/routes/login', async (req, res ) => {
     console.log(req.loginForm);
     //validação(falta algumas alterações)
-    if(req.loginForm.email != "") {
+    if(req.body.email != "") {
         return res.status(400).json({
             erro: true,
             mensagem: "Erro: Usuário ou a senha incorreta!"
          });
     }
-    if(!(await bcrypt.compare(req.loginForm.password, ""))){
+    if(!(await bcrypt.compare(req.body.password, ""))){
         return res.status(400).json({
             erro: true,
             mensagem: "Erro: Usuário ou a senha incorreta!"

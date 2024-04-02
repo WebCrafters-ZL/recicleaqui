@@ -1,7 +1,7 @@
 <!-- views/partials/loginForm.hbs -->
 
-<form class="formulario">
-  <input type="email" placeholder="Email">
-  <input type="password" placeholder="Senha">
-  <button class="btn btn-second">Entrar</button>
+<form class="formulario" action="/routes/login" method="POST">
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Senha">
+  <button type="submit" class="btn btn-second">Entrar</button>
 </form>

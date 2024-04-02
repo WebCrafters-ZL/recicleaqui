@@ -18,7 +18,7 @@ const registerRouter = require('./routes/register');
 const app = express();
 
 // Definição da porta na qual o servidor irá escutar
-const port = process.env.PORT;
+const port = "8080" //process.env.PORT;
 
 // Configuração do motor de visualização 'handlebars' para o Express
 app.engine("hbs", hbs({ defaultLayout: "main", extname: ".hbs" }));
