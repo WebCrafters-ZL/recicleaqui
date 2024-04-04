@@ -1,0 +1,19 @@
+/* login.css - Estilos específicos da página de login */
+
+.login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-page .form-container {
+  display: none; /* Ocultar por padrão */
+}
+
+.login-page .switch-link {
+  display: block; /* Exibir apenas na página de login */
+}
+
+.login-page .show {
+  display: block; /* Exibir apenas na página de login */
+}

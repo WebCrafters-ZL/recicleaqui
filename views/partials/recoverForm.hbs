@@ -1,6 +1,10 @@
 <!-- views/partials/recoverForm.hbs -->
 
-<form class="formulario">
-  <input type="email" placeholder="Email">
-  <button class="btn btn-second">Recuperar</button>
+<form id="recoverForm">
+  <div class="mb-3">
+    <label for="recoverEmail" class="form-label">E-mail</label>
+    <input type="email" class="form-control" id="recoverEmail" required />
+  </div>
+  <button type="submit" class="btn btn-primary">Recuperar</button>
 </form>
+<p class="switch-link text-center" id="loginLink">Voltar ao login</p>

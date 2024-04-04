@@ -1,12 +1,18 @@
-var loginLink = document.querySelector("#login");
-var recoverLink = document.querySelector("#recover");
+document.addEventListener("DOMContentLoaded", function () {
+  const loginForm = document.querySelector(".login-form");
+  const recoverForm = document.querySelector(".recover-form");
+  const loginLink = document.querySelector("#loginLink");
+  const recoverLink = document.querySelector("#recoverLink");
 
-var body = document.querySelector("body");
+  loginLink.addEventListener("click", function () {
+    loginForm.classList.add("show");
+    recoverForm.classList.remove("show");
+  });
 
-loginLink.addEventListener("click", function () {
-  body.className = "login-js";
-});
+  recoverLink.addEventListener("click", function () {
+    recoverForm.classList.add("show");
+    loginForm.classList.remove("show");
+  });
 
-recoverLink.addEventListener("click", function () {
-  body.className = "recover-js";
+  loginForm.classList.add("show");
 });
