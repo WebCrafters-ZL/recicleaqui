@@ -1,8 +1,8 @@
 <!-- views/partials/registerForm.hbs -->
 
-<form id="registerForm">
+<form id="registerForm" action="/register" method="post">
     <div class="row mb-3">
-        <div class="col">
+        <div class="col-sm-7">
             <label for="cnpj" class="form-label visually-hidden">CNPJ</label>
             <input type="text" class="form-control" id="cnpj" required placeholder="CNPJ">
         </div>
@@ -20,7 +20,7 @@
         </div>
     </div>
     <div class="row mb-3">
-        <div class="col">
+        <div class="col-sm-3">
             <label for="cep" class="form-label visually-hidden">CEP</label>
             <input type="text" class="form-control" id="cep" required placeholder="CEP">
         </div>
@@ -32,15 +32,17 @@
         </div>
     </div>
     <div class="row mb-3">
-        <div class="col">
+        <div class="col-sm-3">
             <label for="numero" class="form-label visually-hidden">Número</label>
             <input type="text" class="form-control" id="numero" required placeholder="Número">
             <div class="form-check mt-2">
                 <input class="form-check-input" type="checkbox" value="" id="semNumero">
-                <label class="form-check-label" for="semNumero">Sem número</label>
+                <label class="form-check-label" for="semNumero">
+                    Sem número
+                </label>
             </div>
         </div>
-        <div class="col">
+        <div class="col-sm-5">
             <label for="complemento" class="form-label visually-hidden">Complemento</label>
             <input type="text" class="form-control" id="complemento" placeholder="Complemento">
         </div>
@@ -54,7 +56,7 @@
             <label for="cidade" class="form-label visually-hidden">Cidade</label>
             <input type="text" class="form-control" id="cidade" required placeholder="Cidade">
         </div>
-        <div class="col">
+        <div class="col-sm-2">
             <label for="estado" class="form-label visually-hidden">Estado</label>
             <input type="text" class="form-control" id="estado" required placeholder="Estado">
         </div>
@@ -64,7 +66,7 @@
             <label for="email" class="form-label visually-hidden">E-mail</label>
             <input type="email" class="form-control" id="email" required placeholder="E-mail">
         </div>
-        <div class="col">
+        <div class="col-sm-4">
             <label for="telefoneEmpresa" class="form-label visually-hidden">Telefone Empresa</label>
             <input type="text" class="form-control" id="telefoneEmpresa" required placeholder="Telefone Empresa">
         </div>
@@ -74,10 +76,20 @@
             <label for="responsavel" class="form-label visually-hidden">Nome Responsável</label>
             <input type="text" class="form-control" id="responsavel" required placeholder="Nome Responsável">
         </div>
-        <div class="col">
+        <div class="col-sm-4">
             <label for="telefoneResponsavel" class="form-label visually-hidden">Telefone Responsável</label>
             <input type="text" class="form-control" id="telefoneResponsavel" required
                 placeholder="Telefone Responsável">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label for="senha" class="form-label visually-hidden">Senha</label>
+            <input type="password" class="form-control" id="senha" required placeholder="Senha">
+        </div>
+        <div class="col">
+            <label for="confirmarSenha" class="form-label visually-hidden">Confirmar Senha</label>
+            <input type="password" class="form-control" id="confirmarSenha" required placeholder="Confirmar senha">
         </div>
     </div>
     <button type="submit" class="btn btn-primary">Cadastrar</button>
