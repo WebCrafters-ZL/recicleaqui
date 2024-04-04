@@ -9,6 +9,7 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.js')[env];
 const db = {};
 
+// Inicialização do objeto sequelize com base nas configurações do ambiente
 let sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
@@ -16,6 +17,7 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
+// Leitura dos arquivos de modelo no diretório atual
 fs
   .readdirSync(__dirname)
   .filter(file => {
@@ -27,17 +29,21 @@ fs
     );
   })
   .forEach(file => {
+    // Importação e inicialização de cada modelo
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
     db[model.name] = model;
   });
 
+// Associação entre os modelos, se houver
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }
 });
 
+// Adição das instâncias sequelize e Sequelize ao objeto db para acesso externo
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+// Exportação do objeto db contendo os modelos e as instâncias Sequelize
 module.exports = db;

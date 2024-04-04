@@ -1,64 +1,73 @@
 /* style.css - Estilos globais */
 
+/* Estilos gerais para o corpo do documento */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #e0e0e0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
+  font-family: Arial, sans-serif; /* Define a fonte padrão para o corpo do documento */
+  background-color: #e0e0e0; /* Define a cor de fundo */
+  display: flex; /* Define o modelo de layout como flexível */
+  justify-content: center; /* Alinha os itens horizontalmente ao centro */
+  align-items: center; /* Alinha os itens verticalmente ao centro */
+  height: 100vh; /* Define a altura da área visível do documento como 100% da altura da janela de visualização */
+  margin: 0; /* Remove as margens padrão */
 }
 
+/* Estilos para o contêiner principal */
 .container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+  width: 100%; /* Define a largura como 100% */
+  display: flex; /* Define o modelo de layout como flexível */
+  justify-content: center; /* Alinha os itens horizontalmente ao centro */
 }
 
+/* Estilos para os contêineres de formulário */
 .form-container {
-  background-color: #ffffff;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-width: 100%;
-  margin-top: 20px;
+  background-color: #ffffff; /* Define a cor de fundo */
+  border-radius: 10px; /* Define o raio das bordas */
+  padding: 20px; /* Adiciona preenchimento interno */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra */
+  max-width: 100%; /* Define a largura máxima */
+  margin-top: 20px; /* Adiciona margem superior */
 }
 
+/* Estilos para os títulos dos formulários */
 .form-container h2 {
-  text-align: center;
-  margin-bottom: 20px;
+  text-align: center; /* Alinha o texto ao centro */
+  margin-bottom: 20px; /* Adiciona margem inferior */
 }
 
+/* Estilos para os formulários */
 .form-container form {
-  display: flex;
-  flex-direction: column;
+  display: flex; /* Define o modelo de layout como flexível */
+  flex-direction: column; /* Define a direção do eixo principal como vertical */
 }
 
+/* Estilos para os campos de entrada */
 .form-container input {
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #cccccc;
-  border-radius: 5px;
+  margin-bottom: 10px; /* Adiciona margem inferior */
+  padding: 10px; /* Adiciona preenchimento interno */
+  border: 1px solid #cccccc; /* Adiciona uma borda */
+  border-radius: 5px; /* Define o raio das bordas */
 }
 
+/* Estilos para os botões */
 .form-container button {
-  background-color: #4caf50;
-  color: #ffffff;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  background-color: #4caf50; /* Define a cor de fundo */
+  color: #ffffff; /* Define a cor do texto */
+  padding: 10px; /* Adiciona preenchimento interno */
+  border: none; /* Remove a borda */
+  border-radius: 5px; /* Define o raio das bordas */
+  cursor: pointer; /* Altera o cursor para indicar um link */
 }
 
+/* Estilos para os links de alternância */
 .switch-link {
-  display: none; /* Ocultar por padrão */
-  text-align: center;
-  cursor: pointer;
-  color: #4caf50;
-  margin-top: 10px;
+  display: none; /* Oculta por padrão */
+  text-align: center; /* Alinha o texto ao centro */
+  cursor: pointer; /* Altera o cursor para indicar um link */
+  color: #4caf50; /* Define a cor do texto */
+  margin-top: 10px; /* Adiciona margem superior */
 }
 
+/* Estilos para elementos com a classe 'show' */
 .show {
-  display: none; /* Ocultar por padrão */
+  display: none; /* Oculta por padrão */
 }

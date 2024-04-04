@@ -1,25 +1,28 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
+// Definição do modelo Usuario
 module.exports = (sequelize, DataTypes) => {
   class Usuario extends Model {
     /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
+     * Método auxiliar para definição de associações.
+     * Este método não faz parte do ciclo de vida do Sequelize.
+     * O arquivo `models/index` chamará este método automaticamente.
      */
     static associate(models) {
-      // define association here
+      // Defina as associações aqui, se necessário
     }
   }
+
+  // Inicialização do modelo Usuario com os atributos e opções
   Usuario.init({
-    email: DataTypes.STRING,
-    senha: DataTypes.STRING,
-    permissao: DataTypes.ENUM('admin', 'funcionario', 'cliente')
+    email: DataTypes.STRING, // Atributo para armazenar o email do usuário
+    senha: DataTypes.STRING, // Atributo para armazenar a senha do usuário
+    permissao: DataTypes.ENUM('admin', 'funcionario', 'cliente') // Atributo para armazenar a permissão do usuário
   }, {
-    sequelize,
-    modelName: 'Usuario',
+    sequelize, // Objeto Sequelize passado para o modelo
+    modelName: 'Usuario', // Nome do modelo
   });
-  return Usuario;
+
+  return Usuario; // Retorna o modelo Usuario para ser utilizado em outras partes do código
 };
