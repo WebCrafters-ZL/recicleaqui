@@ -7,11 +7,7 @@ const router = express.Router();
 // Definição da rota para o caminho raiz ('/') usando o método GET
 router.get("/", function (req, res, next) {
     // Renderização do template 'login' com os dados passados ({ title: "RecicleAqui - Login" })
-    res.render("login", { title: "RecicleAqui - Login" });
-})
-
-router.post("/auth", function(req, res, next) {
-    
+    res.render("login", { title: "RecicleAqui - Login", layout: "loginLayout" });
 })
 
 // Exportação do roteador para uso em outros arquivos

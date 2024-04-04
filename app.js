@@ -9,6 +9,8 @@ const express = require("express");
 // Importação do motor de visualização 'express-handlebars'
 const hbs = require("express-handlebars").engine;
 
+const bodyParser = require('body-parser')
+
 // Importação dos roteadores definidos no diretório routes
 const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
@@ -18,7 +20,7 @@ const registerRouter = require('./routes/register');
 const app = express();
 
 // Definição da porta na qual o servidor irá escutar
-const port = "8080" //process.env.PORT;
+const port = process.env.PORT;
 
 // Configuração do motor de visualização 'handlebars' para o Express
 app.engine("hbs", hbs({ defaultLayout: "main", extname: ".hbs" }));
@@ -28,6 +30,8 @@ app.set("view engine", ".hbs");
 
 // Configuração do servidor para servir arquivos estáticos a partir do diretório 'public'
 app.use(express.static("public"));
+
+app.use(express.urlencoded({ extended: false }));
 
 // Definição dos roteadores para diferentes caminhos de URL
 app.use('/', indexRouter); // Roteador para o caminho raiz
@@ -41,5 +45,3 @@ app.listen(port, function () {
 
 // Exportação do aplicativo Express para uso em outros arquivos
 module.exports = app;
-
-
