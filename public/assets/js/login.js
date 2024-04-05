@@ -1,12 +1,25 @@
-var loginLink = document.querySelector("#login");
-var recoverLink = document.querySelector("#recover");
+// Arquivo: public/assets/js/login.js
 
-var body = document.querySelector("body");
+// Espera que o DOM seja carregado antes de executar o código
+document.addEventListener("DOMContentLoaded", function () {
+  // Seleciona os elementos HTML relevantes
+  const loginForm = document.querySelector(".login-form");
+  const recoverForm = document.querySelector(".recover-form");
+  const loginLink = document.querySelector("#loginLink");
+  const recoverLink = document.querySelector("#recoverLink");
 
-loginLink.addEventListener("click", function () {
-  body.className = "login-js";
-});
+  // Adiciona um ouvinte de evento para alternar para o formulário de login
+  loginLink.addEventListener("click", function () {
+    loginForm.classList.add("show"); // Mostra o formulário de login
+    recoverForm.classList.remove("show"); // Esconde o formulário de recuperação de senha
+  });
 
-recoverLink.addEventListener("click", function () {
-  body.className = "recover-js";
+  // Adiciona um ouvinte de evento para alternar para o formulário de recuperação de senha
+  recoverLink.addEventListener("click", function () {
+    recoverForm.classList.add("show"); // Mostra o formulário de recuperação de senha
+    loginForm.classList.remove("show"); // Esconde o formulário de login
+  });
+
+  // Mostra o formulário de login por padrão quando a página é carregada
+  loginForm.classList.add("show");
 });

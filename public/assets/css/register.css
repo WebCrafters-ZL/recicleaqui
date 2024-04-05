@@ -1,0 +1,9 @@
+/* register.css - Estilos específicos da página de registro */
+
+/* Estilos para a página de registro */
+.register-page .custom-container {
+  display: flex; /* Define o modelo de layout como flexível */
+  width: 600px; /* Define a largura máxima do contêiner */
+  flex-direction: column; /* Define a direção do eixo principal como vertical */
+  align-items: center; /* Alinha os itens ao centro verticalmente */
+}

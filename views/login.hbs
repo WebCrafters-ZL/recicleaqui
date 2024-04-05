@@ -1,32 +1,23 @@
-<!-- views/login.hbs -->
+<!-- Arquivo: views/login.hbs -->
 
-<div class="content second-content">
-  <div class="first-column">
-    <h2 class="title title-login">Efetuar login</h2>
-    <p class="description description-login">Acesso ao sistema</p>
-    <button type="button" class="btn btn-link" id="recover">Esqueci minha senha</button>
-  </div><!--first column-->
+<!-- Container principal da página de login -->
+<div class="login-page custom-container">
 
-  <div class="second-column">
-    
-    <!-- Inclusão do formulário de login, definido no arquivo parcial loginform.hbs -->
+  <!-- Container do formulário de login -->
+  <div class="form-container login-form">
+    <h2>Login</h2>
+    <!-- Inclusão do formulário de login -->
     {{> loginForm}}
-  </div><!--second column-->
-</div><!--second content-->
+  </div>
 
-<div class="content first-content">
-  <div class="first-column">
-    <h2 class="title title-login">Esqueci minha senha</h2>
-    <p class="description description-login">Recuperação de senha</p>
-    <button type="button" class="btn btn-link" id="login">Efetuar login</button>
-  </div><!--first column-->
-
-  <div class="second-column">
+  <!-- Container do formulário de recuperação de senha -->
+  <div class="form-container recover-form">
+    <h2>Recuperar Senha</h2>
+    <!-- Inclusão do formulário de recuperação de senha -->
     {{> recoverForm}}
-  </div><!--second column-->
+  </div>
+
 </div>
-<!--first content-->
 
-
-<!-- Link para o arquivo JS personalizado -->
+<!-- Importação do script JavaScript para manipulação da página de login -->
 <script src="./assets/js/login.js"></script>

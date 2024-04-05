@@ -1,4 +1,4 @@
-// Importação do módulo 'express' para criação de um servidor web
+// Importação dos módulos necessários
 const express = require("express");
 
 //Importação do módulo 'bcrypt' para criptografar a senha
@@ -16,6 +16,18 @@ const LocalStrategy = require('passport-local').Strategy;
 
 const { eAdmin } = require('.middleware/auth');
 const { Passport } = require("passport");
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const { User } = require('../models/Usuario'); // Importação do modelo de usuário
+const { eAdmin } = require('.middleware/auth'); // Importação do middleware de autenticação
+
+// Inicialização do aplicativo Express
+const app = express();
+
+// Middleware do Express para analisar o corpo das requisições com formato JSON
+app.use(express.json());
+
+// Rota para listar usuários (exemplo de autenticação de administrador)
 app.get('/', eAdmin, async (req, res) => {
     return res.json({
         erro: false,
@@ -24,40 +36,49 @@ app.get('/', eAdmin, async (req, res) => {
     });
 });
 
+// Rota para cadastrar um usuário
 app.post('/cadastrar', async (req, res) => {
-    const password = await bcrypt.hash("senha", 8);
+    // Hash da senha usando bcrypt (exemplo)
+    const password = await bcrypt.hash(req.body.password, 8);
 
-    console.log(password); 
+    console.log(password); // Apenas para exemplo
 });
 
+// Rota para login de usuário
+app.post('/login', async (req, res) => {
+    // Validação do login (exemplo, requer ajustes)
+    if (!req.body.email || !req.body.password) {
+        return res.status(400).json({
+            erro: true,
+            mensagem: "Erro: Usuário ou senha incorretos!"
+        });
+    }
 
-app.post('/routes/login', async (req, res ) => {
-    console.log(req.loginForm);
-    //validação(falta algumas alterações)
-    if(req.body.email != "") {
+    // Verificação da senha usando bcrypt (exemplo)
+    const isValidPassword = await bcrypt.compare(req.body.password, "senha_hash_do_banco_de_dados");
+    if (!isValidPassword) {
         return res.status(400).json({
             erro: true,
-            mensagem: "Erro: Usuário ou a senha incorreta!"
-         });
+            mensagem: "Erro: Usuário ou senha incorretos!"
+        });
     }
-    if(!(await bcrypt.compare(req.body.password, ""))){
-        return res.status(400).json({
-            erro: true,
-            mensagem: "Erro: Usuário ou a senha incorreta!"
-         });
-    }
+
+    // Geração do token de autenticação usando jsonwebtoken (exemplo)
+    const token = jwt.sign({ id: 1 }, "segredo_do_token", {
+        expiresIn: '7d' // Token válido por 7 dias
+    });
 
     return res.json({
-        erro:false,
+        erro: false,
         mensagem: "Login realizado com sucesso!",
         token
     });
-
-    var token = jwt.sign({id: 1}, "FJ29AK1K69H0ASC82N51929ADU2JH1DH24H9023JUF1DI21N4J12", {
-        expiresIn: '7d' //7 Dias, Usuario pode usar este mesmo token para fazer o login
-    })
 });
 
+// Rota de exemplo para listar usuários (exemplo de uso de middleware)
+app.get('/usuarios', eAdmin, async (req, res) => {
+    // Implementação da lógica para listar usuários
+});
 
 app.get(POST, async (req, res) => {
     console.log(req.body);
@@ -117,3 +138,5 @@ module.exports = function(passport){
     }));
 }
 
+// Exportação do aplicativo Express para uso em outros arquivos
+module.exports = app;
