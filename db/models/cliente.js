@@ -13,11 +13,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // Defina as associações aqui, se necessário
-      this.belongsTo(models.Usuario);
+      this.belongsTo(models.Usuario, {
+        foreignKey: "usuario_id",
+        sourceKey: "id"
+      });
     }
   }
   // Inicialização do modelo Clientes com os atributos e opções
   Cliente.init({
+    usuario_id: DataTypes.INTEGER,
     cnpj: DataTypes.STRING,
     razaoSocial: DataTypes.STRING,
     nomeFantasia: DataTypes.STRING,

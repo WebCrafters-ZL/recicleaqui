@@ -35,6 +35,8 @@ app.use(express.static("public"));
 // Configuração do 'body-parser' para análise de dados codificados no URL
 app.use(express.urlencoded({ extended: false }));
 
+app.use(express.json());
+
 // Definição dos roteadores para diferentes caminhos de URL
 app.use('/', indexRouter); // Roteador para o caminho raiz
 app.use('/login', loginRouter); // Roteador para o caminho '/login'

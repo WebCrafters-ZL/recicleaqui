@@ -52,6 +52,7 @@ module.exports = {
       },
       numero: {
         allowNull: false,
+        defaultValue: 'S/N',
         type: Sequelize.STRING
       },
       complemento: {

@@ -1,69 +1,80 @@
-const Usuario = require("../db/models/usuario");
-const Cliente = require("../db/models/cliente");
+const db = require("../db/models");
 const bcrypt = require("bcryptjs");
 
-const registerUser = (req, res) => {
-    const { cnpj, razaoSocial, nomeFantasia, cep, logradouro,
-        numero, complemento, bairro, cidade, estado, email,
-        telefoneEmpresa, nomeResponsavel, telefoneResponsavel,
-        senha, confirmarSenha } = req.body;
-    if (!cnpj || !razaoSocial || !nomeFantasia || !cep || !logradouro ||
-        !numero || !bairro || !cidade || !estado || !email ||
-        !telefoneEmpresa, !nomeResponsavel,
-        !senha || !confirmarSenha) {
-        console.log("Preencher o(s) campo(s) vazio(s)");
-    }
+const registerUsuarioCliente = async function (req, res) {
+    try {
+        // Extrair os dados do corpo da requisição
+        const {
+            cnpj,
+            razaoSocial,
+            nomeFantasia,
+            cep,
+            logradouro,
+            numero,
+            complemento,
+            bairro,
+            cidade,
+            estado,
+            email,
+            telefoneEmpresa,
+            responsavel,
+            telefoneResponsavel,
+            senha,
+            confirmarSenha
+        } = req.body;
 
-    if (senha != confirmarSenha) {
-        console.log("As senhas precisam ser idênticas");
-    } else {
-        Usuario.findAll({
-            where: {
-                email: email
-            }
-        }).then((usuario) => {
-            if (usuario) {
-                console.log("E-mail já cadastrado");
-                res.render("register", {
-                    cnpj, razaoSocial, nomeFantasia, cep, logradouro,
-                    numero, complemento, bairro, cidade, estado, email,
-                    telefoneEmpresa, nomeResponsavel, telefoneResponsavel,
-                    senha, confirmarSenha
-                });
+        // Verificar se o email já está cadastrado
+        const existeUsuario = await db.Usuario.findOne({ where: { email } });
+        if (existeUsuario) {
+            return res.status(400).json({ error: "O email já está cadastrado." });
+        } else {
+            // Verificar se a senha é igual à confirmarSenha
+            if (senha !== confirmarSenha) {
+                return res.status(400).json({ error: "As senhas não conferem." });
             } else {
-                const novoUsuario = new Usuario({
-                    email: email,
-                    senha: senha,
-                    cliente: "cliente",
+                // Criptografar a senha antes de salvar no banco de dados
+                const hashedPassword = await bcrypt.hash(senha, 10);
+
+                // Criar um novo usuário apenas se o email não existir e as senhas conferirem
+                const usuario = await db.Usuario.create({
+                    email,
+                    senha: hashedPassword,
+                    permissao: "cliente"
                 });
 
-                bcrypt.genSalt(10, (err, salt) =>
-                    bcrypt.hash(novoUsuario.senha, salt, (err, hash) => {
-                        if (err) throw err;
-                        novoUsuario.senha = hash;
-                        novoUsuario
-                            .save()
-                            .then(res.redirect("/login"))
-                            .catch((err) => console.log(err));
-                    })
-                );
+                // Criar um novo cliente associado ao usuário criado anteriormente
+                await db.Cliente.create({
+                    usuario_id: usuario.id,
+                    cnpj,
+                    razaoSocial,
+                    nomeFantasia,
+                    cep,
+                    logradouro,
+                    numero,
+                    complemento,
+                    bairro,
+                    cidade,
+                    estado,
+                    telefoneEmpresa,
+                    responsavel,
+                    telefoneResponsavel
+                });
 
-                const novoCliente = new Cliente({
-                    cnpj, razaoSocial, nomeFantasia, cep, logradouro,
-                    numero, complemento, bairro, cidade, estado,
-                    telefoneEmpresa, nomeResponsavel, telefoneResponsavel
-                })
+                // Redirecionar para a rota de login após o cadastro bem-sucedido
+                return res.redirect("/login");
             }
-        });
+        }
+    } catch (error) {
+        console.error("Erro ao cadastrar usuário e cliente:", error);
+        return res.status(500).json({ error: "Erro interno do servidor." });
     }
 }
 
-
-const registerView = (req, res) => {
+const registerView = function (req, res) {
     res.render("registerView", { title: "RecicleAqui - Cadastro" });
 }
 
 module.exports = {
     registerView,
-    registerUser
+    registerUsuarioCliente
 }
