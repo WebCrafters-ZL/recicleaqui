@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
     "express": "^4.19.1",
     "express-handlebars": "^7.1.2",
     "mysql2": "^3.9.2",
@@ -18,6 +20,7 @@
   },
   "devDependencies": {
     "dotenv-safe": "^9.1.0",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "sequelize-cli": "^6.6.2"
   }
 }

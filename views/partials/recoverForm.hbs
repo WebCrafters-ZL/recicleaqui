@@ -1,6 +1,13 @@
-<!-- views/partials/recoverForm.hbs -->
+<!-- Arquivo: views/partials/recoverForm.hbs -->
 
-<form class="formulario">
-  <input type="email" placeholder="Email">
-  <button class="btn btn-second">Recuperar</button>
+<!-- Formulário de recuperação de senha -->
+<form id="recoverForm" action="/login/recover" method="post">
+  <div class="mb-3">
+    <label for="recoverEmail" class="form-label">E-mail</label>
+    <input type="email" class="form-control" id="recoverEmail" required />
+  </div>
+  <button type="submit" class="btn btn-primary">Recuperar</button>
 </form>
+
+<!-- Link para voltar ao formulário de login -->
+<p class="switch-link text-center" id="loginLink">Voltar ao login</p>
