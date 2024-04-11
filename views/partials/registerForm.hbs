@@ -2,6 +2,7 @@
 
 <!-- Formulário de cadastro de cliente -->
 <form id="registerForm" action="/register" method="post">
+    <!-- Formulário com método POST para submeter os dados para a rota de registro -->
     <div class="row mb-3">
         <div class="col-sm-7">
             <label for="cnpj" class="form-label visually-hidden">CNPJ</label>
@@ -36,7 +37,7 @@
     <div class="row mb-3">
         <div class="col-sm-3">
             <label for="numero" class="form-label visually-hidden">Número</label>
-            <input type="text" class="form-control" id="numero" required placeholder="Número">
+            <input type="text" class="form-control" id="numero" name="numero" required placeholder="Número">
             <div class="form-check mt-2">
                 <input class="form-check-input" type="checkbox" value="" id="semNumero">
                 <label class="form-check-label" for="semNumero">
@@ -82,7 +83,8 @@
         </div>
         <div class="col-sm-4">
             <label for="telefoneResponsavel" class="form-label visually-hidden">Telefone Responsável</label>
-            <input type="text" class="form-control" id="telefoneResponsavel" placeholder="Telefone Responsável">
+            <input type="text" class="form-control" id="telefoneResponsavel" name="telefoneResponsavel"
+                placeholder="Telefone Responsável">
         </div>
     </div>
     <div class="row mb-3">
@@ -92,8 +94,9 @@
         </div>
         <div class="col">
             <label for="confirmarSenha" class="form-label visually-hidden">Confirmar Senha</label>
-            <input type="password" class="form-control" id="confirmarSenha" name="confirmarSenha" required placeholder="Confirmar senha">
+            <input type="password" class="form-control" id="confirmarSenha" name="confirmarSenha" required
+                placeholder="Confirmar senha">
         </div>
     </div>
-    <button type="submit" class="btn btn-primary">Cadastrar</button>
+    <button type="submit" class="btn btn-primary">Cadastrar</button> <!-- Botão de envio do formulário -->
 </form>
