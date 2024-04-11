@@ -1,5 +1,8 @@
-const db = require("../db/models"); // Importa o módulo que contém os modelos de banco de dados
-const bcrypt = require("bcryptjs"); // Importa a biblioteca bcrypt para criptografar senhas
+// Importa o módulo que contém os modelos de banco de dados
+const db = require("../db/models");
+
+// Importa a biblioteca bcrypt para criptografar senhas
+const bcrypt = require("bcryptjs");
 
 // Função assíncrona para cadastrar um usuário e cliente
 const registerUsuarioCliente = async function (req, res) {
@@ -24,16 +27,16 @@ const registerUsuarioCliente = async function (req, res) {
             confirmarSenha
         } = req.body;
 
-        // Verificar se o email já está cadastrado
-        const existeUsuario = await db.Usuario.findOne({ where: { email } });
-        if (existeUsuario) {
-            // Se o email já estiver cadastrado, retorna uma resposta de erro
-            return res.status(400).json({ error: "O email já está cadastrado." });
+        // Verificar se a senha é igual à confirmarSenha
+        if (senha !== confirmarSenha) {
+            // Se as senhas não coincidirem, retorna uma resposta de erro
+            return res.status(400).json({ error: "As senhas não conferem." });
         } else {
-            // Verificar se a senha é igual à confirmarSenha
-            if (senha !== confirmarSenha) {
-                // Se as senhas não coincidirem, retorna uma resposta de erro
-                return res.status(400).json({ error: "As senhas não conferem." });
+            // Verificar se o email já está cadastrado
+            const existeUsuario = await db.Usuario.findOne({ where: { email } });
+            if (existeUsuario) {
+                // Se o email já estiver cadastrado, retorna uma resposta de erro
+                return res.status(400).json({ error: "O email já está cadastrado." });
             } else {
                 // Criptografar a senha antes de salvar no banco de dados
                 const hashedPassword = await bcrypt.hash(senha, 10);
