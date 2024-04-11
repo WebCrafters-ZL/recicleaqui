@@ -1,7 +1,21 @@
-<!-- views/partials/loginForm.hbs -->
+<!-- Arquivo: views/partials/loginForm.hbs -->
 
-<form class="formulario">
-  <input type="email" placeholder="Email">
-  <input type="password" placeholder="Senha">
-  <button class="btn btn-second">Entrar</button>
+<!-- Formulário de login -->
+<form id="loginForm" action="/login/auth" method="post">
+  <div class="mb-3">
+    <label for="loginEmail" class="form-label">E-mail</label>
+    <input type="email" class="form-control" id="loginEmail" name="email" required />
+  </div>
+  <div class="mb-3">
+    <label for="loginPassword" class="form-label">Senha</label>
+    <input type="password" class="form-control" id="loginPassword" name="senha" required />
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="rememberEmail" />
+    <label class="form-check-label" for="rememberEmail">Lembrar e-mail</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Entrar</button>
 </form>
+
+<!-- Link para recuperar senha -->
+<p class="switch-link text-center" id="recoverLink">Esqueci minha senha</p>

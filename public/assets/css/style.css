@@ -1,331 +1,73 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* style.css - Estilos globais */
+
+/* Estilos gerais para o corpo do documento */
+body {
+  font-family: Arial, sans-serif; /* Define a fonte padrão para o corpo do documento */
+  background-color: #e0e0e0; /* Define a cor de fundo */
+  display: flex; /* Define o modelo de layout como flexível */
+  justify-content: center; /* Alinha os itens horizontalmente ao centro */
+  align-items: center; /* Alinha os itens verticalmente ao centro */
+  height: 100vh; /* Define a altura da área visível do documento como 100% da altura da janela de visualização */
+  margin: 0; /* Remove as margens padrão */
 }
 
+/* Estilos para o contêiner principal */
 .container {
-    display: flex;
-    border: 2px solid;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #E0F0E4;
+  width: 100%; /* Define a largura como 100% */
+  display: flex; /* Define o modelo de layout como flexível */
+  justify-content: center; /* Alinha os itens horizontalmente ao centro */
 }
 
-.content {
-    background-color: #fff;
-    border-radius: 15px;
-    width: 960px;
-    height: 50%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
+/* Estilos para os contêineres de formulário */
+.form-container {
+  background-color: #ffffff; /* Define a cor de fundo */
+  border-radius: 10px; /* Define o raio das bordas */
+  padding: 20px; /* Adiciona preenchimento interno */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra */
+  max-width: 100%; /* Define a largura máxima */
+  margin-top: 20px; /* Adiciona margem superior */
 }
 
-.content::before {
-    content: "";
-    position: absolute;
-    background-color: #26D07C;
-    width: 40%;
-    height: 100%;
-    border-radius: 15px;
-
-    left: 0%;
+/* Estilos para os títulos dos formulários */
+.form-container h2 {
+  text-align: center; /* Alinha o texto ao centro */
+  margin-bottom: 20px; /* Adiciona margem inferior */
 }
 
-.title {
-    font-size: 28px;
-    font-weight: bold;
-    text-transform: capitalize;
+/* Estilos para os formulários */
+.form-container form {
+  display: flex; /* Define o modelo de layout como flexível */
+  flex-direction: column; /* Define a direção do eixo principal como vertical */
 }
 
-.title-login {
-    color: #fff;
+/* Estilos para os campos de entrada */
+.form-container input {
+  margin-bottom: 10px; /* Adiciona margem inferior */
+  padding: 10px; /* Adiciona preenchimento interno */
+  border: 1px solid #cccccc; /* Adiciona uma borda */
+  border-radius: 5px; /* Define o raio das bordas */
 }
 
-.title-cadastro {
-    color: #26D07C;
+/* Estilos para os botões */
+.form-container button {
+  background-color: #4caf50; /* Define a cor de fundo */
+  color: #ffffff; /* Define a cor do texto */
+  padding: 10px; /* Adiciona preenchimento interno */
+  border: none; /* Remove a borda */
+  border-radius: 5px; /* Define o raio das bordas */
+  cursor: pointer; /* Altera o cursor para indicar um link */
 }
 
-.description {
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 30px;
+/* Estilos para os links de alternância */
+.switch-link {
+  display: none; /* Oculta por padrão */
+  text-align: center; /* Alinha o texto ao centro */
+  cursor: pointer; /* Altera o cursor para indicar um link */
+  color: #4caf50; /* Define a cor do texto */
+  margin-top: 10px; /* Adiciona margem superior */
 }
 
-.description-login {
-    color: #fff;
-}
-
-.description-cadastro {
-    color: #7f8c8d;
-}
-
-.btn {
-    border-radius: 15px;
-    text-transform: uppercase;
-    font-size: 10px;
-    padding: 10px 50px;
-    cursor: pointer;
-    font-weight: bold;
-    width: 150px;
-    align-self: center;
-    border-width: none;
-    border: none;
-    margin-top: 1rem;
-}
-
-.btn-primary {
-    background-color: transparent;
-    border: 1px solid #fff;
-    color: #fff;
-    transition: background-color .5s;
-}
-
-.btn-primary:hover {
-    background-color: #fff;
-    color: #26D07C;
-} 
-
-.btn-second {
-    background-color: #26D07C;
-    border: 1px solid #26D07C;
-    color: #fff;
-    transition: background-color .5s;
-}
-
-.btn-second:hover {
-    background-color: transparent;
-    color: #26D07C;
-}
-
-.first-content {
-    display: flex;
-}
-
-.first-content .second-column {
-    z-index: 11;
-}
-
-.first-column {
-    text-align: center;
-    width: 40%;
-    z-index: 10;
-}
-
-.second-column {
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.formulario {
-    display: flex;
-    flex-direction: column;
-    width: 55%;
-}
-
-.formulario input {
-    height: 45px;
-    border: none;
-    background-color: #ecf0f1;
-    margin: 8px;
-    width: 100%;
-}
-
-/*segundo conteudo*/
-.second-content {
-    position: absolute;
-    display: flex;
-}
-
-.second-content .first-column {
-    order: 2;
-    z-index: -1;
-}
-
-.second-content .second-column {
-    order: 1;
-    z-index: -1;
-}
-
-.esqueceu-senha {
-    color: #7f8c8d;
-    font-size: 14px;
-    text-align: center;
-    /*margin: 10px 0;*/
-}
-
-
-/*ANIMAÇÃO DE PASSAGEM DO BOTÃO DE LOGIN*/
-    .login-js .first-content .first-column {
-        z-index: -1;
-    }
-
-/*ANIMAÇÃO DO CONTEUDO(CADASTRO) QUE PASSA POR TRAS DA TRANSIÇÃO PARA O LADO ESQUERDO*/
-    .login-js .first-content .second-column {
-        z-index: -1;
-        position: relative;
-        animation: deslocamentoEsq 1.5s;
-    }
-
-.login-js .second-content .first-column {
-    z-index: 13;
-}
-
-
-.login-js .second-content .second-column {
-    z-index: 11;
-}
-
-.login-js .content::before{
-    left: 60%;
-    animation: slidein 1.5s;
-    z-index: 12;
-}
-/*TERMINA AQUI ANIMAÇÃO DE PASSAGEM DO BOTÃO DE LOGIN*/
-
-
-/*ANIMAÇÃO DE PASSAGEM DO BOTÃO DE CADASTRO*/
-.recover-js .content::before{
-    animation: slideup 1.5s;
-    z-index: 12;
-}
-
-.recover-js .second-content .first-column {
-    z-index: -1;
-}
-
-/*ANIMAÇÃO DO CONTEUDO(LOGIN) QUE PASSA POR TRAS DA TRANSIÇÃO PARA O LADO DIREITO*/
-    .recover-js .second-content .second-column {
-        z-index: -1;
-        position: relative;
-        animation: deslocamentoDir 1.5s;
-    }
-
-.recover-js .first-content .second-column {
-    z-index: 11;
-}
-
-.recover-js .first-content .first-column {
-    z-index: 13;
-}
-/*termina aqui ANIMAÇÃO DE PASSAGEM DO BOTÃO DE CADASTRO*/
-
-
-/*animação CSS para os dois conteudos*/
-@keyframes slidein {
-    from {
-        left: 0;
-        width: 40%;
-    }
-
-    /*
-    25% {
-        left: 15%;
-        width: 50%;
-
-    }
-    */
-
-    50% {
-        left: 30%;
-        width: 50%;
-
-    }
-
-    /*
-    75% {
-        left: 45%;
-        width: 50%;
-
-    }
-    */
-
-    to {
-        left: 60%;
-        width: 40%;
-
-    }
-}
-
-@keyframes slideup {
-    from {
-        left: 60%;
-        width: 40%;
-    }
-
-    /*
-    25% {
-        left: 15%;
-        width: 50%;
-
-    }
-    */
-
-    50% {
-        left: 30%;
-        width: 50%;
-
-    }
-
-    /*
-    75% {
-        left: 45%;
-        width: 50%;
-
-    }
-    */
-
-    to {
-        left: 0;
-        width: 40%;
-
-    }
-}
-
-
-/*ANIMAÇÃO DO CONTEUDO(CADASTRO) QUE PASSA POR TRAS DA TRANSIÇÃO PARA O LADO ESQUERDO*/
-@keyframes deslocamentoEsq {
-    from {
-        left: 0;
-        z-index: 12;
-        opacity: 1;
-    }
-
-    50% {
-        left: -75px;
-        opacity: .1;
-    }
-
-    to {
-        left: -110px;
-        z-index: -1;
-        opacity: 0;
-    }
-}
-
-
-/*ANIMAÇÃO DO CONTEUDO(LOGIN) QUE PASSA POR TRAS DA TRANSIÇÃO PARA O LADO DIREITO*/
-@keyframes deslocamentoDir {
-    from {
-        left: 0;
-        z-index: 12;
-        opacity: 1;
-    }
-
-    50% {
-        left: 75px;
-        opacity: .1;
-    }
-
-    to {
-        left: 110px;
-        z-index: -1;
-        opacity: 0;
-    }
+/* Estilos para elementos com a classe 'show' */
+.show {
+  display: none; /* Oculta por padrão */
 }

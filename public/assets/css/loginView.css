@@ -1,0 +1,23 @@
+/* login.css - Estilos específicos da página de login */
+
+/* Estilos para a página de login */
+.login-page {
+  display: flex; /* Define o modelo de layout como flexível */
+  flex-direction: column; /* Define a direção do eixo principal como vertical */
+  align-items: center; /* Alinha os itens ao centro verticalmente */
+}
+
+/* Estilos para o contêiner de formulário na página de login */
+.login-page .form-container {
+  display: none; /* Oculta por padrão */
+}
+
+/* Estilos para os links de alternância na página de login */
+.login-page .switch-link {
+  display: block; /* Exibe apenas na página de login */
+}
+
+/* Estilos para elementos com a classe 'show' na página de login */
+.login-page .show {
+  display: block; /* Exibe apenas na página de login */
+}

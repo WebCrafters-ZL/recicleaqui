@@ -3,15 +3,16 @@
 // Importação do módulo 'express' para criação de um servidor web
 const express = require("express");
 
-const { loginView, loginAuth } = require('../controllers/loginController'); // Importa as funções loginView e loginAuth do controlador loginController
+const { clienteView } = require('../controllers/clienteController'); // Importa as funções clienteView do controlador clienteController
 
 // Criação de um novo roteador usando o método Router() do Express
 const router = express.Router();
 
+const { requerirLogin } = require('../middleware/requerirLogin');
+
 // Definição da rota para o caminho raiz ('/') usando o método GET e associa a função loginView
-router.get("/", loginView);
-// Definição da rota para o caminho auth ('/auth') usando o método POST e associa a função loginAuth
-router.post("/auth", loginAuth);
+router.get("/", requerirLogin, clienteView);
+
 
 // Exportação do roteador para uso em outros arquivos
 module.exports = router;
