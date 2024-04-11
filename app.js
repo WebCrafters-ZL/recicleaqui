@@ -3,6 +3,9 @@ require('dotenv-safe').config({
   allowEmptyValues: true
 });
 
+// Importação do módulo 'express' para criação da sessão de usuário
+const session = require('express-session');
+
 // Importação do módulo 'express' para criação do servidor web
 const express = require("express");
 
@@ -16,6 +19,7 @@ const bodyParser = require('body-parser')
 const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
 const registerRouter = require('./routes/register');
+const clienteRouter = require('./routes/cliente');
 
 // Inicialização do aplicativo Express
 const app = express();
@@ -29,6 +33,12 @@ app.engine("hbs", hbs({ defaultLayout: "main", extname: ".hbs" }));
 // Definição do mecanismo de visualização padrão para 'handlebars'
 app.set("view engine", ".hbs");
 
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true
+}));
+
 // Configuração do servidor para servir arquivos estáticos a partir do diretório 'public'
 app.use(express.static("public"));
 
@@ -41,6 +51,7 @@ app.use(express.json());
 app.use('/', indexRouter); // Roteador para o caminho raiz
 app.use('/login', loginRouter); // Roteador para o caminho '/login'
 app.use('/register', registerRouter); // Roteador para o caminho '/register'
+app.use('/cliente', clienteRouter); // Roteador para o caminho '/cliente'
 
 // Inicialização do servidor para escutar na porta especificada
 app.listen(port, function () {
