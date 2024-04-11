@@ -20,7 +20,8 @@ const loginAuth = async function (req, res) {
 
             // Se as senhas coincidirem, retorna uma mensagem de sucesso
             if (senhaCorreta) {
-                return res.status(200).json({ msg: "Usuário autenticado" });
+                req.session.usuario = existeUsuario;
+                return res.redirect("/cliente")
             } else {
                 // Se as senhas não coincidirem, retorna um erro
                 return res.status(400).json({ error: "E-mail e/ou senha não conferem." });
