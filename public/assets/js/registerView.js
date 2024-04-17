@@ -1,22 +1,46 @@
 // Arquivo: public/assets/js/register.js
 
-// Espera que o DOM seja carregado antes de executar o código
-document.addEventListener("DOMContentLoaded", function () {
-    // Seleciona o checkbox "Sem Número" e o campo de entrada para o número
-    const semNumeroCheckbox = document.getElementById("semNumero");
-    const numeroInput = document.getElementById("numero");
+(() => {
+    'use strict'
+    const forms = document.querySelectorAll('.needs-validation')
 
-    // Adiciona um ouvinte de evento para o checkbox "Sem Número" mudar
-    semNumeroCheckbox.addEventListener("change", function () {
-        // Verifica se o checkbox "Sem Número" está marcado
-        if (semNumeroCheckbox.checked) {
-            // Define o valor do campo de entrada para "S/N" e desabilita o campo
-            numeroInput.value = "S/N";
-            numeroInput.disabled = true;
-        } else {
-            // Limpa o valor do campo de entrada e habilita o campo
-            numeroInput.value = "";
-            numeroInput.disabled = false;
-        }
-    });
+    Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+
+            form.classList.add('was-validated');
+        }, false);
+    })
+})()
+
+const senhaInput = document.getElementById('senha');
+const confirmarSenhaInput = document.getElementById('confirmarSenha');
+
+confirmarSenhaInput.addEventListener('input', function () {
+    if (senhaInput.value !== confirmarSenhaInput.value) {
+        confirmarSenhaInput.setCustomValidity('invalid');
+        confirmarSenhaInput.classList.add('is-invalid');
+        confirmarSenhaInput.parentElement.querySelector('.password-mismatch-feedback').classList.add('d-block');
+    } else {
+        confirmarSenhaInput.setCustomValidity('');
+        confirmarSenhaInput.classList.remove('is-invalid');
+        confirmarSenhaInput.parentElement.querySelector('.password-mismatch-feedback').classList.remove('d-block');
+    }
+});
+
+const checkbox = document.getElementById('semNumero');
+const numeroInput = document.getElementById('numero');
+
+checkbox.addEventListener('change', function () {
+    if (checkbox.checked) {
+        numeroInput.disabled = true;
+        numeroInput.value = '';
+        numeroInput.removeAttribute('required');
+    } else {
+        numeroInput.disabled = false;
+        numeroInput.setAttribute('required', true);
+    }
 });
