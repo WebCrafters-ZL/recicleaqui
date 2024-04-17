@@ -27,10 +27,8 @@ const registerUsuarioCliente = async function (req, res) {
             confirmarSenha
         } = req.body;
 
-        // Verificar se a senha é igual à confirmarSenha
         if (senha !== confirmarSenha) {
-            // Se as senhas não coincidirem, retorna uma resposta de erro
-            return res.status(400).json({ error: "As senhas não conferem." });
+            return res.status(400).json({ error: "As senhas não coincidem." });
         } else {
             // Verificar se o email já está cadastrado
             const existeUsuario = await db.Usuario.findOne({ where: { email } });
