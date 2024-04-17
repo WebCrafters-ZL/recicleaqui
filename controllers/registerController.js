@@ -27,28 +27,9 @@ const registerUsuarioCliente = async function (req, res) {
             confirmarSenha
         } = req.body;
 
-        function validarSenha() {
-  var senha = document.getElementById('password').value;
-  var confirmarSenha = document.getElementById('confirmarSenha').value;
-  var mensagemErro = document.getElementById('mensagemErro');
-
-  if (senha !== confirmarSenha) {
-    mensagemErro.textContent = 'As senhas não coincidem.';
-    return false;
-  } else {
-    mensagemErro.textContent = ''; // Limpa a mensagem de erro se as senhas coincidirem
-    return true;
-  }
-}
-
-  document.getElementById('registerForm').addEventListener('submit', function(e) {
-  if (!validarSenha()) {
-    e.preventDefault(); // Impede o envio do formulário
-  }
-});
-   
-
-
+        if (senha !== confirmarSenha) {
+            return res.status(400).json({ error: "As senhas não coincidem." });
+        } else {
             // Verificar se o email já está cadastrado
             const existeUsuario = await db.Usuario.findOne({ where: { email } });
             if (existeUsuario) {
