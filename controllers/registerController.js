@@ -41,7 +41,14 @@ const registerUsuarioCliente = async function (req, res) {
   }
 }
 
-        } else {
+  document.getElementById('registerForm').addEventListener('submit', function(e) {
+  if (!validarSenha()) {
+    e.preventDefault(); // Impede o envio do formulário
+  }
+});
+   
+
+
             // Verificar se o email já está cadastrado
             const existeUsuario = await db.Usuario.findOne({ where: { email } });
             if (existeUsuario) {
