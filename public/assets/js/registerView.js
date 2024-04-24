@@ -1,17 +1,18 @@
 const cnpjInput = document.getElementById("cnpj");
-const cepInput = document.getElementById("cep");
-const checkbox = document.getElementById("semNumero");
-const numeroInput = document.getElementById("numero");
-const confirmarSenhaInput = document.getElementById("confirmarSenha");
-const senhaInput = document.getElementById("senha");
 const razaoSocialInput = document.getElementById("razaoSocial");
 const nomeFantasiaInput = document.getElementById("nomeFantasia");
+const cepInput = document.getElementById("cep");
 const logradouroInput = document.getElementById("logradouro");
+const numeroInput = document.getElementById("numero");
+const checkbox = document.getElementById("semNumero");
+const complementoInput = document.getElementById("complemento");
 const bairroInput = document.getElementById("bairro");
 const cidadeInput = document.getElementById("cidade");
 const estadoInput = document.getElementById("estado");
 const telefoneEmpresaInput = document.getElementById("telefoneEmpresa");
 const telefoneResponsavelInput = document.getElementById("telefoneResponsavel");
+const confirmarSenhaInput = document.getElementById("confirmarSenha");
+const senhaInput = document.getElementById("senha");
 
 (() => {
   "use strict";
@@ -21,9 +22,6 @@ const telefoneResponsavelInput = document.getElementById("telefoneResponsavel");
     form.addEventListener(
       "submit",
       (event) => {
-        // Remover as máscaras antes de enviar os dados
-        cnpjInput.value = removerMascara(cnpjInput.value);
-        cepInput.value = removerMascara(cepInput.value);
 
         if (!form.checkValidity()) {
           event.preventDefault();
@@ -41,22 +39,8 @@ document.addEventListener("DOMContentLoaded", function () {
   aplicarMascaras();
 
   cnpjInput.addEventListener("change", function () {
-    const cnpj = removerMascara(cnpjInput.value);
-    buscarDadosCNPJ(
-      cnpj,
-      razaoSocialInput,
-      nomeFantasiaInput,
-      cepInput,
-      logradouroInput,
-      bairroInput,
-      cidadeInput,
-      estadoInput
-    );
-  });
-
-  cepInput.addEventListener("change", function () {
-    const cep = removerMascara(cepInput.value);
-    buscarDadosCEP(cep, logradouroInput, bairroInput, cidadeInput, estadoInput);
+    const cnpj = $('#cnpj').cleanVal();
+    buscarDadosCNPJ(cnpj);
   });
 
   confirmarSenhaInput.addEventListener("input", function () {
@@ -102,14 +86,7 @@ function aplicarMascaras() {
 }
 
 function buscarDadosCNPJ(
-  cnpj,
-  razaoSocialInput,
-  nomeFantasiaInput,
-  cepInput,
-  logradouroInput,
-  bairroInput,
-  cidadeInput,
-  estadoInput
+  cnpj
 ) {
   return fetch(`https://brasilapi.com.br/api/cnpj/v1/${cnpj}`)
     .then((response) => {
@@ -121,48 +98,18 @@ function buscarDadosCNPJ(
     .then((data) => {
       razaoSocialInput.value = data.razao_social;
       nomeFantasiaInput.value = data.nome_fantasia;
-      cepInput.value = data.cep; // Remover a máscara do CEP antes de preencher o campo
-      // Após preencher o campo de CEP, chama a função para buscar os dados do CEP
-      buscarDadosCEP(
-        removerMascara(data.cep),
-        logradouroInput,
-        bairroInput,
-        cidadeInput,
-        estadoInput
-      );
+      cepInput.value = data.cep;
+      logradouroInput.value = data.descricao_tipo_de_logradouro + " " + data.logradouro;
+      numeroInput.value = data.numero;
+      complementoInput.value = data.complemento;
+      bairroInput.value = data.bairro;
+      cidadeInput.value = data.municipio;
+      estadoInput.value = data.uf;
+      telefoneEmpresaInput.value = data.ddd_telefone_1;
+      
     })
     .catch((error) => {
       alert("Não foi possível encontrar a empresa para o CNPJ fornecido.");
       console.error("Erro:", error);
     });
-}
-
-function buscarDadosCEP(
-  cep,
-  logradouroInput,
-  bairroInput,
-  cidadeInput,
-  estadoInput
-) {
-  return fetch(`https://brasilapi.com.br/api/cep/v1/${cep}`)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Erro ao buscar dados do CEP");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      logradouroInput.value = data.street;
-      bairroInput.value = data.neighborhood;
-      cidadeInput.value = data.city;
-      estadoInput.value = data.state;
-    })
-    .catch((error) => {
-      alert("Não foi possível encontrar o endereço para o CEP fornecido.");
-      console.error("Erro:", error);
-    });
-}
-
-function removerMascara(valor) {
-  return valor.replace(/\D/g, "");
 }
