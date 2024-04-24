@@ -6,15 +6,41 @@
   <!-- Container do formulário de login -->
   <div class="form-container login-form">
     <h2>Login</h2>
-    <!-- Inclusão do formulário de login -->
-    {{> loginForm}}
+    <!-- Formulário de login -->
+<form id="loginForm" action="/login/auth" method="post">
+  <div class="mb-3">
+    <label for="loginEmail" class="form-label">E-mail</label>
+    <input type="email" class="form-control" id="loginEmail" name="email" required />
+  </div>
+  <div class="mb-3">
+    <label for="loginPassword" class="form-label">Senha</label>
+    <input type="password" class="form-control" id="loginPassword" name="senha" required />
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="rememberEmail" />
+    <label class="form-check-label" for="rememberEmail">Lembrar e-mail</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Entrar</button>
+</form>
+
+<!-- Link para recuperar senha -->
+<p class="switch-link text-center" id="recoverLink">Esqueci minha senha</p>
   </div>
 
   <!-- Container do formulário de recuperação de senha -->
   <div class="form-container recover-form">
     <h2>Recuperar Senha</h2>
-    <!-- Inclusão do formulário de recuperação de senha -->
-    {{> recoverForm}}
+    <!-- Formulário de recuperação de senha -->
+<form id="recoverForm" action="/login/recover" method="post">
+  <div class="mb-3">
+    <label for="recoverEmail" class="form-label">E-mail</label>
+    <input type="email" class="form-control" id="recoverEmail" required />
+  </div>
+  <button type="submit" class="btn btn-primary">Recuperar</button>
+</form>
+
+<!-- Link para voltar ao formulário de login -->
+<p class="switch-link text-center" id="loginLink">Voltar ao login</p>
   </div>
 
 </div>
