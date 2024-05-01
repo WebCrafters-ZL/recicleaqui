@@ -27,26 +27,29 @@ const registerUsuarioCliente = async function (req, res) {
             confirmarSenha
         } = req.body;
 
+        // Verifica se as senhas coincidem
         if (senha !== confirmarSenha) {
             return res.status(400).json({ error: "As senhas não coincidem." });
         } else {
-            // Verificar se o email já está cadastrado
+            // Verifica se o email e/ou o CNPJ já está cadastrado
             const existeUsuario = await db.Usuario.findOne({ where: { email } });
-            if (existeUsuario) {
-                // Se o email já estiver cadastrado, retorna uma resposta de erro
-                return res.status(400).json({ error: "O email já está cadastrado." });
+            const existeCliente = await db.Cliente.findOne({ where: { cnpj } });
+
+            if (existeUsuario || existeCliente) {
+                // Se os dados já estiverem cadastrados, retorna uma resposta de erro
+                return res.status(400).json({ error: "CNPJ e/ou e-mail já cadastrado(s)." });
             } else {
-                // Criptografar a senha antes de salvar no banco de dados
+                // Criptografa a senha antes de salvar no banco de dados
                 const hashedPassword = await bcrypt.hash(senha, 10);
 
-                // Criar um novo usuário apenas se o email não existir e as senhas conferirem
+                // Cria um novo usuário apenas se o email não existir e as senhas conferirem
                 const usuario = await db.Usuario.create({
                     email,
                     senha: hashedPassword,
                     permissao: "cliente"
                 });
 
-                // Criar um novo cliente associado ao usuário criado anteriormente
+                // Cria um novo cliente associado ao usuário criado anteriormente
                 await db.Cliente.create({
                     usuario_id: usuario.id,
                     cnpj,
@@ -64,7 +67,7 @@ const registerUsuarioCliente = async function (req, res) {
                     telefoneResponsavel
                 });
 
-                // Redirecionar para a rota de login após o cadastro bem-sucedido
+                // Redireciona para a rota de login após o cadastro bem-sucedido
                 return res.redirect("/login");
             }
         }
