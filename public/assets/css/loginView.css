@@ -1,23 +1,349 @@
-/* login.css - Estilos específicos da página de login */
-
-/* Estilos para a página de login */
-.login-page {
-  display: flex; /* Define o modelo de layout como flexível */
-  flex-direction: column; /* Define a direção do eixo principal como vertical */
-  align-items: center; /* Alinha os itens ao centro verticalmente */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Estilos para o contêiner de formulário na página de login */
-.login-page .form-container {
-  display: none; /* Oculta por padrão */
+.container {
+    display: flex;
+    border: 2px solid;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #E0F0E4;
 }
 
-/* Estilos para os links de alternância na página de login */
-.login-page .switch-link {
-  display: block; /* Exibe apenas na página de login */
+.content {
+    background-color: #fff;
+    border-radius: 15px;
+    width: 960px;
+    height: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
 }
 
-/* Estilos para elementos com a classe 'show' na página de login */
-.login-page .show {
-  display: block; /* Exibe apenas na página de login */
+.content::before {
+    content: "";
+    position: absolute;
+    background-color: #26D07C;
+    width: 40%;
+    height: 100%;
+    border-radius: 15px;
+
+    left: 0%;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.title-login {
+    color: #fff;
+}
+
+.title-cadastro {
+    color: #26D07C;
+}
+
+.description {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 30px;
+}
+
+.description-login {
+    color: #fff;
+}
+
+.description-cadastro {
+    color: #7f8c8d;
+}
+
+.description-cadastrar {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.btn {
+    border-radius: 15px;
+    text-transform: uppercase;
+    font-size: 10px;
+    padding: 10px 50px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 150px;
+    align-self: center;
+    border-width: none;
+    border: none;
+    margin-top: 1rem;
+}
+
+.btn-recuperar {
+    border: none;
+    background-color: #fff;
+    align-self: flex-end;
+    cursor: pointer;
+    color: #7f8c8d;
+}
+
+.btn-primary {
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    transition: background-color .5s;
+}
+
+.btn-primary:hover {
+    background-color: #fff;
+    color: #26D07C;
+} 
+
+.btn-second {
+    background-color: #26D07C;
+    border: 1px solid #26D07C;
+    color: #fff;
+    transition: background-color .5s;
+}
+
+.btn-second:hover {
+    background-color: transparent;
+    color: #26D07C;
+}
+
+a {
+    text-decoration: none;
+    z-index: -10;
+}
+
+.first-content {
+    display: flex;
+}
+
+.first-content .second-column {
+    z-index: 11;
+}
+
+.first-column {
+    text-align: center;
+    width: 40%;
+    z-index: 10;
+}
+
+.second-column {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+}
+
+.formulario input {
+    height: 45px;
+    border: none;
+    background-color: #ecf0f1;
+    margin: 8px;
+    width: 100%;
+}
+
+/*segundo conteudo*/
+.second-content {
+    position: absolute;
+    display: flex;
+}
+
+.second-content .first-column {
+    order: 2;
+    z-index: -1;
+}
+
+.second-content .second-column {
+    order: 1;
+    z-index: -1;
+}
+
+.esqueceu-senha {
+    color: #7f8c8d;
+    font-size: 14px;
+    text-align: center;
+    /*margin: 10px 0;*/
+}
+
+
+/*ANIMAÇÃO DE PASSAGEM DO BOTÃO DE LOGIN*/
+    .sign-in-js .first-content .first-column {
+        z-index: -1;
+    }
+
+/*ANIMAÇÃO DO CONTEUDO(CADASTRO) QUE PASSA POR TRAS DA TRANSIÇÃO PARA O LADO ESQUERDO*/
+    .sign-in-js .first-content .second-column {
+        z-index: -1;
+        position: relative;
+        animation: deslocamentoEsq 1.5s;
+    }
+
+.sign-in-js .second-content .first-column {
+    z-index: 13;
+}
+
+
+.sign-in-js .second-content .second-column {
+    z-index: 11;
+}
+
+.sign-in-js .content::before{
+    left: 60%;
+    animation: slidein 1.5s;
+    z-index: 12;
+}
+/*TERMINA AQUI ANIMAÇÃO DE PASSAGEM DO BOTÃO DE LOGIN*/
+
+
+/*ANIMAÇÃO DE PASSAGEM DO BOTÃO DE CADASTRO*/
+.sign-up-js .content::before{
+    animation: slideup 1.5s;
+    z-index: 12;
+}
+
+.sign-up-js .second-content .first-column {
+    z-index: -1;
+}
+
+/*ANIMAÇÃO DO CONTEUDO(LOGIN) QUE PASSA POR TRAS DA TRANSIÇÃO PARA O LADO DIREITO*/
+    .sign-up-js .second-content .second-column {
+        z-index: -1;
+        position: relative;
+        animation: deslocamentoDir 1.5s;
+    }
+
+.sign-up-js .first-content .second-column {
+    z-index: 11;
+}
+
+.sign-up-js .first-content .first-column {
+    z-index: 13;
+}
+/*termina aqui ANIMAÇÃO DE PASSAGEM DO BOTÃO DE CADASTRO*/
+
+
+/*animação CSS para os dois conteudos*/
+@keyframes slidein {
+    from {
+        left: 0;
+        width: 40%;
+    }
+
+    /*
+    25% {
+        left: 15%;
+        width: 50%;
+
+    }
+    */
+
+    50% {
+        left: 30%;
+        width: 50%;
+
+    }
+
+    /*
+    75% {
+        left: 45%;
+        width: 50%;
+
+    }
+    */
+
+    to {
+        left: 60%;
+        width: 40%;
+
+    }
+}
+
+@keyframes slideup {
+    from {
+        left: 60%;
+        width: 40%;
+    }
+
+    /*
+    25% {
+        left: 15%;
+        width: 50%;
+
+    }
+    */
+
+    50% {
+        left: 30%;
+        width: 50%;
+
+    }
+
+    /*
+    75% {
+        left: 45%;
+        width: 50%;
+
+    }
+    */
+
+    to {
+        left: 0;
+        width: 40%;
+
+    }
+}
+
+
+/*ANIMAÇÃO DO CONTEUDO(CADASTRO) QUE PASSA POR TRAS DA TRANSIÇÃO PARA O LADO ESQUERDO*/
+@keyframes deslocamentoEsq {
+    from {
+        left: 0;
+        z-index: 12;
+        opacity: 1;
+    }
+
+    50% {
+        left: -75px;
+        opacity: .1;
+    }
+
+    to {
+        left: -110px;
+        z-index: -1;
+        opacity: 0;
+    }
+}
+
+
+/*ANIMAÇÃO DO CONTEUDO(LOGIN) QUE PASSA POR TRAS DA TRANSIÇÃO PARA O LADO DIREITO*/
+@keyframes deslocamentoDir {
+    from {
+        left: 0;
+        z-index: 12;
+        opacity: 1;
+    }
+
+    50% {
+        left: 75px;
+        opacity: .1;
+    }
+
+    to {
+        left: 110px;
+        z-index: -1;
+        opacity: 0;
+    }
 }

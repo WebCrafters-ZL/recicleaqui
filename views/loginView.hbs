@@ -1,48 +1,43 @@
 <!-- Arquivo: views/login.hbs -->
 
 <!-- Container principal da página de login -->
-<div class="login-page custom-container">
+<div class = "container">
+    <div class="content first-content">
+        <div class="first-column">
+            <h2 class = "title title-login">Login</h2>
+            <p class="description description-login description-cadastrar">Caso não tenha cadastro, clique abaixo</p>
+            <a href="#" class="btn  btn-primary">Cadastrar</a>
+            
+        </div><!--first column-->
+        <div class="second-column">
+            <h2 class="title title-cadastro">Login</h2>
+            <p class="description description-cadastro">Faça seu login abaixo</p>
+            <form class="formulario">
+                <input type="email" placeholder="Email">
+                <input type="password" placeholder="Senha">
+                <!--<a class="esqueceu-senha" href="#">Esqueci minha senha</a>-->
+                <button id="signin" class="btn-recuperar">Recuperar senha</button>
 
-  <!-- Container do formulário de login -->
-  <div class="form-container login-form">
-    <h2>Login</h2>
-    <!-- Formulário de login -->
-<form id="loginForm" action="/login/auth" method="post">
-  <div class="mb-3">
-    <label for="loginEmail" class="form-label">E-mail</label>
-    <input type="email" class="form-control" id="loginEmail" name="email" required />
-  </div>
-  <div class="mb-3">
-    <label for="loginPassword" class="form-label">Senha</label>
-    <input type="password" class="form-control" id="loginPassword" name="senha" required />
-  </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="rememberEmail" />
-    <label class="form-check-label" for="rememberEmail">Lembrar e-mail</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Entrar</button>
-</form>
+                <button class="btn btn-second">Sign In</button>
+            </form>
+        </div><!--second column-->
+    </div> <!--first content-->
 
-<!-- Link para recuperar senha -->
-<p class="switch-link text-center" id="recoverLink">Esqueci minha senha</p>
-  </div>
-
-  <!-- Container do formulário de recuperação de senha -->
-  <div class="form-container recover-form">
-    <h2>Recuperar Senha</h2>
-    <!-- Formulário de recuperação de senha -->
-<form id="recoverForm" action="/login/recover" method="post">
-  <div class="mb-3">
-    <label for="recoverEmail" class="form-label">E-mail</label>
-    <input type="email" class="form-control" id="recoverEmail" required />
-  </div>
-  <button type="submit" class="btn btn-primary">Recuperar</button>
-</form>
-
-<!-- Link para voltar ao formulário de login -->
-<p class="switch-link text-center" id="loginLink">Voltar ao login</p>
-  </div>
-
+    
+    <div class="content second-content">
+        <div class="first-column">
+            <h2 class = "title title-login">Lembrou sua senha?</h2>
+            <p class="description description-login">Faça seu login</p>
+            <button id="signup" class="btn  btn-primary">Login</button>
+        </div><!--first column-->
+        <div class="second-column">
+            <h2 class="title title-cadastro">Recupere sua senha</h2>
+            <form class="formulario">
+                <input type="email" placeholder="Email">
+                <button class="btn btn-second">Recuperar</button>
+            </form>
+        </div><!--second column-->
+    </div><!--second content-->        
 </div>
 
 <!-- Importação do script JavaScript para manipulação da página de login -->
