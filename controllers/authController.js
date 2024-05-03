@@ -39,6 +39,12 @@ const authLogin = async function (req, res) {
   }
 };
 
+const authLogout = function(req, res) {
+  req.session.destroy(function(err) {
+    res.redirect("/auth");
+  })
+}
+
 // Função responsável por renderizar a página de login
 const authView = function (req, res) {
   // Renderiza a view 'authView' passando o título da página como parâmetro
@@ -48,5 +54,6 @@ const authView = function (req, res) {
 // Exporta as funções 'authLogin' e 'authView' para serem utilizadas por outros arquivos
 module.exports = {
   authLogin,
+  authLogout,
   authView,
 };

@@ -4,105 +4,109 @@
   <!-- Container do perfil do cliente -->
   <div class="profile-container">
     <h2>Perfil do Cliente</h2>
-        <!-- Formulário para exibir informações do cliente -->
+    <!-- Formulário para exibir informações do cliente -->
     <form id="clienteForm" action="/cliente/edit" method="post" class="needs-validation" novalidate>
       <!-- Campo oculto para armazenar o ID do cliente -->
       <input type="hidden" name="clienteId" value="{{clienteId}}">
-      <!-- Botões para editar e excluir informações do cliente -->  <div class="row mb-3">
+      <!-- Botões para editar e excluir informações do cliente -->
+      <div class="row mb-3">
         <div class="col">
-          <button class="btn btn-warning" type="button" name="habilitaEdicao" id="habilita-edicao" onclick="habilitaEdicao()">Editar</button>
+
         </div>
-        <div class="col"></div>
         <div class="col">
-          <a class="btn btn-danger" href="/cliente/delete/{{clienteId}}" role="button">Excluir</a>
+          <a class="btn btn-danger" href="/cliente/delete/{{clienteId}}" role="button">Excluir cadastro</a>
+        </div>
+        <div class="col">&nbsp;</div>
+        <div class="col">
+          <a class="btn btn-warning" href="/auth/logout" role="button">Sair</a>
         </div>
       </div>
       <div class="row mb-3">
         <div class="col">
           <label for="cnpj" class="form-label">CNPJ</label>
-          <input type="text" class="form-control" id="cnpj" name="cnpj" required readonly value="{{cnpj}}">
+          <input type="text" class="form-control" id="cnpj" name="cnpj" readonly required value="{{cnpj}}">
           <div class="invalid-feedback">Insira um CNPJ válido.</div>
         </div>
         <div class="col">
           <label for="razaoSocial" class="form-label">Razão Social</label>
-          <input type="text" class="form-control" id="razaoSocial" name="razaoSocial" required readonly value="{{razaoSocial}}">
+          <input type="text" class="form-control" id="razaoSocial" name="razaoSocial" required value="{{razaoSocial}}">
           <div class="invalid-feedback">Insira a razão social.</div>
         </div>
       </div>
       <div class="row mb-3">
         <div class="col">
           <label for="nomeFantasia" class="form-label">Nome Fantasia</label>
-          <input type="text" class="form-control" id="nomeFantasia" name="nomeFantasia" readonly value="{{nomeFantasia}}">
+          <input type="text" class="form-control" id="nomeFantasia" name="nomeFantasia" value="{{nomeFantasia}}">
         </div>
         <div class="col">
           <label for="cep" class="form-label">CEP</label>
-          <input type="text" class="form-control" id="cep" name="cep" required readonly value="{{cep}}">
+          <input type="text" class="form-control" id="cep" name="cep" required value="{{cep}}">
           <div class="invalid-feedback">Insira um CEP válido.</div>
         </div>
       </div>
       <div class="row mb-3">
         <div class="col">
           <label for="logradouro" class="form-label">Endereço</label>
-          <input type="text" class="form-control" id="logradouro" name="logradouro" required readonly value="{{logradouro}}">
+          <input type="text" class="form-control" id="logradouro" name="logradouro" required value="{{logradouro}}">
           <div class="invalid-feedback">Insira o endereço.</div>
         </div>
         <div class="col-sm-2">
           <label for="numero" class="form-label">Número</label>
-          <input type="text" class="form-control" id="numero" name="numero" required readonly value="{{numero}}">
+          <input type="text" class="form-control" id="numero" name="numero" required value="{{numero}}">
           <div class="form-check mt-2">
-            <input class="form-check-input" type="checkbox" value="" id="semNumero" disabled>
+            <input class="form-check-input" type="checkbox" value="" id="semNumero">
             <label class="form-check-label" for="semNumero">Sem nº</label>
           </div>
           <div class="invalid-feedback">Insira o número do endereço.</div>
         </div>
         <div class="col-sm-5">
           <label for="complemento" class="form-label">Complemento</label>
-          <input type="text" class="form-control" id="complemento" name="complemento" readonly value="{{complemento}}">
+          <input type="text" class="form-control" id="complemento" name="complemento" value="{{complemento}}">
         </div>
       </div>
       <div class="row mb-3">
         <div class="col">
           <label for="bairro" class="form-label">Bairro</label>
-          <input type="text" class="form-control" id="bairro" name="bairro" required readonly value="{{bairro}}">
+          <input type="text" class="form-control" id="bairro" name="bairro" required value="{{bairro}}">
           <div class="invalid-feedback">Insira o bairro.</div>
         </div>
         <div class="col">
           <label for="cidade" class="form-label">Cidade</label>
-          <input type="text" class="form-control" id="cidade" name="cidade" required readonly value="{{cidade}}">
+          <input type="text" class="form-control" id="cidade" name="cidade" required value="{{cidade}}">
           <div class="invalid-feedback">Insira a cidade.</div>
         </div>
         <div class="col-sm-2">
           <label for="estado" class="form-label">Estado</label>
-<select class="form-select" id="estado" name="estado" required readonly>
-  <option value="" disabled>UF</option>
-  <option value="AC" {{#ifEquals estado 'AC'}}selected{{/ifEquals}}>Acre (AC)</option>
-  <option value="AL" {{#ifEquals estado 'AL'}}selected{{/ifEquals}}>Alagoas (AL)</option>
-  <option value="AP" {{#ifEquals estado 'AP'}}selected{{/ifEquals}}>Amapá (AP)</option>
-  <option value="AM" {{#ifEquals estado 'AM'}}selected{{/ifEquals}}>Amazonas (AM)</option>
-  <option value="BA" {{#ifEquals estado 'BA'}}selected{{/ifEquals}}>Bahia (BA)</option>
-  <option value="CE" {{#ifEquals estado 'CE'}}selected{{/ifEquals}}>Ceará (CE)</option>
-  <option value="DF" {{#ifEquals estado 'DF'}}selected{{/ifEquals}}>Distrito Federal (DF)</option>
-  <option value="ES" {{#ifEquals estado 'ES'}}selected{{/ifEquals}}>Espírito Santo (ES)</option>
-  <option value="GO" {{#ifEquals estado 'GO'}}selected{{/ifEquals}}>Goiás (GO)</option>
-  <option value="MA" {{#ifEquals estado 'MA'}}selected{{/ifEquals}}>Maranhão (MA)</option>
-  <option value="MT" {{#ifEquals estado 'MT'}}selected{{/ifEquals}}>Mato Grosso (MT)</option>
-  <option value="MS" {{#ifEquals estado 'MS'}}selected{{/ifEquals}}>Mato Grosso do Sul (MS)</option>
-  <option value="MG" {{#ifEquals estado 'MG'}}selected{{/ifEquals}}>Minas Gerais (MG)</option>
-  <option value="PA" {{#ifEquals estado 'PA'}}selected{{/ifEquals}}>Pará (PA)</option>
-  <option value="PB" {{#ifEquals estado 'PB'}}selected{{/ifEquals}}>Paraíba (PB)</option>
-  <option value="PR" {{#ifEquals estado 'PR'}}selected{{/ifEquals}}>Paraná (PR)</option>
-  <option value="PE" {{#ifEquals estado 'PE'}}selected{{/ifEquals}}>Pernambuco (PE)</option>
-  <option value="PI" {{#ifEquals estado 'PI'}}selected{{/ifEquals}}>Piauí (PI)</option>
-  <option value="RJ" {{#ifEquals estado 'RJ'}}selected{{/ifEquals}}>Rio de Janeiro (RJ)</option>
-  <option value="RN" {{#ifEquals estado 'RN'}}selected{{/ifEquals}}>Rio Grande do Norte (RN)</option>
-  <option value="RS" {{#ifEquals estado 'RS'}}selected{{/ifEquals}}>Rio Grande do Sul (RS)</option>
-  <option value="RO" {{#ifEquals estado 'RO'}}selected{{/ifEquals}}>Rondônia (RO)</option>
-  <option value="RR" {{#ifEquals estado 'RR'}}selected{{/ifEquals}}>Roraima (RR)</option>
-  <option value="SC" {{#ifEquals estado 'SC'}}selected{{/ifEquals}}>Santa Catarina (SC)</option>
-  <option value="SP" {{#ifEquals estado 'SP'}}selected{{/ifEquals}}>São Paulo (SP)</option>
-  <option value="SE" {{#ifEquals estado 'SE'}}selected{{/ifEquals}}>Sergipe (SE)</option>
-  <option value="TO" {{#ifEquals estado 'TO'}}selected{{/ifEquals}}>Tocantins (TO)</option>
-</select>
+          <select class="form-select" id="estado" name="estado" required>
+            <option value="">UF</option>
+            <option value="AC" {{#ifEquals estado 'AC' }}selected{{/ifEquals}}>Acre (AC)</option>
+            <option value="AL" {{#ifEquals estado 'AL' }}selected{{/ifEquals}}>Alagoas (AL)</option>
+            <option value="AP" {{#ifEquals estado 'AP' }}selected{{/ifEquals}}>Amapá (AP)</option>
+            <option value="AM" {{#ifEquals estado 'AM' }}selected{{/ifEquals}}>Amazonas (AM)</option>
+            <option value="BA" {{#ifEquals estado 'BA' }}selected{{/ifEquals}}>Bahia (BA)</option>
+            <option value="CE" {{#ifEquals estado 'CE' }}selected{{/ifEquals}}>Ceará (CE)</option>
+            <option value="DF" {{#ifEquals estado 'DF' }}selected{{/ifEquals}}>Distrito Federal (DF)</option>
+            <option value="ES" {{#ifEquals estado 'ES' }}selected{{/ifEquals}}>Espírito Santo (ES)</option>
+            <option value="GO" {{#ifEquals estado 'GO' }}selected{{/ifEquals}}>Goiás (GO)</option>
+            <option value="MA" {{#ifEquals estado 'MA' }}selected{{/ifEquals}}>Maranhão (MA)</option>
+            <option value="MT" {{#ifEquals estado 'MT' }}selected{{/ifEquals}}>Mato Grosso (MT)</option>
+            <option value="MS" {{#ifEquals estado 'MS' }}selected{{/ifEquals}}>Mato Grosso do Sul (MS)</option>
+            <option value="MG" {{#ifEquals estado 'MG' }}selected{{/ifEquals}}>Minas Gerais (MG)</option>
+            <option value="PA" {{#ifEquals estado 'PA' }}selected{{/ifEquals}}>Pará (PA)</option>
+            <option value="PB" {{#ifEquals estado 'PB' }}selected{{/ifEquals}}>Paraíba (PB)</option>
+            <option value="PR" {{#ifEquals estado 'PR' }}selected{{/ifEquals}}>Paraná (PR)</option>
+            <option value="PE" {{#ifEquals estado 'PE' }}selected{{/ifEquals}}>Pernambuco (PE)</option>
+            <option value="PI" {{#ifEquals estado 'PI' }}selected{{/ifEquals}}>Piauí (PI)</option>
+            <option value="RJ" {{#ifEquals estado 'RJ' }}selected{{/ifEquals}}>Rio de Janeiro (RJ)</option>
+            <option value="RN" {{#ifEquals estado 'RN' }}selected{{/ifEquals}}>Rio Grande do Norte (RN)</option>
+            <option value="RS" {{#ifEquals estado 'RS' }}selected{{/ifEquals}}>Rio Grande do Sul (RS)</option>
+            <option value="RO" {{#ifEquals estado 'RO' }}selected{{/ifEquals}}>Rondônia (RO)</option>
+            <option value="RR" {{#ifEquals estado 'RR' }}selected{{/ifEquals}}>Roraima (RR)</option>
+            <option value="SC" {{#ifEquals estado 'SC' }}selected{{/ifEquals}}>Santa Catarina (SC)</option>
+            <option value="SP" {{#ifEquals estado 'SP' }}selected{{/ifEquals}}>São Paulo (SP)</option>
+            <option value="SE" {{#ifEquals estado 'SE' }}selected{{/ifEquals}}>Sergipe (SE)</option>
+            <option value="TO" {{#ifEquals estado 'TO' }}selected{{/ifEquals}}>Tocantins (TO)</option>
+          </select>
 
           <div class="invalid-feedback">Selecione o estado.</div>
         </div>
@@ -110,44 +114,46 @@
       <div class="row mb-3">
         <div class="col">
           <label for="email" class="form-label">E-mail</label>
-          <input type="email" class="form-control" id="email" name="email" required readonly value="{{email}}">
+          <input type="email" class="form-control" id="email" name="email" readonly required value="{{email}}">
           <div class="invalid-feedback">Insira o e-mail.</div>
         </div>
         <div class="col-sm-4">
           <label for="telefoneEmpresa" class="form-label">Telefone Empresa</label>
-          <input type="text" class="form-control" id="telefoneEmpresa" name="telefoneEmpresa" required readonly value="{{telefoneEmpresa}}">
+          <input type="text" class="form-control" id="telefoneEmpresa" name="telefoneEmpresa" required
+            value="{{telefoneEmpresa}}">
           <div class="invalid-feedback">Insira o telefone da empresa.</div>
         </div>
       </div>
       <div class="row mb-3">
         <div class="col">
           <label for="responsavel" class="form-label">Nome Responsável</label>
-          <input type="text" class="form-control" id="responsavel" name="responsavel" required readonly value="{{responsavel}}">
+          <input type="text" class="form-control" id="responsavel" name="responsavel" required value="{{responsavel}}">
           <div class="invalid-feedback">Insira o nome do responsável.</div>
         </div>
         <div class="col-sm-4">
           <label for="telefoneResponsavel" class="form-label">Telefone Responsável</label>
-          <input type="text" class="form-control" id="telefoneResponsavel" name="telefoneResponsavel" readonly value="{{telefoneResponsavel}}">
+          <input type="text" class="form-control" id="telefoneResponsavel" name="telefoneResponsavel"
+            value="{{telefoneResponsavel}}">
         </div>
       </div>
       <div class="row mb-3">
         <div class="col">
           <label for="senha" class="form-label">Nova Senha</label>
-          <input type="password" class="form-control" id="senha" name="senha" required readonly>
+          <input type="password" class="form-control" id="senha" name="senha" required>
           <div class="invalid-feedback">A senha é obrigatória.</div>
         </div>
         <div class="col">
           <label for="confirmarSenha" class="form-label">Confirmar Senha</label>
-          <input type="password" class="form-control" id="confirmarSenha" name="confirmarSenha" required readonly>
+          <input type="password" class="form-control" id="confirmarSenha" name="confirmarSenha" required>
           <div class="invalid-feedback">Confirme a senha.</div>
           <div class="password-mismatch-feedback invalid-feedback">As senhas não coincidem.</div>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary" disabled>Salvar Alterações</button>
+      <button type="submit" class="btn btn-warning">Salvar Alterações</button>
     </form>
   </div>
 
 </div>
 
 <!-- Importação do script JavaScript para manipulação da página de cliente -->
-<script src="./assets/js/clienteView.js"></script>
+<script src="/assets/js/registerView.js"></script>

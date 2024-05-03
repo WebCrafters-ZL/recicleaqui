@@ -5,6 +5,7 @@ const express = require("express");
 
 const {
   clienteRegister,
+  clienteUpdate,
   clienteDelete,
   registerView,
   clienteView,
@@ -23,6 +24,10 @@ router.post("/register", clienteRegister);
 
 // Definição da rota para o caminho '/profile' usando o método GET e associa a função clienteView
 router.get("/profile", requerirLogin, clienteView);
+
+router.get("/edit", requerirLogin);
+
+router.post("/edit", requerirLogin, clienteUpdate);
 
 // Definição da rota para o caminho '/delete/:id' usando o método GET e associa a função clienteDelete
 router.get("/delete/:id", requerirLogin, clienteDelete);
