@@ -12,13 +12,12 @@
         <div class="second-column">
             <h2 class="title title-cadastro">Login</h2>
             <p class="description description-cadastro">Faça seu login abaixo</p>
-            <form class="formulario">
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Senha">
-                <!--<a class="esqueceu-senha" href="#">Esqueci minha senha</a>-->
-                <button id="signin" class="btn-recuperar">Recuperar senha</button>
+            <form class="formulario" action="/auth/login" method="post">
+                <input type="email" name="email" id="email" placeholder="Email">
+                <input type="password" name="senha" id="senha" placeholder="Senha">
+                <a class="esqueceu-senha" href="#">Esqueci minha senha</a>
 
-                <button class="btn btn-second">Sign In</button>
+                <button class="btn btn-second" type="submit">Entrar</button>
             </form>
         </div><!--second column-->
     </div> <!--first content-->

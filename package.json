@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node --env-file=.env ./bin/www",
+    "start": "node ./bin/www",
     "devstart": "nodemon --env-file=.env.development.local ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
