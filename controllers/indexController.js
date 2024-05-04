@@ -1,5 +1,5 @@
 const indexView = function (req, res) {
-    res.render("indexView", { title: "Demo do Bootstrap" });
+    res.render("indexView", { title: "RecicleAqui" });
 }
 
 module.exports = {

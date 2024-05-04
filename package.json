@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node --env-file=.env ./bin/www",
+    "start": "node ./bin/www",
     "devstart": "nodemon --env-file=.env.development.local ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,10 +13,10 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
-    "express": "^4.19.1",
+    "express": "^4.19.2",
     "express-handlebars": "^7.1.2",
     "express-session": "^1.18.0",
-    "mysql2": "^3.9.2",
+    "mysql2": "^3.9.7",
     "sequelize": "^6.37.1"
   },
   "devDependencies": {
