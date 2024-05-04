@@ -20,7 +20,7 @@ RecicleAqui é um projeto web desenvolvido em Node.js e MySQL/MariaDB para facil
 ## Instalação
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/recicleaqui.git
+   git clone https://github.com/WebCrafters-ZL/recicleaqui.git
 2. Acesse o diretório do projeto:
     ```bash
     cd recicleaqui
