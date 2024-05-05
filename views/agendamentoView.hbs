@@ -1,57 +1,81 @@
-<div class="container mt-5">
-    <h1 class="text-center mb-4">Agendamento</h1>
+<div class="fundo-fixo">
+        <div class="container mt-5">
+            <h1 class="text-center mb-4">Agendamento</h1>
 
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Tipo de Material</h5>
-                    <select id="tipoMaterial" class="form-select">
-                        <option value="plastico">Plástico</option>
-                        <option value="vidro">Vidro</option>
-                        <option value="papel">Papel</option>
-                        <option value="metal">Metal</option>
-                        <!-- Adicione outros tipos de material conforme necessário -->
-                    </select>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Tipo de Material</h5>
+                            <select id="tipoMaterial" class="form-select">
+                                <option value="plastico">Plástico</option>
+                                <option value="vidro">Vidro</option>
+                                <option value="papel">Papel</option>
+                                <option value="metal">Metal</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Quantidade de Material (em kg)</h5>
+                            <input type="number" id="quantidadeMaterial" class="form-control" min="1">
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Quantidade de Material (em kg)</h5>
-                    <input type="number" id="quantidadeMaterial" class="form-control" min="1">
+
+            <!-- Botões -->
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <div class="d-flex justify-content-end">
+                        <button id="adicionarMaterialBtn" class="btn btn-primary mt-3">Adicionar Material</button>
+                    </div>
                 </div>
             </div>
+
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Selecione uma data</h5>
+                            <input type="date" id="datePicker" class="form-control" name="datePicker">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Selecione um horário</h5>
+                            <select id="timeSlots" class="form-select"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botões -->
+            <div class="row mt-">
+                <div class="col-md-12">
+                    <div class="d-flex justify-content-end">
+                        <button id="agendarBtn" class="btn btn-primary mt-3">Agendar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista de Materiais Selecionados -->
+            <div id="materiaisSelecionados" class="mt-4" style="display: none;">
+                <h2 class="text-center">Materiais Selecionados</h2>
+                <ul id="listaMateriais" class="lista-materiais"></ul>
+            </div>
+
+            <!-- Confirmação de Agendamento -->
+            <div id="confirmacao" class="mt-4" style="display: none;">
+                <h2 class="text-center">Confirmação de Agendamento</h2>
+                <p id="confirmacaoTexto" class="text-center"></p>
+            </div>
         </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="script.js"></script>
     </div>
-
-    <div class="row mt-3">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Selecione uma data</h5>
-                    <input type="date" id="datePicker" class="form-control" name="datePicker">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Selecione um horário</h5>
-                    <select id="timeSlots" class="form-select"></select>
-                    <button id="agendarBtn" type="button" class="btn btn-primary">Agendar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Confirmação de Agendamento -->
-    <div id="confirmacao" class="mt-4" style="display: none;">
-        <h2 class="text-center">Confirmação de Agendamento</h2>
-        <p id="confirmacaoTexto" class="text-center"></p>
-    </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="./assets/js/agendamentoView.js"></script>

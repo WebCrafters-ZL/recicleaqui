@@ -1,0 +1,33 @@
+/* Reset de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Adicione as classes personalizadas aqui */
+.btn-primary, #adicionarMaterialBtn {
+    background-color: #26D07C;
+    border-color: #26D07C;
+    color: #fff;
+}
+
+.btn-primary:hover, #adicionarMaterialBtn:hover {
+    background-color: #1e8b60;
+    border-color: #1e8b60;
+}
+
+/* Lista de Materiais */
+.lista-materiais li {
+    margin-left: 10px; /* ou o valor que você preferir */
+}
+
+/* Cor de fundo personalizada para a div que cobre a tela inteira */
+.fundo-fixo {
+    position: fixed; /* Fixa a div na tela */
+    top: 0;
+    left: 0;
+    width: 100%; /* Cobrir a largura total da tela */
+    height: 100vh; /* Cobrir a altura total da tela */
+    background-color: #E0F0E4; /* Cor de fundo desejada */
+}
