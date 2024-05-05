@@ -30,7 +30,7 @@ router.get("/edit", requerirLogin);
 router.post("/edit", requerirLogin, clienteUpdate);
 
 // Definição da rota para o caminho '/delete/:id' usando o método GET e associa a função clienteDelete
-router.get("/delete/:id", requerirLogin, clienteDelete);
+router.get("/delete", requerirLogin, clienteDelete);
 
 // Exportação do roteador para uso em outros arquivos
 module.exports = router;

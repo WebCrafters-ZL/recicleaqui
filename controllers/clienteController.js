@@ -79,7 +79,6 @@ const clienteUpdate = async function (req, res) {
   try {
     // Extrair os dados do corpo da requisição
     const {
-      clienteId,
       cnpj,
       razaoSocial,
       nomeFantasia,
@@ -104,7 +103,7 @@ const clienteUpdate = async function (req, res) {
     } else {
       // Verifica se o email e/ou o CNPJ já está cadastrado
       const existeCliente = await db.Cliente.findOne({
-        where: { id: !clienteId, cnpj, email },
+        where: { id: !req.session.cliente.id, cnpj, email },
       });
 
       if (existeCliente) {
@@ -133,7 +132,7 @@ const clienteUpdate = async function (req, res) {
           responsavel,
           telefoneResponsavel,
           senha: hashedPassword,
-        }, { where: { id: clienteId } });
+        }, { where: { id: req.session.cliente.id } });
 
         // Redireciona para a rota de login após o cadastro bem-sucedido
         return res.redirect("/cliente/profile");
@@ -149,7 +148,7 @@ const clienteUpdate = async function (req, res) {
 // Função assíncrona para excluir um cliente
 const clienteDelete = async function (req, res) {
   try {
-    await db.Cliente.destroy({ where: { id: req.params.id } });
+    await db.Cliente.destroy({ where: { id: req.session.cliente.id } });
     res.redirect("/auth");
   } catch (error) {
     console.error("Erro ao excluir cliente:", error);
