@@ -1,12 +1,12 @@
 # RecicleAqui
 Projeto Interdisciplinar do 2º semestre do Curso Superior de Tecnologia em Desenvolvimento de Software Multiplataforma da Fatec Zona Leste.
 
----
-
 ## Descrição
 RecicleAqui é um projeto web desenvolvido em Node.js e MySQL/MariaDB para facilitar o gerenciamento de clientes e usuários em um sistema de reciclagem. Este repositório contém o código fonte e os arquivos necessários para rodar a aplicação localmente.
 
-## Tecnologias Utilizadas
+---
+
+### Tecnologias Utilizadas
 - **Node.js**: Ambiente de execução JavaScript server-side.
 - **Express.js**: Framework web para Node.js utilizado para criação do servidor.
 - **Express-Handlebars**: Mecanismo de visualização para renderização de páginas HTML.
@@ -14,10 +14,10 @@ RecicleAqui é um projeto web desenvolvido em Node.js e MySQL/MariaDB para facil
 - **Body-Parser**: Middleware para análise de dados das requisições.
 - **MySQL2**: Driver MySQL para Node.js.
 - **Sequelize**: ORM (Object-Relational Mapping) para interagir com o banco de dados.
-## Requisitos
+### Requisitos
 - Node.js instalado
 - MySQL/MariaDB instalado e configurado
-## Instalação
+### Instalação
 1. Clone o repositório:
    ```bash
    git clone https://github.com/WebCrafters-ZL/recicleaqui.git
@@ -27,21 +27,19 @@ RecicleAqui é um projeto web desenvolvido em Node.js e MySQL/MariaDB para facil
 3. Instale as dependências do projeto:
     ```bash
     npm install
-## Configuração das variáveis de ambiente
+### Configuração das variáveis de ambiente
 1. Crie um arquivo .env na raiz do projeto, baseado no arquivo .env.example. 
     - **DICA**: Copie o conteúdo do .env.example e preencha apenas os valores, sem espaço após o **=**
 2. Preencha as variáveis de ambiente no arquivo .env com as informações do seu ambiente.
-3. Faça uma cópia do arquivo .env e nomeie como .env.development.local
-    - O arquivo .env pode ser modificado posteriormente para o ambiente de produção
 
-## Inicialização do banco de dados
+### Inicialização do banco de dados
 1. Execute o seguinte comando para criar o banco de dados (caso ainda não tenha sido criado):
     ```bash
     npx sequelize-cli db:create
 2. Execute o seguinte comando para executar as migrações e criar as tabelas no banco de dados:
     ```bash
     npx sequelize-cli db:migrate
-## Execução do projeto
+### Execução do projeto
 - Para iniciar o servidor em ambiente de desenvolvimento, execute o seguinte comando:
     ```bash
-    npm run devstart
+    npm run dev

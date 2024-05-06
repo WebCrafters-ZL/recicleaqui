@@ -9,7 +9,7 @@ const {
   clienteDelete,
   registerView,
   clienteView,
-} = require("../controllers/clienteController"); // Importa as funções clienteRegister, clienteDelete, registerView e clienteView do controlador clienteController
+} = require("../controllers/clienteController"); // Importa as funções do controlador clienteController
 
 // Criação de um novo roteador usando o método Router() do Express
 const router = express.Router();
@@ -18,19 +18,16 @@ const { requerirLogin } = require("../middleware/requerirLogin"); // Importa a f
 
 // Definição da rota para o caminho '/register' usando o método GET e associa a função registerView a essa rota
 router.get("/register", registerView);
-
 // Definição da rota para o caminho '/register' usando o método POST e associa a função clienteRegister a essa rota
 router.post("/register", clienteRegister);
-
 // Definição da rota para o caminho '/profile' usando o método GET e associa a função clienteView
 router.get("/profile", requerirLogin, clienteView);
-
+// Definição da rota para o caminho '/edit' usando o método GET
 router.get("/edit", requerirLogin);
-
+// Definição da rota para o caminho '/edit' usando o método POST e associa a função clienteUpdate
 router.post("/edit", requerirLogin, clienteUpdate);
-
-// Definição da rota para o caminho '/delete/:id' usando o método GET e associa a função clienteDelete
-router.get("/delete/:id", requerirLogin, clienteDelete);
+// Definição da rota para o caminho '/delete' usando o método GET e associa a função clienteDelete
+router.get("/delete", requerirLogin, clienteDelete);
 
 // Exportação do roteador para uso em outros arquivos
 module.exports = router;

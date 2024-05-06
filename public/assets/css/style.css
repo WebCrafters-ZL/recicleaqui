@@ -3,7 +3,7 @@
 /* Estilos gerais para o corpo do documento */
 body {
   font-family: Arial, sans-serif; /* Define a fonte padrão para o corpo do documento */
-  background-color: #e0e0e0; /* Define a cor de fundo */
+  background-color: #E0F0E4; /* Define a cor de fundo */
   display: flex; /* Define o modelo de layout como flexível */
   justify-content: center; /* Alinha os itens horizontalmente ao centro */
   align-items: center; /* Alinha os itens verticalmente ao centro */
