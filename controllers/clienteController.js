@@ -5,7 +5,7 @@ const db = require("../db/models");
 const bcrypt = require("bcryptjs");
 
 // Função assíncrona para cadastrar um usuário e cliente
-const clienteRegister = async function (req, res) {
+const clienteRegister = async function (req, res, next) {
   try {
     // Extrair os dados do corpo da requisição
     const {
@@ -29,7 +29,9 @@ const clienteRegister = async function (req, res) {
 
     // Verifica se as senhas coincidem
     if (senha !== confirmarSenha) {
-      return res.status(400).json({ error: "As senhas não coincidem." });
+      const error = new Error("As senhas não coincidem");
+      error.statusCode = 400;
+      throw error; // Lança o erro para o próximo middleware de erro
     } else {
       // Verifica se o email e/ou o CNPJ já está cadastrado
       const existeCliente = await db.Cliente.findOne({
@@ -38,9 +40,9 @@ const clienteRegister = async function (req, res) {
 
       if (existeCliente) {
         // Se os dados já estiverem cadastrados, retorna uma resposta de erro
-        return res
-          .status(400)
-          .json({ error: "CNPJ e/ou e-mail já cadastrado(s)." });
+        const error = new Error("CNPJ e/ou e-mail já cadastrado(s).");
+        error.statusCode = 400;
+        throw error; // Lança o erro para o próximo middleware de erro
       } else {
         // Criptografa a senha antes de salvar no banco de dados
         const hashedPassword = await bcrypt.hash(senha, 10);
@@ -69,13 +71,11 @@ const clienteRegister = async function (req, res) {
       }
     }
   } catch (error) {
-    // Se ocorrer algum erro durante o processo, loga o erro e retorna uma resposta de erro
-    console.error("Erro ao cadastrar cliente:", error);
-    return res.status(500).json({ error: "Erro interno do servidor." });
+    next(error); // Passa o erro para o próximo middleware de erro
   }
 };
 
-const clienteUpdate = async function (req, res) {
+const clienteUpdate = async function (req, res, next) {
   try {
     // Extrair os dados do corpo da requisição
     const {
@@ -99,23 +99,25 @@ const clienteUpdate = async function (req, res) {
 
     // Verifica se as senhas coincidem
     if (senha !== confirmarSenha) {
-      return res.status(400).json({ error: "As senhas não coincidem." });
+      const error = new Error("As senhas não coincidem");
+      error.statusCode = 400;
+      throw error; // Lança o erro para o próximo middleware de erro
     } else {
-      // Verifica se o email e/ou o CNPJ já está cadastrado
+      // Verifica se o email e/ou o CNPJ já está cadastrado em outro id de usuário
       const existeCliente = await db.Cliente.findOne({
         where: { id: !req.session.cliente.id, cnpj, email },
       });
 
       if (existeCliente) {
         // Se os dados já estiverem cadastrados, retorna uma resposta de erro
-        return res
-          .status(400)
-          .json({ error: "CNPJ e/ou e-mail já cadastrado(s)." });
+        const error = new Error("CNPJ e/ou e-mail já cadastrado(s).");
+        error.statusCode = 400;
+        throw error; // Lança o erro para o próximo middleware de erro
       } else {
         // Criptografa a senha antes de salvar no banco de dados
         const hashedPassword = await bcrypt.hash(senha, 10);
 
-        // Cria um novo cliente
+        // Atualiza os dados do cliente
         await db.Cliente.update({
           cnpj,
           razaoSocial,
@@ -134,25 +136,22 @@ const clienteUpdate = async function (req, res) {
           senha: hashedPassword,
         }, { where: { id: req.session.cliente.id } });
 
-        // Redireciona para a rota de login após o cadastro bem-sucedido
+        // Redireciona para a própria página do perfil de usuário
         return res.redirect("/cliente/profile");
       }
     }
   } catch (error) {
-    // Se ocorrer algum erro durante o processo, loga o erro e retorna uma resposta de erro
-    console.error("Erro ao cadastrar cliente:", error);
-    return res.status(500).json({ error: "Erro interno do servidor." });
+    next(error); // Passa o erro para o próximo middleware de erro
   }
 };
 
 // Função assíncrona para excluir um cliente
-const clienteDelete = async function (req, res) {
+const clienteDelete = async function (req, res, next) {
   try {
     await db.Cliente.destroy({ where: { id: req.session.cliente.id } });
     res.redirect("/auth");
   } catch (error) {
-    console.error("Erro ao excluir cliente:", error);
-    return res.status(500).json({ error: "Erro interno do servidor." });
+    next(error); // Passa o erro para o próximo middleware de erro
   }
 };
 
@@ -163,7 +162,7 @@ const registerView = function (req, res) {
 };
 
 // Função responsável por renderizar a página de cliente
-const clienteView = async function (req, res) {
+const clienteView = async function (req, res, next) {
   try {
     const dadosCliente = await db.Cliente.findOne({
       where: { id: req.session.cliente.id },
@@ -189,8 +188,7 @@ const clienteView = async function (req, res) {
       telefoneResponsavel: dadosCliente.telefoneResponsavel,
     });
   } catch (error) {
-    console.error("Erro ao retornar cliente:", error);
-    return res.status(500).json({ error: "Erro interno do servidor." });
+    next(error); // Passa o erro para o próximo middleware de erro
   }
 };
 

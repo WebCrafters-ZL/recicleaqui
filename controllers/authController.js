@@ -5,7 +5,7 @@ const db = require("../db/models");
 const bcrypt = require("bcryptjs");
 
 // Função assíncrona para realizar a autenticação de usuário
-const authLogin = async function (req, res) {
+const authLogin = async function (req, res, next) { // Adicione o parâmetro 'next' para passar os erros para o próximo middleware
   try {
     // Extrai os dados de email e senha do corpo da requisição
     const { email, senha } = req.body;
@@ -24,26 +24,27 @@ const authLogin = async function (req, res) {
         return res.redirect("/cliente/profile");
       } else {
         // Se as senhas não coincidirem, retorna um erro
-        return res
-          .status(400)
-          .json({ error: "E-mail e/ou senha não conferem." });
+        const error = new Error("E-mail e/ou senha não conferem.");
+        error.statusCode = 400;
+        throw error; // Lança o erro para o próximo middleware de erro
       }
     } else {
       // Se o usuário não existir, retorna um erro
-      return res.status(400).json({ error: "O email não está cadastrado." });
+      const error = new Error("O email não está cadastrado.");
+      error.statusCode = 400;
+      throw error; // Lança o erro para o próximo middleware de erro
     }
   } catch (error) {
-    // Se ocorrer algum erro durante o processo, loga o erro e retorna uma resposta de erro
-    console.error("Erro ao autenticar usuário:", error);
-    return res.status(500).json({ error: "Erro interno do servidor." });
+    next(error); // Passa o erro para o próximo middleware de erro
   }
 };
 
-const authLogout = function(req, res) {
-  req.session.destroy(function(err) {
-    res.redirect("/auth");
-  })
-}
+//  Função para realizar o logout do usuário
+const authLogout = function (req, res) {
+  req.session.destroy(function (err) { // Destrói a sessão de usuário
+    res.redirect("/auth"); // Redireciona para a página de logins
+  });
+};
 
 // Função responsável por renderizar a página de login
 const authView = function (req, res) {

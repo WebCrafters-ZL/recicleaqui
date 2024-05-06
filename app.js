@@ -12,6 +12,8 @@ const express = require("express");
 // Importação do motor de visualização 'express-handlebars'
 const handlebars = require("express-handlebars").engine;
 
+const tratarErros = require("./middleware/tratarErros");
+
 // Importação do módulo 'body-parser' para análise do corpo das requisições
 const bodyParser = require("body-parser");
 
@@ -64,6 +66,9 @@ app.use(bodyParser.json());
 app.use("/", indexRouter); // Roteador para o caminho raiz
 app.use("/auth", authRouter); // Roteador para o caminho '/login'
 app.use("/cliente", clienteRouter); // Roteador para o caminho '/cliente'
+
+app.use(tratarErros.tratarNaoEncontrado);
+app.use(tratarErros.tratarErros);
 
 // Inicialização do servidor para escutar na porta especificada
 app.listen(port, function () {
