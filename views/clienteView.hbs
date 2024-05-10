@@ -22,23 +22,25 @@
         </div>
       </div>
       <div class="row mb-3">
-        <div class="col">
+        <div class="col-sm-7">
           <label for="cnpj" class="form-label">CNPJ</label>
           <input type="text" class="form-control" id="cnpj" name="cnpj" readonly required value="{{cnpj}}">
           <div class="invalid-feedback">Insira um CNPJ válido.</div>
         </div>
+      </div>
+      <div class="row mb-3">
         <div class="col">
           <label for="razaoSocial" class="form-label">Razão Social</label>
           <input type="text" class="form-control" id="razaoSocial" name="razaoSocial" required value="{{razaoSocial}}">
           <div class="invalid-feedback">Insira a razão social.</div>
         </div>
-      </div>
-      <div class="row mb-3">
         <div class="col">
           <label for="nomeFantasia" class="form-label">Nome Fantasia</label>
           <input type="text" class="form-control" id="nomeFantasia" name="nomeFantasia" value="{{nomeFantasia}}">
         </div>
-        <div class="col">
+      </div>
+      <div class="row mb-3">
+        <div class="col-sm-3">
           <label for="cep" class="form-label">CEP</label>
           <input type="text" class="form-control" id="cep" name="cep" required value="{{cep}}">
           <div class="invalid-feedback">Insira um CEP válido.</div>
@@ -156,4 +158,4 @@
 </div>
 
 <!-- Importação do script JavaScript para manipulação da página de cliente -->
-<script src="/assets/js/registerView.js"></script>
+<script src="/assets/js/clienteView.js"></script>
