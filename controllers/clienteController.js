@@ -34,11 +34,14 @@ const clienteRegister = async function (req, res, next) {
       throw error; // Lança o erro para o próximo middleware de erro
     } else {
       // Verifica se o email e/ou o CNPJ já está cadastrado
+      const existeUsuario = await db.Usuario.findOne({
+        where: { email },
+      });
       const existeCliente = await db.Cliente.findOne({
-        where: { cnpj, email },
+        where: { cnpj },
       });
 
-      if (existeCliente) {
+      if (existeUsuario || existeCliente) {
         // Se os dados já estiverem cadastrados, retorna uma resposta de erro
         const error = new Error("CNPJ e/ou e-mail já cadastrado(s).");
         error.statusCode = 400;
@@ -46,6 +49,12 @@ const clienteRegister = async function (req, res, next) {
       } else {
         // Criptografa a senha antes de salvar no banco de dados
         const hashedPassword = await bcrypt.hash(senha, 10);
+
+        const usuario = await db.Usuario.create({
+          email,
+          senha: hashedPassword,
+          tipo: 'cliente',
+        });
 
         // Cria um novo cliente
         await db.Cliente.create({
@@ -59,11 +68,10 @@ const clienteRegister = async function (req, res, next) {
           bairro,
           cidade,
           estado,
-          email,
           telefoneEmpresa,
           responsavel,
           telefoneResponsavel,
-          senha: hashedPassword,
+          usuario_id: usuario.id
         });
 
         // Redireciona para a rota de login após o cadastro bem-sucedido
@@ -104,11 +112,14 @@ const clienteUpdate = async function (req, res, next) {
       throw error; // Lança o erro para o próximo middleware de erro
     } else {
       // Verifica se o email e/ou o CNPJ já está cadastrado em outro id de usuário
+      const existeUsuario = await db.Usuario.findOne({
+        where: { id: !req.session.usuario.id, email },
+      });
       const existeCliente = await db.Cliente.findOne({
-        where: { id: !req.session.cliente.id, cnpj, email },
+        where: { usuario_id: !req.session.usuario.id, cnpj },
       });
 
-      if (existeCliente) {
+      if (existeUsuario || existeCliente) {
         // Se os dados já estiverem cadastrados, retorna uma resposta de erro
         const error = new Error("CNPJ e/ou e-mail já cadastrado(s).");
         error.statusCode = 400;
@@ -117,6 +128,10 @@ const clienteUpdate = async function (req, res, next) {
         // Criptografa a senha antes de salvar no banco de dados
         const hashedPassword = await bcrypt.hash(senha, 10);
 
+        const usuario = db.Usuario.update({
+          email,
+          senha: hashedPassword,
+        }, { where: { id: req.session.usuario.id } })
         // Atualiza os dados do cliente
         await db.Cliente.update({
           cnpj,
@@ -129,12 +144,11 @@ const clienteUpdate = async function (req, res, next) {
           bairro,
           cidade,
           estado,
-          email,
           telefoneEmpresa,
           responsavel,
           telefoneResponsavel,
-          senha: hashedPassword,
-        }, { where: { id: req.session.cliente.id } });
+          usuario_id: usuario.id,
+        }, { where: { usuario_id: req.session.usuario.id } });
 
         // Redireciona para a própria página do perfil de usuário
         return res.redirect("/cliente/profile");
@@ -148,7 +162,8 @@ const clienteUpdate = async function (req, res, next) {
 // Função assíncrona para excluir um cliente
 const clienteDelete = async function (req, res, next) {
   try {
-    await db.Cliente.destroy({ where: { id: req.session.cliente.id } });
+    await db.Cliente.destroy({ where: { usuario_id: req.session.usuario.id } });
+    await db.Usuario.destroy({ where: { id: req.session.usuario.id } })
     res.redirect("/auth");
   } catch (error) {
     next(error); // Passa o erro para o próximo middleware de erro
@@ -164,8 +179,11 @@ const registerView = function (req, res) {
 // Função responsável por renderizar a página de cliente
 const clienteView = async function (req, res, next) {
   try {
+    const dadosUsuario = await db.Usuario.findOne({
+      where: { id: req.session.usuario.id }
+    })
     const dadosCliente = await db.Cliente.findOne({
-      where: { id: req.session.cliente.id },
+      where: { usuario_id: req.session.usuario.id },
     });
     // Renderiza a view 'clienteView' passando os dados do cliente como parâmetros
     res.render("clienteView", {
@@ -182,7 +200,7 @@ const clienteView = async function (req, res, next) {
       bairro: dadosCliente.bairro,
       cidade: dadosCliente.cidade,
       estado: dadosCliente.estado,
-      email: dadosCliente.email,
+      email: dadosUsuario.email,
       telefoneEmpresa: dadosCliente.telefoneEmpresa,
       responsavel: dadosCliente.responsavel,
       telefoneResponsavel: dadosCliente.telefoneResponsavel,

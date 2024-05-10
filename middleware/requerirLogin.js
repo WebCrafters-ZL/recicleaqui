@@ -1,7 +1,7 @@
 // Middleware para exigir login antes de acessar determinadas rotas
 const requerirLogin = (req, res, next) => {
   // Verifica se existe uma sessão e se há um usuário autenticado na sessão
-  if (req.session && req.session.cliente) {
+  if (req.session && req.session.usuario) {
     // Se o usuário estiver autenticado, continua para a próxima rota
     return next();
   } else {

@@ -61,11 +61,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      email: {
-        allowNull: false,
-        type: Sequelize.STRING,
-        unique: true,
-      },
       telefoneEmpresa: {
         allowNull: false,
         type: Sequelize.STRING,
@@ -77,9 +72,15 @@ module.exports = {
       telefoneResponsavel: {
         type: Sequelize.STRING,
       },
-      senha: {
+      usuario_id: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: 'Usuarios',
+          },
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,

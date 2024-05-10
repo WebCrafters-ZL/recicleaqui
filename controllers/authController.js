@@ -11,16 +11,16 @@ const authLogin = async function (req, res, next) { // Adicione o parâmetro 'ne
     const { email, senha } = req.body;
 
     // Procura pelo usuário no banco de dados com o email fornecido
-    const existeCliente = await db.Cliente.findOne({ where: { email } });
+    const existeUsuario = await db.Usuario.findOne({ where: { email } });
 
     // Verifica se o usuário existe
-    if (existeCliente) {
+    if (existeUsuario) {
       // Compara a senha fornecida com a senha armazenada no banco de dados
-      const senhaCorreta = await bcrypt.compare(senha, existeCliente.senha);
+      const senhaCorreta = await bcrypt.compare(senha, existeUsuario.senha);
 
       // Se as senhas coincidirem, retorna uma mensagem de sucesso
       if (senhaCorreta) {
-        req.session.cliente = existeCliente;
+        req.session.usuario = existeUsuario;
         return res.redirect("/cliente/profile");
       } else {
         // Se as senhas não coincidirem, retorna um erro
