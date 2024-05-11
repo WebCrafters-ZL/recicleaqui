@@ -12,6 +12,7 @@ const express = require("express");
 // Importação do motor de visualização 'express-handlebars'
 const handlebars = require("express-handlebars").engine;
 
+//  Middleware de tratamento de erros
 const tratarErros = require("./middleware/tratarErros");
 
 // Importação do módulo 'body-parser' para análise do corpo das requisições
@@ -26,7 +27,7 @@ const clienteRouter = require("./routes/cliente");
 const app = express();
 
 // Definição da porta na qual o servidor irá escutar
-const port = process.env.APP_PORT || 3000;
+const port = process.env.APP_PORT || 8081;
 
 // Configuração do motor de visualização 'handlebars' para o Express
 app.engine(
@@ -67,6 +68,7 @@ app.use("/", indexRouter); // Roteador para o caminho raiz
 app.use("/auth", authRouter); // Roteador para o caminho '/login'
 app.use("/cliente", clienteRouter); // Roteador para o caminho '/cliente'
 
+//  Definição das tratativas de erros
 app.use(tratarErros.tratarNaoEncontrado);
 app.use(tratarErros.tratarErros);
 
