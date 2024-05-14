@@ -148,7 +148,7 @@ const atualizarCliente = async function (req, res, next) {
         }, { where: { usuario_id: req.session.usuario.id } });
 
         // Redireciona para a própria página do perfil de usuário
-        return res.redirect("/cliente/profile");
+        return res.redirect("/cliente");
       }
     }
   } catch (error) {
@@ -160,7 +160,7 @@ const excluirCliente = async function (req, res, next) {
   try {
     await Cliente.destroy({ where: { usuario_id: req.session.usuario.id } });
     await Usuario.destroy({ where: { id: req.session.usuario.id } })
-    res.redirect("/auth");
+    res.redirect("/auth/logout");
   } catch (error) {
     next(error); // Passa o erro para o próximo middleware de erro
   }
