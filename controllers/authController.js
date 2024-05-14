@@ -24,8 +24,22 @@ const authLogin = async function (req, res, next) { // Adicione o parâmetro 'ne
 
       // Se as senhas coincidirem, retorna uma mensagem de sucesso
       if (senhaCorreta) {
-        req.session.usuario = existeUsuario;
-        return res.redirect("/cliente/profile");
+        req.session.usuario = {
+          id: existeUsuario.id,
+          email: existeUsuario.email,
+          tipo: existeUsuario.tipo
+        };
+        switch (req.session.usuario.tipo) {
+          case "administrador":
+            return res.redirect("/admin");
+          case "funcionario":
+            return res.redirect("/funcionario");
+          case "cliente":
+            return res.redirect("/cliente");
+          default:
+            break;
+        }
+
       } else {
         // Se as senhas não coincidirem, retorna um erro
         const error = new Error("E-mail e/ou senha não conferem.");

@@ -1,0 +1,146 @@
+<!-- Formulário para exibir informações do cliente -->
+<form id="clienteForm" action="/cliente/alterar" method="post" class="needs-validation" novalidate>
+    <!-- Campo oculto para armazenar o ID do cliente -->
+    <input type="hidden" name="clienteId" value="{{clienteId}}">
+    <!-- Botões para editar e excluir informações do cliente -->
+    <div class="row mb-3">
+        <div class="col-sm-7">
+            <label for="cnpj" class="form-label">CNPJ</label>
+            <input type="text" class="form-control" id="cnpj" name="cnpj" readonly required value="{{cnpj}}">
+            <div class="invalid-feedback">Insira um CNPJ válido.</div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label for="razaoSocial" class="form-label">Razão Social</label>
+            <input type="text" class="form-control" id="razaoSocial" name="razaoSocial" required
+                value="{{razaoSocial}}">
+            <div class="invalid-feedback">Insira a razão social.</div>
+        </div>
+        <div class="col">
+            <label for="nomeFantasia" class="form-label">Nome Fantasia</label>
+            <input type="text" class="form-control" id="nomeFantasia" name="nomeFantasia" value="{{nomeFantasia}}">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-3">
+            <label for="cep" class="form-label">CEP</label>
+            <input type="text" class="form-control" id="cep" name="cep" required value="{{cep}}">
+            <div class="invalid-feedback">Insira um CEP válido.</div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label for="logradouro" class="form-label">Endereço</label>
+            <input type="text" class="form-control" id="logradouro" name="logradouro" required value="{{logradouro}}">
+            <div class="invalid-feedback">Insira o endereço.</div>
+        </div>
+        <div class="col-sm-2">
+            <label for="numero" class="form-label">Número</label>
+            <input type="text" class="form-control" id="numero" name="numero" required value="{{numero}}">
+            <div class="form-check mt-2">
+                <input class="form-check-input" type="checkbox" value="" id="semNumero">
+                <label class="form-check-label" for="semNumero">Sem nº</label>
+            </div>
+            <div class="invalid-feedback">Insira o número do endereço.</div>
+        </div>
+        <div class="col-sm-5">
+            <label for="complemento" class="form-label">Complemento</label>
+            <input type="text" class="form-control" id="complemento" name="complemento" value="{{complemento}}">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label for="bairro" class="form-label">Bairro</label>
+            <input type="text" class="form-control" id="bairro" name="bairro" required value="{{bairro}}">
+            <div class="invalid-feedback">Insira o bairro.</div>
+        </div>
+        <div class="col">
+            <label for="cidade" class="form-label">Cidade</label>
+            <input type="text" class="form-control" id="cidade" name="cidade" required value="{{cidade}}">
+            <div class="invalid-feedback">Insira a cidade.</div>
+        </div>
+        <div class="col-sm-2">
+            <label for="estado" class="form-label">Estado</label>
+            <select class="form-select" id="estado" name="estado" required>
+                <option value="">UF</option>
+                <option value="AC" {{#ifEquals estado 'AC' }}selected{{/ifEquals}}>AC</option>
+                <option value="AL" {{#ifEquals estado 'AL' }}selected{{/ifEquals}}>AL</option>
+                <option value="AP" {{#ifEquals estado 'AP' }}selected{{/ifEquals}}>AP</option>
+                <option value="AM" {{#ifEquals estado 'AM' }}selected{{/ifEquals}}>AM</option>
+                <option value="BA" {{#ifEquals estado 'BA' }}selected{{/ifEquals}}>BA</option>
+                <option value="CE" {{#ifEquals estado 'CE' }}selected{{/ifEquals}}>CE</option>
+                <option value="DF" {{#ifEquals estado 'DF' }}selected{{/ifEquals}}>DF</option>
+                <option value="ES" {{#ifEquals estado 'ES' }}selected{{/ifEquals}}>ES</option>
+                <option value="GO" {{#ifEquals estado 'GO' }}selected{{/ifEquals}}>GO</option>
+                <option value="MA" {{#ifEquals estado 'MA' }}selected{{/ifEquals}}>MA</option>
+                <option value="MT" {{#ifEquals estado 'MT' }}selected{{/ifEquals}}>MT</option>
+                <option value="MS" {{#ifEquals estado 'MS' }}selected{{/ifEquals}}>MS</option>
+                <option value="MG" {{#ifEquals estado 'MG' }}selected{{/ifEquals}}>MG</option>
+                <option value="PA" {{#ifEquals estado 'PA' }}selected{{/ifEquals}}>PA</option>
+                <option value="PB" {{#ifEquals estado 'PB' }}selected{{/ifEquals}}>PB</option>
+                <option value="PR" {{#ifEquals estado 'PR' }}selected{{/ifEquals}}>PR</option>
+                <option value="PE" {{#ifEquals estado 'PE' }}selected{{/ifEquals}}>PE</option>
+                <option value="PI" {{#ifEquals estado 'PI' }}selected{{/ifEquals}}>PI</option>
+                <option value="RJ" {{#ifEquals estado 'RJ' }}selected{{/ifEquals}}>RJ</option>
+                <option value="RN" {{#ifEquals estado 'RN' }}selected{{/ifEquals}}>RN</option>
+                <option value="RS" {{#ifEquals estado 'RS' }}selected{{/ifEquals}}>RS</option>
+                <option value="RO" {{#ifEquals estado 'RO' }}selected{{/ifEquals}}>RO</option>
+                <option value="RR" {{#ifEquals estado 'RR' }}selected{{/ifEquals}}>RR</option>
+                <option value="SC" {{#ifEquals estado 'SC' }}selected{{/ifEquals}}>SC</option>
+                <option value="SP" {{#ifEquals estado 'SP' }}selected{{/ifEquals}}>SP</option>
+                <option value="SE" {{#ifEquals estado 'SE' }}selected{{/ifEquals}}>SE</option>
+                <option value="TO" {{#ifEquals estado 'TO' }}selected{{/ifEquals}}>TO</option>
+            </select>
+            <div class="invalid-feedback">Selecione o estado.</div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="email" name="email" readonly required value="{{email}}">
+            <div class="invalid-feedback">Insira o e-mail.</div>
+        </div>
+        <div class="col-sm-4">
+            <label for="telefoneEmpresa" class="form-label">Telefone Empresa</label>
+            <input type="text" class="form-control" id="telefoneEmpresa" name="telefoneEmpresa" required
+                value="{{telefoneEmpresa}}">
+            <div class="invalid-feedback">Insira o telefone da empresa.</div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label for="responsavel" class="form-label">Nome Responsável</label>
+            <input type="text" class="form-control" id="responsavel" name="responsavel" required
+                value="{{responsavel}}">
+            <div class="invalid-feedback">Insira o nome do responsável.</div>
+        </div>
+        <div class="col-sm-4">
+            <label for="telefoneResponsavel" class="form-label">Telefone Responsável</label>
+            <input type="text" class="form-control" id="telefoneResponsavel" name="telefoneResponsavel"
+                value="{{telefoneResponsavel}}">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label for="senha" class="form-label">Nova Senha</label>
+            <input type="password" class="form-control" id="senha" name="senha" required>
+            <div class="invalid-feedback">A senha é obrigatória.</div>
+        </div>
+        <div class="col">
+            <label for="confirmarSenha" class="form-label">Confirmar Senha</label>
+            <input type="password" class="form-control" id="confirmarSenha" name="confirmarSenha" required>
+            <div class="invalid-feedback">Confirme a senha.</div>
+            <div class="password-mismatch-feedback invalid-feedback">As senhas não coincidem.</div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <a class="btn btn-danger" href="/cliente/excluir" role="button">Excluir cadastro</a>
+        </div>
+        <div class="col">&nbsp;</div>
+        <div class="col">
+            <button type="submit" class="btn btn-warning">Salvar Alterações</button>
+        </div>
+    </div>
+</form>
