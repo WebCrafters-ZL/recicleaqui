@@ -1,41 +1,38 @@
-<!-- Arquivo: views/login.hbs -->
-
+<!-- Arquivo: views/authView.hbs -->
 <!-- Container principal da página de login -->
 <div class="content first-content">
     <div class="first-column">
         <h2 class="title title-login">Login</h2>
         <p class="description description-login description-cadastrar">Caso não tenha cadastro, clique abaixo</p>
-        <a href="/cliente/register" class="btn btn-primary">Cadastrar</a>
-
-    </div><!--first column-->
+        <a href="/cliente/cadastrar" class="btn btn-primary" role="button">Cadastrar</a>
+    </div>
     <div class="second-column">
         <h2 class="title title-cadastro">Login</h2>
         <p class="description description-cadastro">Faça seu login abaixo</p>
-        <form class="formulario" action="/auth/login" method="post">
-            <input type="email" name="email" id="email" placeholder="Email">
+        <!-- Formulário de login -->
+        <form id="loginForm" name="loginForm" class="formulario" action="/auth/login" method="post">
+            <input type="email" name="email" id="email" placeholder="E-mail">
             <input type="password" name="senha" id="senha" placeholder="Senha">
             <button id="signin" class="btn-recuperar" type="button">Recuperar senha</button>
-
             <button class="btn btn-second" type="submit">Entrar</button>
         </form>
-    </div><!--second column-->
-</div> <!--first content-->
-
-
+    </div>
+</div>
+<!-- Segunda seção da página, para casos de recuperação de senha -->
 <div class="content second-content">
     <div class="first-column">
         <h2 class="title title-login">Lembrou sua senha?</h2>
         <p class="description description-login">Faça seu login</p>
-        <button id="signup" class="btn  btn-primary">Login</button>
-    </div><!--first column-->
+        <button id="signup" class="btn btn-primary">Login</button>
+    </div>
     <div class="second-column">
         <h2 class="title title-cadastro">Recupere sua senha</h2>
-        <form class="formulario">
-            <input type="email" placeholder="Email">
-            <button class="btn btn-second">Recuperar</button>
+        <!-- Formulário para recuperação de senha -->
+        <form id="recoverPasswordForm" name="recoverPasswordForm" class="formulario" action="/auth/recuperar-senha" method="post">
+            <input type="email" name="emailRecuperacao" id="emailRecuperacao" placeholder="E-mail">
+            <button class="btn btn-primary" type="submit">Recuperar</button>
         </form>
-    </div><!--second column-->
-</div><!--second content-->
-
+    </div>
+</div>
 <!-- Importação do script JavaScript para manipulação da página de login -->
 <script src="/assets/js/loginView.js"></script>

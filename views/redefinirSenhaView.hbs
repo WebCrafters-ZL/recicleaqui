@@ -1,0 +1,38 @@
+<!-- Arquivo: views/redefinirSenhaView.hbs -->
+<!-- Página para redefinição de senha -->
+<div class="reset-password-page custom-container">
+    <!-- Container do formulário de redefinição de senha -->
+    <div class="form-container reset-password-form">
+        <!-- Título da página -->
+        <h2>Redefinir senha</h2>
+        <!-- Formulário para redefinir a senha -->
+        <form id="resetPasswordForm" name="resetPasswordForm" action="/auth/redefinir-senha/{{token}}" method="post" class="needs-validation" novalidate>
+            <!-- Campo para a nova senha -->
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="senha" class="form-label visually-hidden">Senha</label>
+                    <input type="password" class="form-control" id="senha" name="senha" required placeholder="Senha" />
+                    <div class="invalid-feedback">
+                        A senha é obrigatória.
+                    </div>
+                </div>
+            </div>
+            <!-- Campo para confirmar a nova senha -->
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="confirmarSenha" class="form-label visually-hidden">Confirmar Senha</label>
+                    <input type="password" class="form-control" id="confirmarSenha" name="confirmarSenha" required placeholder="Confirmar senha" />
+                    <div class="invalid-feedback">
+                        Confirme a senha.
+                    </div>
+                    <!-- Mensagem de erro caso as senhas não coincidam -->
+                    <div class="password-mismatch-feedback invalid-feedback">
+                        As senhas não coincidem.
+                    </div>
+                </div>
+            </div>
+            <!-- Botão para submeter o formulário -->
+            <button type="submit" class="btn btn-primary">Alterar</button>
+        </form>
+    </div>
+</div>

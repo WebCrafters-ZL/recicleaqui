@@ -1,9 +1,9 @@
-// Arquivo: routes/index.js
+// Arquivo: routes/agendamento.js
 
 // Importação do módulo 'express' para criação de um servidor web
 const express = require("express");
 
-const { indexView } = require('../controllers/agendamentoController'); // Importa a função indexView do controlador indexController
+const { agendamentoView } = require('../controllers/agendamentoController'); // Importa as funções do controlador agendamentoController
 
 // Criação de um novo roteador usando o método Router() do Express
 const router = express.Router();

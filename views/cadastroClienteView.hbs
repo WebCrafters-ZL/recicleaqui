@@ -1,4 +1,4 @@
-<!-- Arquivo: views/register.hbs -->
+<!-- Arquivo: views/cadastroClienteView.hbs -->
 
 <!-- Container principal da página de cadastro -->
 <div class="register-page custom-container">
@@ -7,25 +7,12 @@
   <div class="form-container register-form">
     <h2>Cadastro de Cliente</h2>
     <!-- Formulário de cadastro de cliente -->
-    <form
-      id="registerForm"
-      action="/cliente/register"
-      method="post"
-      class="needs-validation"
-      novalidate
-    >
+    <form id="registerForm" action="/cliente/cadastrar" method="post" class="needs-validation" novalidate>
       <!-- Formulário com método POST para submeter os dados para a rota de registro -->
       <div class="row mb-3">
         <div class="col-sm-7">
           <label for="cnpj" class="form-label visually-hidden">CNPJ</label>
-          <input
-            type="text"
-            class="form-control"
-            id="cnpj"
-            name="cnpj"
-            required
-            placeholder="CNPJ"
-          />
+          <input type="text" class="form-control" id="cnpj" name="cnpj" required placeholder="CNPJ" />
           <div class="invalid-feedback">
             Insira um CNPJ válido.
           </div>
@@ -35,14 +22,8 @@
         <div class="col">
           <label for="razaoSocial" class="form-label visually-hidden">Razão
             Social</label>
-          <input
-            type="text"
-            class="form-control"
-            id="razaoSocial"
-            name="razaoSocial"
-            required
-            placeholder="Razão Social"
-          />
+          <input type="text" class="form-control" id="razaoSocial" name="razaoSocial" required
+            placeholder="Razão Social" />
           <div class="invalid-feedback">
             Insira a razão social.
           </div>
@@ -50,26 +31,13 @@
         <div class="col">
           <label for="nomeFantasia" class="form-label visually-hidden">Nome
             Fantasia</label>
-          <input
-            type="text"
-            class="form-control"
-            id="nomeFantasia"
-            name="nomeFantasia"
-            placeholder="Nome Fantasia"
-          />
+          <input type="text" class="form-control" id="nomeFantasia" name="nomeFantasia" placeholder="Nome Fantasia" />
         </div>
       </div>
       <div class="row mb-3">
         <div class="col-sm-3">
           <label for="cep" class="form-label visually-hidden">CEP</label>
-          <input
-            type="text"
-            class="form-control"
-            id="cep"
-            name="cep"
-            required
-            placeholder="CEP"
-          />
+          <input type="text" class="form-control" id="cep" name="cep" required placeholder="CEP" />
           <div class="invalid-feedback">
             Insira um CEP válido.
           </div>
@@ -77,39 +45,17 @@
       </div>
       <div class="row mb-3">
         <div class="col">
-          <label
-            for="logradouro"
-            class="form-label visually-hidden"
-          >Endereço</label>
-          <input
-            type="text"
-            class="form-control"
-            id="logradouro"
-            name="logradouro"
-            required
-            placeholder="Endereço"
-          />
+          <label for="logradouro" class="form-label visually-hidden">Endereço</label>
+          <input type="text" class="form-control" id="logradouro" name="logradouro" required placeholder="Endereço" />
           <div class="invalid-feedback">
             Insira o endereço.
           </div>
         </div>
         <div class="col-sm-2">
           <label for="numero" class="form-label visually-hidden">Número</label>
-          <input
-            type="text"
-            class="form-control"
-            id="numero"
-            name="numero"
-            required
-            placeholder="Número"
-          />
+          <input type="text" class="form-control" id="numero" name="numero" required placeholder="Número" />
           <div class="form-check mt-2">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="semNumero"
-            />
+            <input class="form-check-input" type="checkbox" value="" id="semNumero" />
             <label class="form-check-label" for="semNumero">
               Sem nº
             </label>
@@ -119,44 +65,21 @@
           </div>
         </div>
         <div class="col-sm-5">
-          <label
-            for="complemento"
-            class="form-label visually-hidden"
-          >Complemento</label>
-          <input
-            type="text"
-            class="form-control"
-            id="complemento"
-            name="complemento"
-            placeholder="Complemento"
-          />
+          <label for="complemento" class="form-label visually-hidden">Complemento</label>
+          <input type="text" class="form-control" id="complemento" name="complemento" placeholder="Complemento" />
         </div>
       </div>
       <div class="row mb-3">
         <div class="col">
           <label for="bairro" class="form-label visually-hidden">Bairro</label>
-          <input
-            type="text"
-            class="form-control"
-            id="bairro"
-            name="bairro"
-            required
-            placeholder="Bairro"
-          />
+          <input type="text" class="form-control" id="bairro" name="bairro" required placeholder="Bairro" />
           <div class="invalid-feedback">
             Insira o bairro.
           </div>
         </div>
         <div class="col">
           <label for="cidade" class="form-label visually-hidden">Cidade</label>
-          <input
-            type="text"
-            class="form-control"
-            id="cidade"
-            name="cidade"
-            required
-            placeholder="Cidade"
-          />
+          <input type="text" class="form-control" id="cidade" name="cidade" required placeholder="Cidade" />
           <div class="invalid-feedback">
             Insira a cidade.
           </div>
@@ -201,31 +124,15 @@
       <div class="row mb-3">
         <div class="col">
           <label for="email" class="form-label visually-hidden">E-mail</label>
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            name="email"
-            required
-            placeholder="E-mail"
-          />
+          <input type="email" class="form-control" id="email" name="email" required placeholder="E-mail" />
           <div class="invalid-feedback">
             Insira o e-mail.
           </div>
         </div>
         <div class="col-sm-4">
-          <label
-            for="telefoneEmpresa"
-            class="form-label visually-hidden"
-          >Telefone Empresa</label>
-          <input
-            type="text"
-            class="form-control"
-            id="telefoneEmpresa"
-            name="telefoneEmpresa"
-            required
-            placeholder="Telefone Empresa"
-          />
+          <label for="telefoneEmpresa" class="form-label visually-hidden">Telefone Empresa</label>
+          <input type="text" class="form-control" id="telefoneEmpresa" name="telefoneEmpresa" required
+            placeholder="Telefone Empresa" />
           <div class="invalid-feedback">
             Insira o telefone da empresa.
           </div>
@@ -235,60 +142,30 @@
         <div class="col">
           <label for="responsavel" class="form-label visually-hidden">Nome
             Responsável</label>
-          <input
-            type="text"
-            class="form-control"
-            id="responsavel"
-            name="responsavel"
-            required
-            placeholder="Nome Responsável"
-          />
+          <input type="text" class="form-control" id="responsavel" name="responsavel" required
+            placeholder="Nome Responsável" />
           <div class="invalid-feedback">
             Insira o nome do responsável.
           </div>
         </div>
         <div class="col-sm-4">
-          <label
-            for="telefoneResponsavel"
-            class="form-label visually-hidden"
-          >Telefone Responsável</label>
-          <input
-            type="text"
-            class="form-control"
-            id="telefoneResponsavel"
-            name="telefoneResponsavel"
-            placeholder="Telefone Responsável"
-          />
+          <label for="telefoneResponsavel" class="form-label visually-hidden">Telefone Responsável</label>
+          <input type="text" class="form-control" id="telefoneResponsavel" name="telefoneResponsavel"
+            placeholder="Telefone Responsável" />
         </div>
       </div>
       <div class="row mb-3">
         <div class="col">
           <label for="senha" class="form-label visually-hidden">Senha</label>
-          <input
-            type="password"
-            class="form-control"
-            id="senha"
-            name="senha"
-            required
-            placeholder="Senha"
-          />
+          <input type="password" class="form-control" id="senha" name="senha" required placeholder="Senha" />
           <div class="invalid-feedback">
             A senha é obrigatória.
           </div>
         </div>
         <div class="col">
-          <label
-            for="confirmarSenha"
-            class="form-label visually-hidden"
-          >Confirmar Senha</label>
-          <input
-            type="password"
-            class="form-control"
-            id="confirmarSenha"
-            name="confirmarSenha"
-            required
-            placeholder="Confirmar senha"
-          />
+          <label for="confirmarSenha" class="form-label visually-hidden">Confirmar Senha</label>
+          <input type="password" class="form-control" id="confirmarSenha" name="confirmarSenha" required
+            placeholder="Confirmar senha" />
           <div class="invalid-feedback">
             Confirme a senha.
           </div>
@@ -305,4 +182,4 @@
 </div>
 
 <!-- Importação do script JavaScript para manipulação da página de cadastro -->
-<script src="/assets/js/registerView.js"></script>
+<script src="/assets/js/clienteView.js"></script>
