@@ -17,6 +17,8 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     senha: DataTypes.STRING,
     tipo: DataTypes.ENUM('administrador', 'funcionario', 'cliente'),
+    tokenRedefinicaoSenha: DataTypes.STRING,
+    expiracaoTokenRedefinicaoSenha: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Usuario',
