@@ -2,28 +2,28 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('FaixasCep', {
+    await queryInterface.createTable('Administradores', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      cep_inicio: {
+      nome: {
         type: Sequelize.STRING
       },
-      cep_fim: {
+      cpf: {
         type: Sequelize.STRING
       },
-      regiao_id: {
+      usuario_id: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: {
-            tableName: 'Regioes',
+            tableName: 'Usuarios',
           },
           key: 'id'
-        },
-        allowNull: true
+        }
       },
       createdAt: {
         allowNull: false,
@@ -36,6 +36,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('FaixasCep');
+    await queryInterface.dropTable('Administradores');
   }
 };

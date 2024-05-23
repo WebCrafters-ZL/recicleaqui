@@ -9,10 +9,9 @@
         <a class="btn btn-warning" href="/auth/logout" role="button">Sair</a>
       </div>
     </div>
-    <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
       <div class="col">
         <div class="card" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Perfil</h5>
             <p class="card-text">Editar ou excluir o seu cadastro</p>
@@ -24,22 +23,18 @@
       </div>
       <div class="col">
         <div class="card" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Agendamento</h5>
             <p class="card-text">Agendar uma coleta</p>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgendamento">
-              Acessar
-            </button>
+            <a class="btn btn-primary" href="/cliente/agendar-coleta" role="button">Agendar</a>
           </div>
         </div>
       </div>
       <div class="col">
         <div class="card" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Histórico</h5>
-            <p class="card-text">Verificar histórico de coletas realizadas</p>
+            <p class="card-text">Histórico de coletas realizadas</p>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalHistorico">
               Acessar
             </button>
@@ -65,44 +60,6 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="modalAgendamento" tabindex="-1" aria-labelledby="modalAgendamentoLabel">
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalAgendamentoLabel">Agendamento</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias voluptas magnam ad architecto, dolores
-            necessitatibus eius, aspernatur veritatis dicta enim eaque vitae. Ad, adipisci tempore! Saepe distinctio
-            dicta
-            reprehenderit ipsam!</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="modalHistorico" tabindex="-1" aria-labelledby="modalHistoricoLabel">
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalHistoricoLabel">Histórico</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias voluptas magnam ad architecto, dolores
-            necessitatibus eius, aspernatur veritatis dicta enim eaque vitae. Ad, adipisci tempore! Saepe distinctio
-            dicta
-            reprehenderit ipsam!</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+  
 <!-- Importação do script JavaScript para manipulação da página de cliente -->
 <script src="/assets/js/clienteView.js"></script>

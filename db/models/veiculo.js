@@ -17,7 +17,6 @@ module.exports = (sequelize, DataTypes) => {
     marca: DataTypes.STRING,
     modelo: DataTypes.STRING,
     placa: DataTypes.STRING,
-    capacidadeKg: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Veiculo',

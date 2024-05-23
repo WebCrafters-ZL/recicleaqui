@@ -2,20 +2,24 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('FaixasCep', {
+    await queryInterface.createTable('Horarios', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      cep_inicio: {
-        type: Sequelize.STRING
+      data: {
+        type: Sequelize.DATE
       },
-      cep_fim: {
-        type: Sequelize.STRING
+      hora: {
+        type: Sequelize.TIME
+      },
+      disponivel: {
+        type: Sequelize.BOOLEAN
       },
       regiao_id: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: {
@@ -23,7 +27,16 @@ module.exports = {
           },
           key: 'id'
         },
-        allowNull: true
+      },
+      veiculo_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: 'Veiculos',
+          },
+          key: 'id'
+        },
       },
       createdAt: {
         allowNull: false,
@@ -36,6 +49,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('FaixasCep');
+    await queryInterface.dropTable('Horarios');
   }
 };

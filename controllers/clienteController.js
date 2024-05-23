@@ -204,10 +204,16 @@ const clienteView = async function (req, res, next) {
   }
 };
 
+const agendamentoView = function (req, res) {
+  // Renderiza a view 'agendamentoView' passando o título da página como parâmetro
+  res.render("agendamentoView", { title: "RecicleAqui - Agendamento" });
+}
+
 module.exports = {
   cadastrarCliente,
   atualizarCliente,
   excluirCliente,
   cadastroClienteView,
   clienteView,
+  agendamentoView
 };

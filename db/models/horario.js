@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class faixaCep extends Model {
+  class Horario extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -15,14 +15,21 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "regiao_id",
         sourceKey: "id"
       });
+      this.belongsTo(models.Veiculo, {
+        foreignKey: "veiculo_id",
+        sourceKey: "id"
+      });
     }
   }
-  faixaCep.init({
-    cep_inicio: DataTypes.STRING,
-    cep_fim: DataTypes.STRING
+  Horario.init({
+    data: DataTypes.DATE,
+    hora: DataTypes.TIME,
+    disponivel: DataTypes.BOOLEAN,
+    regiao_id: DataTypes.INTEGER,
+    veiculo_id: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'faixaCep',
+    modelName: 'Horario',
   });
-  return faixaCep;
+  return Horario;
 };
