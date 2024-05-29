@@ -11,22 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.Regiao, {
-        foreignKey: "regiao_id",
-        sourceKey: "id"
-      });
-      this.belongsTo(models.Veiculo, {
-        foreignKey: "veiculo_id",
-        sourceKey: "id"
-      });
     }
   }
   Horario.init({
     data: DataTypes.DATE,
     hora: DataTypes.TIME,
-    disponivel: DataTypes.BOOLEAN,
-    regiao_id: DataTypes.INTEGER,
-    veiculo_id: DataTypes.INTEGER
+    disponivel: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'Horario',

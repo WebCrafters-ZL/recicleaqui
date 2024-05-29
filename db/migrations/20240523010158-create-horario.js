@@ -18,26 +18,6 @@ module.exports = {
       disponivel: {
         type: Sequelize.BOOLEAN
       },
-      regiao_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: {
-            tableName: 'Regioes',
-          },
-          key: 'id'
-        },
-      },
-      veiculo_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: {
-            tableName: 'Veiculos',
-          },
-          key: 'id'
-        },
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
