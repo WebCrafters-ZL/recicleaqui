@@ -33,12 +33,19 @@ RecicleAqui é um projeto web desenvolvido em Node.js e MySQL/MariaDB para facil
 2. Preencha as variáveis de ambiente no arquivo .env com as informações do seu ambiente.
 
 ### Inicialização do banco de dados
-1. Execute o seguinte comando para criar o banco de dados (caso ainda não tenha sido criado):
+1. Recomenda-se apagar o banco existente e recriar devido a eventuais atualizações. Execute o seguinte comando:
+    ```bash
+    npx sequelize-cli db:drop
+2. Execute o seguinte comando para criar o banco de dados:
     ```bash
     npx sequelize-cli db:create
-2. Execute o seguinte comando para executar as migrações e criar as tabelas no banco de dados:
+3. Execute o seguinte comando para executar as migrações e criar as tabelas no banco de dados:
     ```bash
     npx sequelize-cli db:migrate
+4. Para criar o usuário administrador, execute o seguinte comando:
+    ```bash
+    npx sequelize-cli db:seed:all
+- Será criado um usuário com o e-mail admin@recicleaqui.app e senha 'admin'
 ### Execução do projeto
 - Para iniciar o servidor em ambiente de desenvolvimento, execute o seguinte comando:
     ```bash
