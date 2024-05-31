@@ -22,6 +22,7 @@ const bodyParser = require("body-parser");
 const indexRouter = require("./routes/index");
 const authRouter = require("./routes/auth");
 const clienteRouter = require("./routes/cliente");
+const adminRouter = require("./routes/admin");
 
 // Inicialização do aplicativo Express
 const app = express();
@@ -67,6 +68,7 @@ app.use(bodyParser.json());
 app.use("/", indexRouter); // Roteador para o caminho raiz
 app.use("/auth", authRouter); // Roteador para o caminho '/login'
 app.use("/cliente", clienteRouter); // Roteador para o caminho '/cliente'
+app.use("/admin", adminRouter); // Roteador para o caminho '/admin'
 
 //  Definição das tratativas de erros
 app.use(tratarErros.tratarNaoEncontrado);

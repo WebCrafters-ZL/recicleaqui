@@ -4,7 +4,7 @@
     <div class="first-column">
         <h2 class="title title-login">Login</h2>
         <p class="description description-login description-cadastrar">Caso não tenha cadastro, clique abaixo</p>
-        <a href="/cliente/cadastrar" class="btn btn-primary" role="button">Cadastrar</a>
+        <a href="/cliente/cadastrar" class="button button-primary" role="button">Cadastrar</a>
     </div>
     <div class="second-column">
         <h2 class="title title-cadastro">Login</h2>
@@ -13,8 +13,8 @@
         <form id="loginForm" name="loginForm" class="formulario" action="/auth/login" method="post">
             <input type="email" name="email" id="email" placeholder="E-mail">
             <input type="password" name="senha" id="senha" placeholder="Senha">
-            <button id="signin" class="btn-recuperar" type="button">Recuperar senha</button>
-            <button class="btn btn-second" type="submit">Entrar</button>
+            <button id="signin" class="button-recuperar" type="button">Recuperar senha</button>
+            <button class="button button-second" type="submit">Entrar</button>
         </form>
     </div>
 </div>
@@ -23,14 +23,14 @@
     <div class="first-column">
         <h2 class="title title-login">Lembrou sua senha?</h2>
         <p class="description description-login">Faça seu login</p>
-        <button id="signup" class="btn btn-primary">Login</button>
+        <button id="signup" class="button button-primary">Login</button>
     </div>
     <div class="second-column">
         <h2 class="title title-cadastro">Recupere sua senha</h2>
         <!-- Formulário para recuperação de senha -->
         <form id="recoverPasswordForm" name="recoverPasswordForm" class="formulario" action="/auth/recuperar-senha" method="post">
             <input type="email" name="emailRecuperacao" id="emailRecuperacao" placeholder="E-mail">
-            <button class="btn btn-primary" type="submit">Recuperar</button>
+            <button class="button button-primary" type="submit">Recuperar</button>
         </form>
     </div>
 </div>

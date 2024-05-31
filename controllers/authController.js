@@ -1,5 +1,5 @@
 // Importa o módulo que contém os modelos de banco de dados
-const Usuario = require("../db/models").Usuario;
+const db = require("../db/models");
 
 // Importa os operadores do Sequelize
 const { Op } = require("sequelize");
@@ -20,7 +20,7 @@ const authLogin = async function (req, res, next) { // Adicione o parâmetro 'ne
     const { email, senha } = req.body;
 
     // Procura pelo usuário no banco de dados com o email fornecido
-    const existeUsuario = await Usuario.findOne({ where: { email } });
+    const existeUsuario = await db.Usuario.findOne({ where: { email } });
 
     // Verifica se o usuário existe
     if (existeUsuario) {
@@ -82,7 +82,7 @@ const authRecuperarSenha = async function (req, res, next) {
   const { emailRecuperacao } = req.body;
   try {
     // Verifica se o e-mail fornecido está cadastrado
-    const existeUsuario = await Usuario.findOne({ where: { email: emailRecuperacao } });
+    const existeUsuario = await db.Usuario.findOne({ where: { email: emailRecuperacao } });
     if (!existeUsuario) {
       const error = new Error("E-mail não encontrado");
       error.statusCode = 400;
@@ -113,7 +113,7 @@ const authRecuperarSenha = async function (req, res, next) {
 const authRedefinirSenhaView = async function (req, res, next) {
   try {
     // Verifica se o token de redefinição de senha é válido e ainda não expirou
-    const existeUsuario = await Usuario.findOne({
+    const existeUsuario = await db.Usuario.findOne({
       where:
       {
         tokenRedefinicaoSenha: req.params.token,
@@ -144,7 +144,7 @@ const authRedefinirSenha = async function (req, res, next) {
       throw error; // Lança o erro para o próximo middleware de erro
     }
     // Procura pelo usuário com o token de redefinição de senha fornecido
-    const existeUsuario = await Usuario.findOne({
+    const existeUsuario = await db.Usuario.findOne({
       where:
       {
         tokenRedefinicaoSenha: req.params.token,

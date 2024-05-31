@@ -2,18 +2,21 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('faixasCep', {
+    await queryInterface.createTable('Horarios', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      cep_inicio: {
-        type: Sequelize.STRING
+      data: {
+        type: Sequelize.DATE
       },
-      cep_fim: {
-        type: Sequelize.STRING
+      hora: {
+        type: Sequelize.TIME
+      },
+      disponivel: {
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
@@ -26,6 +29,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('faixasCep');
+    await queryInterface.dropTable('Horarios');
   }
 };

@@ -1,6 +1,5 @@
 // Importa o modelo de Cliente e Usuario
-const Cliente = require("../db/models").Cliente;
-const Usuario = require("../db/models").Usuario;
+const db = require("../db/models");
 
 // Importa a biblioteca bcrypt para criptografar senhas
 const bcrypt = require("bcryptjs");
@@ -34,8 +33,8 @@ const cadastrarCliente = async function (req, res, next) {
       throw error; // Lança o erro para o próximo middleware de erro
     } else {
       // Verifica se o email e/ou o CNPJ já está cadastrado
-      const existeUsuario = await Usuario.findOne({ where: { email } });
-      const existeCliente = await Cliente.findOne({ where: { cnpj } });
+      const existeUsuario = await db.Usuario.findOne({ where: { email } });
+      const existeCliente = await db.Cliente.findOne({ where: { cnpj } });
 
       if (existeUsuario || existeCliente) {
         // Se os dados já estiverem cadastrados, retorna uma resposta de erro
@@ -47,14 +46,14 @@ const cadastrarCliente = async function (req, res, next) {
         const hashSenha = await bcrypt.hash(senha, 10);
 
         // Cria um novo usuário
-        const usuario = await Usuario.create({
+        const usuario = await db.Usuario.create({
           email,
           senha: hashSenha,
           tipo: 'cliente',
         });
 
         // Cria um novo cliente, referenciando o usuário criado
-        await Cliente.create({
+        await db.Cliente.create({
           cnpj,
           razaoSocial,
           nomeFantasia,
@@ -109,10 +108,10 @@ const atualizarCliente = async function (req, res, next) {
       throw error; // Lança o erro para o próximo middleware de erro
     } else {
       // Verifica se o email e/ou o CNPJ já está cadastrado em outro id de usuário
-      const existeUsuario = await Usuario.findOne({
+      const existeUsuario = await db.Usuario.findOne({
         where: { id: !req.session.usuario.id, email },
       });
-      const existeCliente = await Cliente.findOne({
+      const existeCliente = await db.Cliente.findOne({
         where: { usuario_id: !req.session.usuario.id, cnpj },
       });
 
@@ -125,13 +124,13 @@ const atualizarCliente = async function (req, res, next) {
         // Criptografa a senha antes de salvar no banco de dados
         const hashSenha = await bcrypt.hash(senha, 10);
 
-        await Usuario.update({
+        await db.Usuario.update({
           email,
           senha: hashSenha,
         }, { where: { id: req.session.usuario.id } })
 
         // Atualiza os dados do cliente
-        await Cliente.update({
+        await db.Cliente.update({
           cnpj,
           razaoSocial,
           nomeFantasia,
@@ -158,8 +157,8 @@ const atualizarCliente = async function (req, res, next) {
 
 const excluirCliente = async function (req, res, next) {
   try {
-    await Cliente.destroy({ where: { usuario_id: req.session.usuario.id } });
-    await Usuario.destroy({ where: { id: req.session.usuario.id } })
+    await db.Cliente.destroy({ where: { usuario_id: req.session.usuario.id } });
+    await db.Usuario.destroy({ where: { id: req.session.usuario.id } })
     res.redirect("/auth/logout");
   } catch (error) {
     next(error); // Passa o erro para o próximo middleware de erro
@@ -173,10 +172,10 @@ const cadastroClienteView = function (req, res) {
 
 const clienteView = async function (req, res, next) {
   try {
-    const dadosUsuario = await Usuario.findOne({
+    const dadosUsuario = await db.Usuario.findOne({
       where: { id: req.session.usuario.id }
     })
-    const dadosCliente = await Cliente.findOne({
+    const dadosCliente = await db.Cliente.findOne({
       where: { usuario_id: req.session.usuario.id },
     });
     // Renderiza a view 'clienteView' passando os dados do cliente como parâmetros
@@ -204,10 +203,16 @@ const clienteView = async function (req, res, next) {
   }
 };
 
+const agendamentoView = function (req, res) {
+  // Renderiza a view 'agendamentoView' passando o título da página como parâmetro
+  res.render("agendamentoView", { title: "RecicleAqui - Agendamento" });
+}
+
 module.exports = {
   cadastrarCliente,
   atualizarCliente,
   excluirCliente,
   cadastroClienteView,
   clienteView,
+  agendamentoView
 };
