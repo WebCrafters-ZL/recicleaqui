@@ -20,7 +20,7 @@ module.exports = {
       },
       tipo: {
         allowNull: false,
-        type: Sequelize.ENUM('administrador', 'funcionario', 'cliente')
+        type: Sequelize.ENUM('administrador', 'cliente')
       },
       tokenRedefinicaoSenha: {
         type: Sequelize.STRING(255),
