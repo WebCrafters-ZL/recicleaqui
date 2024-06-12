@@ -1,38 +1,26 @@
 <!-- Arquivo: views/authView.hbs -->
 <!-- Container principal da página de login -->
-<div class="content first-content">
-    <div class="first-column">
-        <h2 class="title title-login">Login</h2>
-        <p class="description description-login description-cadastrar">Caso não tenha cadastro, clique abaixo</p>
-        <a href="/cliente/cadastrar" class="button button-primary" role="button">Cadastrar</a>
-    </div>
-    <div class="second-column">
-        <h2 class="title title-cadastro">Login</h2>
-        <p class="description description-cadastro">Faça seu login abaixo</p>
-        <!-- Formulário de login -->
-        <form id="loginForm" name="loginForm" class="formulario" action="/auth/login" method="post">
-            <input type="email" name="email" id="email" placeholder="E-mail">
-            <input type="password" name="senha" id="senha" placeholder="Senha">
-            <button id="signin" class="button-recuperar" type="button">Recuperar senha</button>
-            <button class="button button-second" type="submit">Entrar</button>
-        </form>
-    </div>
-</div>
-<!-- Segunda seção da página, para casos de recuperação de senha -->
-<div class="content second-content">
-    <div class="first-column">
-        <h2 class="title title-login">Lembrou sua senha?</h2>
-        <p class="description description-login">Faça seu login</p>
-        <button id="signup" class="button button-primary">Login</button>
-    </div>
-    <div class="second-column">
-        <h2 class="title title-cadastro">Recupere sua senha</h2>
-        <!-- Formulário para recuperação de senha -->
-        <form id="recoverPasswordForm" name="recoverPasswordForm" class="formulario" action="/auth/recuperar-senha" method="post">
-            <input type="email" name="emailRecuperacao" id="emailRecuperacao" placeholder="E-mail">
-            <button class="button button-primary" type="submit">Recuperar</button>
-        </form>
+<div class="container-fluid">
+    <div class="container">
+        <div class="formulario-login show">
+            <h2>Login</h2>
+            <form id="formLogin" action="/auth/login" method="post">
+                <label for="email" class="form-label">E-mail</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+                <label for="senha" class="form-label">Senha</label>
+                <input type="password" class="form-control" name="senha" id="senha" required>
+                <a href="#" class="switch-link" id="redefinir-link">Esqueceu sua senha?</a>
+                <button type="submit" class="btn btn-primary">Entrar</button>
+            </form>
+        </div>
+        <div class="formulario-redefinicao">
+            <h2>Redefinir senha</h2>
+            <form id="formRedefinirSenha" action="/auth/redefinir-senha" method="post">
+                <label for="emailRedefinicao" class="form-label">E-mail</label>
+                <input type="email" class="form-control" id="emailRedefinicao" name="emailRedefinicao" required>
+                <a href="#" class="switch-link" id="login-link">Realizar login</a>
+                <button type="submit" class="btn btn-primary">Redefinir</button>
+            </form>
+        </div>
     </div>
 </div>
-<!-- Importação do script JavaScript para manipulação da página de login -->
-<script src="/assets/js/loginView.js"></script>

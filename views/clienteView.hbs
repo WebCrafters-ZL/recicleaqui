@@ -1,12 +1,12 @@
 <!-- Container principal da página de cliente -->
-<div class="cliente-page custom-container">
+<div class="container-fluid">
   <!-- Container da página de cliente -->
-  <div class="profile-container">
+  <div class="container">
     <div class="row mb-4">
       <div class="col"></div>
       <div class="col"></div>
       <div class="col align-self-start justify-content-end">
-        <a class="btn btn-warning" href="/auth/logout" role="button">Sair</a>
+        <a class="btn" href="/auth/logout" role="button">Sair</a>
       </div>
     </div>
     <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -15,7 +15,7 @@
           <div class="card-body">
             <h5 class="card-title">Perfil</h5>
             <p class="card-text">Editar ou excluir o seu cadastro</p>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPerfil">
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modalPerfil">
               Acessar
             </button>
           </div>
@@ -26,7 +26,7 @@
           <div class="card-body">
             <h5 class="card-title">Agendamento</h5>
             <p class="card-text">Agendar uma coleta</p>
-            <a class="btn btn-primary" href="/cliente/agendar-coleta" role="button">Agendar</a>
+            <a class="btn" href="#" role="button">Acessar</a>
           </div>
         </div>
       </div>
@@ -35,9 +35,7 @@
           <div class="card-body">
             <h5 class="card-title">Histórico</h5>
             <p class="card-text">Histórico de coletas realizadas</p>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalHistorico">
-              Acessar
-            </button>
+            <a class="btn" href="#" role="button">Acessar</a>
           </div>
         </div>
       </div>
@@ -45,7 +43,7 @@
   </div>
   <!-- Modais -->
   <div class="modal fade" id="modalPerfil" tabindex="-1" aria-labelledby="modalPerfilLabel">
-    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="modalPerfilLabel">Perfil</h5>
@@ -55,11 +53,9 @@
           {{> formAtualizarCliente}}
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn" data-bs-dismiss="modal">Fechar</button>
         </div>
       </div>
     </div>
   </div>
-  
-<!-- Importação do script JavaScript para manipulação da página de cliente -->
-<script src="/assets/js/clienteView.js"></script>
+</div>

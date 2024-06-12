@@ -1,0 +1,7 @@
+.formulario-login, .formulario-redefinicao {
+    display: none;
+}
+
+.show {
+    display: block;
+}

@@ -6,7 +6,7 @@
     <div class="row mb-3">
         <div class="col-sm-7">
             <label for="cnpj" class="form-label">CNPJ</label>
-            <input type="text" class="form-control" id="cnpj" name="cnpj" readonly required value="{{cnpj}}">
+            <input type="text" class="form-control-plaintext" id="cnpj" name="cnpj" readonly required value="{{cnpj}}">
             <div class="invalid-feedback">Insira um CNPJ válido.</div>
         </div>
     </div>
@@ -38,7 +38,7 @@
         <div class="col-sm-2">
             <label for="numero" class="form-label">Número</label>
             <input type="text" class="form-control" id="numero" name="numero" required value="{{numero}}">
-            <div class="form-check mt-2">
+            <div class="form-check form-check-inline mt-2">
                 <input class="form-check-input" type="checkbox" value="" id="semNumero">
                 <label class="form-check-label" for="semNumero">Sem nº</label>
             </div>
@@ -98,7 +98,7 @@
     <div class="row mb-3">
         <div class="col">
             <label for="email" class="form-label">E-mail</label>
-            <input type="email" class="form-control" id="email" name="email" readonly required value="{{email}}">
+            <input type="email" class="form-control-plaintext" id="email" name="email" readonly required value="{{email}}">
             <div class="invalid-feedback">Insira o e-mail.</div>
         </div>
         <div class="col-sm-4">
@@ -136,11 +136,8 @@
     </div>
     <div class="row mb-3">
         <div class="col">
-            <a class="btn btn-danger" href="/cliente/excluir" role="button">Excluir cadastro</a>
-        </div>
-        <div class="col">&nbsp;</div>
-        <div class="col">
-            <button type="submit" class="btn btn-warning">Salvar Alterações</button>
+            <a class="btn" href="/cliente/excluir" role="button">Excluir cadastro</a>
+            <button type="submit" class="btn">Salvar Alterações</button>
         </div>
     </div>
 </form>
