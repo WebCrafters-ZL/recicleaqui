@@ -167,7 +167,7 @@ const excluirCliente = async function (req, res, next) {
 
 const cadastroClienteView = function (req, res) {
   // Renderiza a view 'cadastroClienteView' passando o título da página como parâmetro
-  res.render("cadastroClienteView", { title: "RecicleAqui - Cadastro de Cliente" });
+  res.render("cadastroClienteView", { title: "RecicleAqui - Cadastro de Cliente", script: "clienteView" });
 };
 
 const clienteView = async function (req, res, next) {
@@ -196,23 +196,18 @@ const clienteView = async function (req, res, next) {
       email: dadosUsuario.email,
       telefoneEmpresa: dadosCliente.telefoneEmpresa,
       responsavel: dadosCliente.responsavel,
-      telefoneResponsavel: dadosCliente.telefoneResponsavel,
+      telefoneResponsavel: dadosCliente.telefoneResponsavel, 
+      script: "clienteView"
     });
   } catch (error) {
     next(error); // Passa o erro para o próximo middleware de erro
   }
 };
 
-const agendamentoView = function (req, res) {
-  // Renderiza a view 'agendamentoView' passando o título da página como parâmetro
-  res.render("agendamentoView", { title: "RecicleAqui - Agendamento" });
-}
-
 module.exports = {
   cadastrarCliente,
   atualizarCliente,
   excluirCliente,
   cadastroClienteView,
-  clienteView,
-  agendamentoView
+  clienteView
 };

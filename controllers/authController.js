@@ -74,15 +74,15 @@ const authLogout = function (req, res) {
 // Função responsável por renderizar a página de login
 const authView = function (req, res) {
   // Renderiza a view 'authView' passando o título da página como parâmetro
-  res.render("authView", { title: "RecicleAqui - Login" });
+  res.render("authView", { title: "RecicleAqui - Login", stylesheet: "authView", script: "authView" });
 };
 
-// Função para recuperar a senha do usuário
-const authRecuperarSenha = async function (req, res, next) {
-  const { emailRecuperacao } = req.body;
+// Função para enviar o link de redefinição de senha do usuário
+const authRedefinirSenha = async function (req, res, next) {
+  const { emailRedefinicao } = req.body;
   try {
     // Verifica se o e-mail fornecido está cadastrado
-    const existeUsuario = await db.Usuario.findOne({ where: { email: emailRecuperacao } });
+    const existeUsuario = await db.Usuario.findOne({ where: { email: emailRedefinicao } });
     if (!existeUsuario) {
       const error = new Error("E-mail não encontrado");
       error.statusCode = 400;
@@ -104,13 +104,14 @@ const authRecuperarSenha = async function (req, res, next) {
       html: `<p>Você solicitou a recuperação de senha.</p>
       <p>Clique no <a href="${resetLink}">link</a> para redefinir sua senha.</p>`
     });
+    res.redirect("/auth");
   } catch (error) {
     next(error);
   }
 };
 
 // Função para renderizar a página de redefinição de senha
-const authRedefinirSenhaView = async function (req, res, next) {
+const authAlterarSenhaView = async function (req, res, next) {
   try {
     // Verifica se o token de redefinição de senha é válido e ainda não expirou
     const existeUsuario = await db.Usuario.findOne({
@@ -134,7 +135,7 @@ const authRedefinirSenhaView = async function (req, res, next) {
 }
 
 // Função para redefinir a senha do usuário
-const authRedefinirSenha = async function (req, res, next) {
+const authAlterarSenha = async function (req, res, next) {
   try {
     const { senha, confirmarSenha } = req.body;
     // Verifica se as senhas fornecidas coincidem
@@ -175,7 +176,7 @@ module.exports = {
   authLogin,
   authLogout,
   authView,
-  authRecuperarSenha,
-  authRedefinirSenhaView,
+  authAlterarSenha,
+  authAlterarSenhaView,
   authRedefinirSenha
 };
