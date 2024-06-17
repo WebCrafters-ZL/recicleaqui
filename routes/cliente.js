@@ -30,7 +30,8 @@ router.post("/alterar", requerirLogin, atualizarCliente);
 // Definição da rota para o caminho '/delete' usando o método GET e associa a função excluirCliente
 router.get("/excluir", requerirLogin, excluirCliente);
 
-router.get("/cadastrar-coleta",requerirLogin, clienteCadastrarColetaView)
+router.get("/cadastrar-coleta", requerirLogin, clienteCadastrarColetaView);
+router.post("/cadastrar-coleta", requerirLogin, clienteCadastrarColetaView);
 
 // Exportação do roteador para uso em outros arquivos
 module.exports = router;

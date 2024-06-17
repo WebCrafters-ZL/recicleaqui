@@ -1,0 +1,13 @@
+<!-- Formulário de cadastro de coleta -->
+<form id="registerColetaForm" action="/cliente/cadastrar-coleta" method="post" class="needs-validation" novalidate>
+    <label for="data">Data:</label>
+    <input type="date" id="data" name="data" required><br>
+
+    <label for="hora">Hora:</label>
+    <input type="time" id="hora" name="hora" required><br>
+
+    <label for="observacao">Observação:</label>
+    <textarea id="observacao" name="observacao"></textarea><br>
+
+    <button type="submit" class="btn btn-primary">Agendar coleta</button>
+</form>
