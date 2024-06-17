@@ -8,7 +8,8 @@ const {
   atualizarCliente,
   excluirCliente,
   cadastroClienteView,
-  clienteView
+  clienteView,
+  clienteCadastrarColetaView
 } = require("../controllers/clienteController"); // Importa as funções do controlador clienteController
 
 // Criação de um novo roteador usando o método Router() do Express
@@ -28,6 +29,8 @@ router.get("/alterar", requerirLogin);
 router.post("/alterar", requerirLogin, atualizarCliente);
 // Definição da rota para o caminho '/delete' usando o método GET e associa a função excluirCliente
 router.get("/excluir", requerirLogin, excluirCliente);
+
+router.get("/cadastrar-coleta",requerirLogin, clienteCadastrarColetaView)
 
 // Exportação do roteador para uso em outros arquivos
 module.exports = router;

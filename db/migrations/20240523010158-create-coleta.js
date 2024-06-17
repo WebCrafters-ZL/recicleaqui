@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Horarios', {
+    await queryInterface.createTable('Coletas', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,13 +10,29 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       data: {
+        allowNull: false,
         type: Sequelize.DATE
       },
       hora: {
+        allowNull: false,
         type: Sequelize.TIME
       },
-      disponivel: {
-        type: Sequelize.BOOLEAN
+      status: {
+        allowNull: false,
+        type: Sequelize.ENUM('pendente', 'aceito', 'rejeitado', 'cancelado')
+      },
+      observacao: {
+        type: Sequelize.TEXT
+      },
+      cliente_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: 'Clientes',
+          },
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,
@@ -29,6 +45,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Horarios');
+    await queryInterface.dropTable('Coletas');
   }
 };

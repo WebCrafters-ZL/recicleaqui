@@ -196,18 +196,37 @@ const clienteView = async function (req, res, next) {
       email: dadosUsuario.email,
       telefoneEmpresa: dadosCliente.telefoneEmpresa,
       responsavel: dadosCliente.responsavel,
-      telefoneResponsavel: dadosCliente.telefoneResponsavel, 
+      telefoneResponsavel: dadosCliente.telefoneResponsavel,
       script: "clienteView"
     });
   } catch (error) {
     next(error); // Passa o erro para o próximo middleware de erro
   }
 };
+const clienteCadastrarColeta = async function (req, res, next) {
+  try {
+    const {
+      data,
+      hora,
+      observacao
+    } = req.body
+  } catch (error) {
+
+  }
+}
+
+const clienteCadastrarColetaView = async function (req, res, next) {
+  // Renderiza a view 'cadastroClienteView' passando o título da página como parâmetro
+  res.render("clienteCadastrarColetaView", { title: "RecicleAqui - Agendamento de coleta", script: "clienteColetaView" });
+}
 
 module.exports = {
   cadastrarCliente,
   atualizarCliente,
   excluirCliente,
   cadastroClienteView,
-  clienteView
+  clienteView,
+  clienteCadastrarColetaView
 };
+
+
