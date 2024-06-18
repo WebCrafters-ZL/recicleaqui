@@ -12,7 +12,10 @@ const express = require("express");
 // Importação do motor de visualização 'express-handlebars'
 const handlebars = require("express-handlebars").engine;
 
-//  Middleware de tratamento de erros
+// Importação do módulo 'moment' para manipulação de datas
+const moment = require("moment");
+
+// Middleware de tratamento de erros
 const tratarErros = require("./middleware/tratarErros");
 
 // Importação do módulo 'body-parser' para análise do corpo das requisições
@@ -40,6 +43,10 @@ app.engine(
       // Definindo o helper personalizado ifEquals
       ifEquals: function (arg1, arg2, options) {
         return arg1 == arg2 ? options.fn(this) : options.inverse(this);
+      },
+      // Definindo o helper personalizado dateFormat
+      dateFormat: function (date, format) {
+        return moment(date).format(format);
       },
     },
   })
@@ -70,7 +77,7 @@ app.use("/auth", authRouter); // Roteador para o caminho '/login'
 app.use("/cliente", clienteRouter); // Roteador para o caminho '/cliente'
 app.use("/admin", adminRouter); // Roteador para o caminho '/admin'
 
-//  Definição das tratativas de erros
+// Definição das tratativas de erros
 app.use(tratarErros.tratarNaoEncontrado);
 app.use(tratarErros.tratarErros);
 

@@ -205,52 +205,81 @@ const clienteView = async function (req, res, next) {
 };
 const clienteCadastrarColeta = async function (req, res, next) {
   try {
-    const { data, hora, observacao } = req.body;
-    const dadosCliente = await db.Cliente.findOne({
-      where: { usuario_id: req.session.usuario.id },
-    });
+      const { data, hora, observacao } = req.body;
+      const dadosCliente = await db.Cliente.findOne({
+        where: { usuario_id: req.session.usuario.id },
+      });
 
-    const coletaExistente = await db.Coleta.findOne({
-      where: {
-        data: data,
-        hora: hora,
-        cliente_id: dadosCliente.id
+      const coletaExistente = await db.Coleta.findOne({
+          where: {
+              data: data,
+              hora: hora,
+              status: ['pendente', 'aceito']
+          }
+      });
+
+      if (coletaExistente) {
+          const error = new Error("Já existe uma coleta para a mesma data e hora");
+          error.statusCode = 400;
+          throw error;
+      } else {
+          await db.Coleta.create({
+              data: data,
+              hora: hora,
+              status: 'pendente',
+              observacao: observacao,
+              cliente_id: dadosCliente.id
+          });
+
+          res.send(`
+              <script>
+                  alert('Coleta agendada com sucesso.');
+                  setTimeout(function() {
+                      window.location.href = "/cliente";
+                  }, 3000);
+              </script>
+          `);
       }
-    });
-
-    if (coletaExistente) {
-      return res.status(400).send("Já existe uma coleta para a mesma data e hora");
-    }
-
-    // Se não existir, criar a nova coleta
-    await db.Coleta.create({
-      data: data,
-      hora: hora,
-      status: 'pendente',
-      observacao: observacao,
-      cliente_id: dadosCliente.id
-    });
-
-    // Se chegou até aqui, significa que a coleta foi agendada com sucesso
-    res.send(`
-      <script>
-        alert('Coleta agendada com sucesso.');
-        window.location.href = "/cliente";
-      </script>
-    `);
 
   } catch (error) {
-    next(error);
+      next(error);
   }
 }
-
-
-
 
 const clienteCadastrarColetaView = async function (req, res, next) {
   // Renderiza a view 'cadastroClienteView' passando o título da página como parâmetro
   res.render("clienteCadastrarColetaView", { title: "RecicleAqui - Agendamento de coleta", script: "clienteCadastrarColetaView" });
 }
+
+
+
+const historicoView = async function (req, res, next) {
+  try {
+    // Buscar os dados do cliente com base no ID do usuário logado
+    const dadosCliente = await db.Cliente.findOne({
+      where: { usuario_id: req.session.usuario.id },
+    });
+
+    // Buscar as coletas do cliente
+    const agendamentos = await db.Coleta.findAll({
+      where: { cliente_id: dadosCliente.id },
+      order: [['data', 'DESC'], ['hora', 'DESC']] // Ordenar por data e hora
+    });
+
+    // Renderizar a view 'historicoView' passando os agendamentos como parâmetro
+    res.render("historicoView", {
+      title: "RecicleAqui - Histórico de agendamento de coleta",
+      script: "historicoView",
+      agendamentos,
+      data: agendamentos.data,
+      hora: agendamentos.hora,
+      status: agendamentos.status,
+      observacao: agendamentos.observacao
+    });
+  } catch (error) {
+    next(error); // Passar o erro para o próximo middleware de erro
+  }
+};
 
 module.exports = {
   cadastrarCliente,
@@ -259,7 +288,8 @@ module.exports = {
   cadastroClienteView,
   clienteView,
   clienteCadastrarColetaView,
-  clienteCadastrarColeta
+  clienteCadastrarColeta,
+  historicoView
 };
 
 

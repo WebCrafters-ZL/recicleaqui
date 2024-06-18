@@ -1,0 +1,44 @@
+<!-- views/historicoView.hbs -->
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header bg text-white">
+      <h3 class="card-title text-center">Histórico de Coletas</h3>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Hora</th>
+              <th>Status</th>
+              <th>Observação</th>
+              <th>Avaliação</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each agendamentos}}
+            <tr>
+              <td>{{dateFormat this.data 'DD/MM/YYYY'}}</td>
+              <td>{{this.hora}}</td>
+              <td>{{this.status}}</td>
+              <td>{{this.observacao}}</td>
+              <td>
+                <div class="rating">
+                  <!-- Supondo que a avaliação esteja implementada -->
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star text-warning"></i>
+                </div>
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+      <a href="/cliente" class="btn btn-primary mt-3" role="button">Voltar</a>
+    </div>
+  </div>
+</div>
