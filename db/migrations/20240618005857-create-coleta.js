@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Coletas', {
+    await queryInterface.createTable('Coleta', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -43,8 +43,17 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
+
+    // Adicionar a restrição única
+    await queryInterface.addConstraint('Coleta', {
+      fields: ['data', 'hora', 'cliente_id'],
+      type: 'unique',
+      name: 'unique_coleta_date_time_client'
+    });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Coletas');
+    // Remover a tabela e a restrição única
+    await queryInterface.removeConstraint('Coleta', 'unique_coleta_date_time_client');
+    await queryInterface.dropTable('Coleta');
   }
 };

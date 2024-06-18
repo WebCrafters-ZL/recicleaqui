@@ -205,19 +205,51 @@ const clienteView = async function (req, res, next) {
 };
 const clienteCadastrarColeta = async function (req, res, next) {
   try {
-    const {
-      data,
-      hora,
-      observacao
-    } = req.body
-  } catch (error) {
+    const { data, hora, observacao } = req.body;
+    const dadosCliente = await db.Cliente.findOne({
+      where: { usuario_id: req.session.usuario.id },
+    });
 
+    const coletaExistente = await db.Coleta.findOne({
+      where: {
+        data: data,
+        hora: hora,
+        cliente_id: dadosCliente.id
+      }
+    });
+
+    if (coletaExistente) {
+      return res.status(400).send("Já existe uma coleta para a mesma data e hora");
+    }
+
+    // Se não existir, criar a nova coleta
+    await db.Coleta.create({
+      data: data,
+      hora: hora,
+      status: 'pendente',
+      observacao: observacao,
+      cliente_id: dadosCliente.id
+    });
+
+    // Se chegou até aqui, significa que a coleta foi agendada com sucesso
+    res.send(`
+      <script>
+        alert('Coleta agendada com sucesso.');
+        window.location.href = "/cliente";
+      </script>
+    `);
+
+  } catch (error) {
+    next(error);
   }
 }
 
+
+
+
 const clienteCadastrarColetaView = async function (req, res, next) {
   // Renderiza a view 'cadastroClienteView' passando o título da página como parâmetro
-  res.render("clienteCadastrarColetaView", { title: "RecicleAqui - Agendamento de coleta", script: "clienteColetaView" });
+  res.render("clienteCadastrarColetaView", { title: "RecicleAqui - Agendamento de coleta", script: "clienteCadastrarColetaView" });
 }
 
 module.exports = {
@@ -226,7 +258,8 @@ module.exports = {
   excluirCliente,
   cadastroClienteView,
   clienteView,
-  clienteCadastrarColetaView
+  clienteCadastrarColetaView,
+  clienteCadastrarColeta
 };
 
 
