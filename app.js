@@ -45,8 +45,10 @@ app.engine(
         return arg1 == arg2 ? options.fn(this) : options.inverse(this);
       },
       // Definindo o helper personalizado dateFormat
-      formatDate: function (date, format) {
-        return moment(date).format(format);
+      formatDate: function (date) {
+        const adjustedDate = new Date(new Date(date).getTime() + Math.abs(new Date(date).getTimezoneOffset()*60000))
+        const formatedDate = adjustedDate.toLocaleDateString('pt-BR');
+        return formatedDate;
       },
     },
   })

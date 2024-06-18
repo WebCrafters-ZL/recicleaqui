@@ -266,8 +266,6 @@ const historicoView = async function (req, res, next) {
       order: [['data', 'DESC'], ['hora', 'DESC']] // Ordenar por data e hora
     });
 
-    console.log(coleta);
-
     // Renderizar a view 'historicoView' passando os agendamentos como parâmetro
     res.render("historicoView", {
       title: "RecicleAqui - Histórico de agendamento de coleta",
