@@ -17,23 +17,25 @@
             </tr>
           </thead>
           <tbody>
-            {{#each agendamentos}}
-            <tr>
-              <td>{{dateFormat this.data 'DD/MM/YYYY'}}</td>
-              <td>{{this.hora}}</td>
-              <td>{{this.status}}</td>
-              <td>{{this.observacao}}</td>
-              <td>
-                <div class="rating">
-                  <!-- Supondo que a avaliação esteja implementada -->
-                  <i class="bi bi-star-fill text-warning"></i>
-                  <i class="bi bi-star-fill text-warning"></i>
-                  <i class="bi bi-star-fill text-warning"></i>
-                  <i class="bi bi-star-fill text-warning"></i>
-                  <i class="bi bi-star text-warning"></i>
-                </div>
-              </td>
-            </tr>
+            {{#each coleta}}
+              {{#dataValues}}
+              <tr>
+                <td>{{formatDate this.data "DD/MM/YYYY"}}</td>
+                <td>{{this.hora}}</td>
+                <td>{{this.status}}</td>
+                <td>{{this.observacao}}</td>
+                <td>
+                  <div class="rating">
+                    <!-- Supondo que a avaliação esteja implementada -->
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star text-warning"></i>
+                  </div>
+                </td>
+              </tr>
+              {{/dataValues}}
             {{/each}}
           </tbody>
         </table>

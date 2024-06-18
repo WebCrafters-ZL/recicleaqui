@@ -205,33 +205,33 @@ const clienteView = async function (req, res, next) {
 };
 const clienteCadastrarColeta = async function (req, res, next) {
   try {
-      const { data, hora, observacao } = req.body;
-      const dadosCliente = await db.Cliente.findOne({
-        where: { usuario_id: req.session.usuario.id },
+    const { data, hora, observacao } = req.body;
+    const dadosCliente = await db.Cliente.findOne({
+      where: { usuario_id: req.session.usuario.id },
+    });
+
+    const coletaExistente = await db.Coleta.findOne({
+      where: {
+        data: data,
+        hora: hora,
+        status: ['pendente', 'aceito']
+      }
+    });
+
+    if (coletaExistente) {
+      const error = new Error("Já existe uma coleta para a mesma data e hora");
+      error.statusCode = 400;
+      throw error;
+    } else {
+      await db.Coleta.create({
+        data: data,
+        hora: hora,
+        status: 'pendente',
+        observacao: observacao,
+        cliente_id: dadosCliente.id
       });
 
-      const coletaExistente = await db.Coleta.findOne({
-          where: {
-              data: data,
-              hora: hora,
-              status: ['pendente', 'aceito']
-          }
-      });
-
-      if (coletaExistente) {
-          const error = new Error("Já existe uma coleta para a mesma data e hora");
-          error.statusCode = 400;
-          throw error;
-      } else {
-          await db.Coleta.create({
-              data: data,
-              hora: hora,
-              status: 'pendente',
-              observacao: observacao,
-              cliente_id: dadosCliente.id
-          });
-
-          res.send(`
+      res.send(`
               <script>
                   alert('Coleta agendada com sucesso.');
                   setTimeout(function() {
@@ -239,10 +239,10 @@ const clienteCadastrarColeta = async function (req, res, next) {
                   }, 3000);
               </script>
           `);
-      }
+    }
 
   } catch (error) {
-      next(error);
+    next(error);
   }
 }
 
@@ -261,20 +261,18 @@ const historicoView = async function (req, res, next) {
     });
 
     // Buscar as coletas do cliente
-    const agendamentos = await db.Coleta.findAll({
+    const coleta = await db.Coleta.findAll({
       where: { cliente_id: dadosCliente.id },
       order: [['data', 'DESC'], ['hora', 'DESC']] // Ordenar por data e hora
     });
+
+    console.log(coleta);
 
     // Renderizar a view 'historicoView' passando os agendamentos como parâmetro
     res.render("historicoView", {
       title: "RecicleAqui - Histórico de agendamento de coleta",
       script: "historicoView",
-      agendamentos,
-      data: agendamentos.data,
-      hora: agendamentos.hora,
-      status: agendamentos.status,
-      observacao: agendamentos.observacao
+      coleta
     });
   } catch (error) {
     next(error); // Passar o erro para o próximo middleware de erro

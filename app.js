@@ -45,7 +45,7 @@ app.engine(
         return arg1 == arg2 ? options.fn(this) : options.inverse(this);
       },
       // Definindo o helper personalizado dateFormat
-      dateFormat: function (date, format) {
+      formatDate: function (date, format) {
         return moment(date).format(format);
       },
     },
