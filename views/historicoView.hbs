@@ -19,7 +19,6 @@
                         href="#canceladas" role="tab" aria-controls="canceladas"
                         aria-selected="false">Canceladas/Rejeitadas</a>
                 </li>
-                <!-- Nova aba 'Concluídas' -->
                 <li class="nav-item" role="presentation">
                     <a class="nav-link text-white bg-success" id="concluidas-tab" data-bs-toggle="tab"
                         href="#concluidas" role="tab" aria-controls="concluidas" aria-selected="false">Concluídas</a>
@@ -92,7 +91,7 @@
                         </table>
                     </div>
                 </div>
-                <!-- Coletas Canceladas/Rejeitadas -->
+                <!-- Coletas canceladas/rejeitadas -->
                 <div class="tab-pane fade" id="canceladas" role="tabpanel" aria-labelledby="canceladas-tab">
                     <div class="table-responsive mt-3">
                         <table class="table table-striped">
@@ -105,7 +104,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{#each coleta}}
+                                {{#each coletas}}
                                 {{#dataValues}}
                                 <tr>
                                     <td>{{formatDate this.data}}</td>
@@ -119,6 +118,7 @@
                         </table>
                     </div>
                 </div>
+
                 <!-- Coletas Concluídas -->
                 <div class="tab-pane fade" id="concluidas" role="tabpanel" aria-labelledby="concluidas-tab">
                     <div class="table-responsive mt-3">

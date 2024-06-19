@@ -277,6 +277,40 @@ const historicoView = async function (req, res, next) {
   }
 };
 
+const clienteCancelarColeta = async function (req, res, next) {
+  try {
+      // Extrair o ID da coleta do corpo da requisição
+      const { coletaId } = req.body;
+
+      // Atualiza o status da coleta para 'cancelado'
+      await db.Coleta.update({
+          status: 'cancelado'
+      }, { where: { id: coletaId } });
+
+      // Redireciona ou envia uma resposta de sucesso
+      return res.status(200).json({ message: 'Coleta cancelada com sucesso.' });
+  } catch (error) {
+      next(error); // Passa o erro para o próximo middleware de erro
+  }
+};
+
+const exibirColetasCanceladasRejeitadas = async function (req, res, next) {
+  try {
+      // Busque as coletas com status cancelado ou rejeitado no banco de dados
+      const coletasCanceladasRejeitadas = await Coleta.findAll({
+          where: {
+              status: ['cancelado', 'rejeitado']
+          }
+      });
+
+      res.render('coletasCanceladasRejeitadas', { coletas: coletasCanceladasRejeitadas });
+  } catch (error) {
+      // Tratar erros
+      next(error);
+  }
+};
+
+
 
 module.exports = {
   cadastrarCliente,
@@ -286,7 +320,9 @@ module.exports = {
   clienteView,
   clienteCadastrarColetaView,
   clienteCadastrarColeta,
-  historicoView
+  historicoView,
+  clienteCancelarColeta,
+  exibirColetasCanceladasRejeitadas
 };
 
 
