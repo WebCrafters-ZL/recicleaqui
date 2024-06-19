@@ -7,17 +7,22 @@
             <!-- Nav Tabs -->
             <ul class="nav nav-tabs bg-success" id="historicoTabs" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link text-white active bg-success" id="pendentes-tab" data-bs-toggle="tab" href="#pendentes" role="tab" aria-controls="pendentes" aria-selected="true">Pendentes</a>
+                    <a class="nav-link text-white active bg-success" id="pendentes-tab" data-bs-toggle="tab"
+                        href="#pendentes" role="tab" aria-controls="pendentes" aria-selected="true">Pendentes</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link text-white bg-success" id="aceitas-tab" data-bs-toggle="tab" href="#aceitas" role="tab" aria-controls="aceitas" aria-selected="false">Aceitas</a>
+                    <a class="nav-link text-white bg-success" id="aceitas-tab" data-bs-toggle="tab" href="#aceitas"
+                        role="tab" aria-controls="aceitas" aria-selected="false">Aceitas</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link text-white bg-success" id="canceladas-tab" data-bs-toggle="tab" href="#canceladas" role="tab" aria-controls="canceladas" aria-selected="false">Canceladas/Rejeitadas</a>
+                    <a class="nav-link text-white bg-success" id="canceladas-tab" data-bs-toggle="tab"
+                        href="#canceladas" role="tab" aria-controls="canceladas"
+                        aria-selected="false">Canceladas/Rejeitadas</a>
                 </li>
                 <!-- Nova aba 'Concluídas' -->
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link text-white bg-success" id="concluidas-tab" data-bs-toggle="tab" href="#concluidas" role="tab" aria-controls="concluidas" aria-selected="false">Concluídas</a>
+                    <a class="nav-link text-white bg-success" id="concluidas-tab" data-bs-toggle="tab"
+                        href="#concluidas" role="tab" aria-controls="concluidas" aria-selected="false">Concluídas</a>
                 </li>
             </ul>
             <!-- Tab Content -->
@@ -32,7 +37,7 @@
                                     <th>Hora</th>
                                     <th>Status</th>
                                     <th>Observação</th>
-                                    <th>Avaliação</th>
+                                    <th>Ação</th> <!-- Nova coluna para o botão de cancelamento -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,14 +49,8 @@
                                     <td class="{{getStatusClass this.status}}">{{this.status}}</td>
                                     <td>{{this.observacao}}</td>
                                     <td>
-                                        <div class="rating">
-                                            <!-- Supondo que a avaliação esteja implementada -->
-                                            <i class="bi bi-star-fill text-warning"></i>
-                                            <i class="bi bi-star-fill text-warning"></i>
-                                            <i class="bi bi-star-fill text-warning"></i>
-                                            <i class="bi bi-star-fill text-warning"></i>
-                                            <i class="bi bi-star text-warning"></i>
-                                        </div>
+                                        <button type="button" class="btn btn-danger cancel-btn"
+                                            data-coleta-id="{{this.id}}">Cancelar</button>
                                     </td>
                                 </tr>
                                 {{/dataValues}}
@@ -60,6 +59,7 @@
                         </table>
                     </div>
                 </div>
+
                 <!-- Coletas Aceitas -->
                 <div class="tab-pane fade" id="aceitas" role="tabpanel" aria-labelledby="aceitas-tab">
                     <div class="table-responsive mt-3">
@@ -70,6 +70,7 @@
                                     <th>Hora</th>
                                     <th>Status</th>
                                     <th>Observação</th>
+                                    <th>Ação</th> <!-- Nova coluna para o botão de cancelamento -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -80,6 +81,10 @@
                                     <td>{{this.hora}}</td>
                                     <td class="{{getStatusClass this.status}}">{{this.status}}</td>
                                     <td>{{this.observacao}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger cancel-btn"
+                                            data-coleta-id="{{this.id}}">Cancelar</button>
+                                    </td>
                                 </tr>
                                 {{/dataValues}}
                                 {{/each}}
