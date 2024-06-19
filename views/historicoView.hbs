@@ -1,147 +1,160 @@
-<!-- views/historicoView.hbs -->
-<div class="container mt-5"  >
-  <div class="card ">
-    <div class="card-header bg-success text-white">
-      <h3 class="card-title text-center">Histórico de Coletas</h3>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-success text-white">
+            <h3 class="card-title text-center">Histórico de Coletas</h3>
+        </div>
+        <div class="card-body">
+            <!-- Nav Tabs -->
+            <ul class="nav nav-tabs bg-success" id="historicoTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link text-white active bg-success" id="pendentes-tab" data-bs-toggle="tab" href="#pendentes" role="tab" aria-controls="pendentes" aria-selected="true">Pendentes</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link text-white bg-success" id="aceitas-tab" data-bs-toggle="tab" href="#aceitas" role="tab" aria-controls="aceitas" aria-selected="false">Aceitas</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link text-white bg-success" id="canceladas-tab" data-bs-toggle="tab" href="#canceladas" role="tab" aria-controls="canceladas" aria-selected="false">Canceladas/Rejeitadas</a>
+                </li>
+                <!-- Nova aba 'Concluídas' -->
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link text-white bg-success" id="concluidas-tab" data-bs-toggle="tab" href="#concluidas" role="tab" aria-controls="concluidas" aria-selected="false">Concluídas</a>
+                </li>
+            </ul>
+            <!-- Tab Content -->
+            <div class="tab-content" id="historicoTabsContent">
+                <!-- Coletas Pendentes -->
+                <div class="tab-pane fade show active" id="pendentes" role="tabpanel" aria-labelledby="pendentes-tab">
+                    <div class="table-responsive mt-3">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Hora</th>
+                                    <th>Status</th>
+                                    <th>Observação</th>
+                                    <th>Avaliação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each coleta}}
+                                {{#dataValues}}
+                                <tr>
+                                    <td>{{formatDate this.data}}</td>
+                                    <td>{{this.hora}}</td>
+                                    <td class="{{getStatusClass this.status}}">{{this.status}}</td>
+                                    <td>{{this.observacao}}</td>
+                                    <td>
+                                        <div class="rating">
+                                            <!-- Supondo que a avaliação esteja implementada -->
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star text-warning"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {{/dataValues}}
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Coletas Aceitas -->
+                <div class="tab-pane fade" id="aceitas" role="tabpanel" aria-labelledby="aceitas-tab">
+                    <div class="table-responsive mt-3">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Hora</th>
+                                    <th>Status</th>
+                                    <th>Observação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each coleta}}
+                                {{#dataValues}}
+                                <tr>
+                                    <td>{{formatDate this.data}}</td>
+                                    <td>{{this.hora}}</td>
+                                    <td class="{{getStatusClass this.status}}">{{this.status}}</td>
+                                    <td>{{this.observacao}}</td>
+                                </tr>
+                                {{/dataValues}}
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Coletas Canceladas/Rejeitadas -->
+                <div class="tab-pane fade" id="canceladas" role="tabpanel" aria-labelledby="canceladas-tab">
+                    <div class="table-responsive mt-3">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Hora</th>
+                                    <th>Status</th>
+                                    <th>Observação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each coleta}}
+                                {{#dataValues}}
+                                <tr>
+                                    <td>{{formatDate this.data}}</td>
+                                    <td>{{this.hora}}</td>
+                                    <td class="{{getStatusClass this.status}}">{{this.status}}</td>
+                                    <td>{{this.observacao}}</td>
+                                </tr>
+                                {{/dataValues}}
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Coletas Concluídas -->
+                <div class="tab-pane fade" id="concluidas" role="tabpanel" aria-labelledby="concluidas-tab">
+                    <div class="table-responsive mt-3">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Hora</th>
+                                    <th>Status</th>
+                                    <th>Observação</th>
+                                    <th>Avaliação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each coleta}}
+                                {{#dataValues}}
+                                <tr>
+                                    <td>{{formatDate this.data}}</td>
+                                    <td>{{this.hora}}</td>
+                                    <td class="{{getStatusClass this.status}}">{{this.status}}</td>
+                                    <td>{{this.observacao}}</td>
+                                    <td>
+                                        <div class="rating">
+                                            <!-- Supondo que a avaliação esteja implementada -->
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            <i class="bi bi-star text-warning"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {{/dataValues}}
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <a href="/cliente" class="btn btn-success mt-3" role="button">Voltar</a>
+        </div>
     </div>
-    <div class="card-body">
-
-      <!-- Nav Tabs -->
-      <ul class="nav nav-tabs bg-success" id="historicoTabs" role="tablist">
-        <li class="nav-item" role="presentation">
-          <a class="nav-link text-white active bg-success" id="pendentes-tab" data-bs-toggle="tab" href="#pendentes"
-            role="tab" aria-controls="pendentes" aria-selected="true">Pendentes</a>
-        </li>
-        <li class="nav-item" role="presentation">
-          <a class="nav-link text-white bg-success" id="aceitas-tab" data-bs-toggle="tab" href="#aceitas" role="tab"
-            aria-controls="aceitas" aria-selected="false">Aceitas</a>
-        </li>
-        <li class="nav-item" role="presentation">
-          <a class="nav-link text-white bg-success" id="canceladas-tab" data-bs-toggle="tab" href="#canceladas"
-            role="tab" aria-controls="canceladas" aria-selected="false">Canceladas/Rejeitadas</a>
-        </li>
-      </ul>
-      <!-- Tab Content -->
-      <div class="tab-content" id="historicoTabsContent">
-        <!-- Coletas Pendentes -->
-        <div class="tab-pane fade show active" id="pendentes" role="tabpanel" aria-labelledby="pendentes-tab">
-          <div class="table-responsive mt-3">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Data</th>
-                  <th>Hora</th>
-                  <th>Status</th>
-                  <th>Observação</th>
-                  <th>Avaliação</th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each coleta}}
-                {{#dataValues}}
-                <tr>
-                  <td>{{formatDate this.data}}</td>
-                  <td>{{this.hora}}</td>
-                  <td class="{{getStatusClass this.status}}">{{this.status}}</td>
-                  <td>{{this.observacao}}</td>
-                  <td>
-                    <div class="rating">
-                      <!-- Supondo que a avaliação esteja implementada -->
-                      <i class="bi bi-star-fill text-warning"></i>
-                      <i class="bi bi-star-fill text-warning"></i>
-                      <i class="bi bi-star-fill text-warning"></i>
-                      <i class="bi bi-star-fill text-warning"></i>
-                      <i class="bi bi-star text-warning"></i>
-                    </div>
-                  </td>
-                </tr>
-                {{/dataValues}}
-                {{/each}}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Coletas Aceitas -->
-        <div class="tab-pane fade" id="aceitas" role="tabpanel" aria-labelledby="aceitas-tab">
-          <div class="table-responsive mt-3">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Data</th>
-                  <th>Hora</th>
-                  <th>Status</th>
-                  <th>Observação</th>
-                  <th>Avaliação</th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each coleta}}
-                {{#dataValues}}
-                <tr>
-                  <td>{{formatDate this.data}}</td>
-                  <td>{{this.hora}}</td>
-                  <td class="{{getStatusClass this.status}}">{{this.status}}</td>
-                  <td>{{this.observacao}}</td>
-                  <td>
-                    <div class="rating">
-                      <!-- Supondo que a avaliação esteja implementada -->
-                      <i class="bi bi-star-fill text-warning"></i>
-                      <i class="bi bi-star-fill text-warning"></i>
-                      <i class="bi bi-star-fill text-warning"></i>
-                      <i class="bi bi-star-fill text-warning"></i>
-                      <i class="bi bi-star text-warning"></i>
-                    </div>
-                  </td>
-                </tr>
-                {{/dataValues}}
-                {{/each}}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Coletas Canceladas/Rejeitadas -->
-        <div class="tab-pane fade" id="canceladas" role="tabpanel" aria-labelledby="canceladas-tab">
-          <div class="table-responsive mt-3">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Data</th>
-                  <th>Hora</th>
-                  <th>Status</th>
-                  <th>Observação</th>
-                  <th>Avaliação</th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each coleta}}
-                {{#dataValues}}
-                <tr>
-                  <td>{{formatDate this.data}}</td>
-                  <td>{{this.hora}}</td>
-                  <td class="{{getStatusClass this.status}}">{{this.status}}</td>
-                  <td>{{this.observacao}}</td>
-                  <td>
-                    <div class="rating">
-                      <!-- Supondo que a avaliação esteja implementada -->
-                      <i class="bi bi-star-fill text-warning"></i>
-                      <i class="bi bi-star-fill text-warning"></i>
-                      <i class="bi bi-star-fill text-warning"></i>
-                      <i class="bi bi-star-fill text-warning"></i>
-                      <i class="bi bi-star text-warning"></i>
-                    </div>
-                  </td>
-                </tr>
-                {{/dataValues}}
-                {{/each}}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <a href="/cliente" class="btn btn-success mt-3" role="button">Voltar</a>
-    </div>
-  </div>
 </div>
