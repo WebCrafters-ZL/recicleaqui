@@ -1,31 +1,34 @@
 // Importação do módulo 'dotenv-safe' para carregar as variáveis de ambiente de forma segura
-require("dotenv-safe").config({
+require('dotenv-safe').config({
   allowEmptyValues: true,
 });
 
 // Importação do módulo 'express-session' para criação da sessão de usuário
-const session = require("express-session");
+const session = require('express-session');
 
 // Importação do módulo 'express' para criação do servidor web
-const express = require("express");
+const express = require('express');
 
 // Importação do motor de visualização 'express-handlebars'
-const handlebars = require("express-handlebars").engine;
+const handlebars = require('express-handlebars').engine;
+
+// Importação do módulo 'path' para trabalhar com caminhos de arquivos
+const path = require('path');
 
 // Importação do módulo 'moment' para manipulação de datas
-const moment = require("moment");
+const moment = require('moment');
 
 // Middleware de tratamento de erros
-const tratarErros = require("./middleware/tratarErros");
+const tratarErros = require('./middleware/tratarErros');
 
 // Importação do módulo 'body-parser' para análise do corpo das requisições
-const bodyParser = require("body-parser");
+const bodyParser = require('body-parser');
 
 // Importação dos roteadores definidos no diretório routes
-const indexRouter = require("./routes/index");
-const authRouter = require("./routes/auth");
-const clienteRouter = require("./routes/cliente");
-const adminRouter = require("./routes/admin");
+const indexRouter = require('./routes/index');
+const authRouter = require('./routes/auth');
+const clienteRouter = require('./routes/cliente');
+const adminRouter = require('./routes/admin');
 
 // Inicialização do aplicativo Express
 const app = express();
@@ -35,10 +38,10 @@ const port = process.env.APP_PORT || 8081;
 
 // Configuração do motor de visualização 'handlebars' para o Express
 app.engine(
-  "hbs",
+  'hbs',
   handlebars({
-    defaultLayout: "main",
-    extname: ".hbs",
+    defaultLayout: 'main',
+    extname: '.hbs',
     helpers: {
       // Definindo o helper personalizado ifEquals
       ifEquals: function (arg1, arg2, options) {
@@ -46,16 +49,26 @@ app.engine(
       },
       // Definindo o helper personalizado dateFormat
       formatDate: function (date) {
-        const adjustedDate = new Date(new Date(date).getTime() + Math.abs(new Date(date).getTimezoneOffset()*60000))
+        const adjustedDate = new Date(new Date(date).getTime() + Math.abs(new Date(date).getTimezoneOffset() * 60000));
         const formatedDate = adjustedDate.toLocaleDateString('pt-BR');
         return formatedDate;
+      },
+      // Definindo o helper personalizado getStatusClass
+      getStatusClass: function (status) {
+        switch (status.toLowerCase()) {
+          case 'pendente': return 'text-warning';
+          case 'aceito': return 'text-success';
+          case 'rejeitado':
+          case 'cancelado': return 'text-danger';
+          default: return '';
+        }
       },
     },
   })
 );
 
 // Definição do mecanismo de visualização padrão para 'handlebars'
-app.set("view engine", "hbs");
+app.set('view engine', 'hbs');
 
 // Configuração da sessão do usuário
 app.use(
@@ -67,17 +80,17 @@ app.use(
 );
 
 // Configuração do servidor para servir arquivos estáticos a partir do diretório 'public'
-app.use(express.static("public"));
+app.use(express.static('public'));
 
 // Configuração do 'body-parser' para análise de dados codificados no URL
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Definição dos roteadores para diferentes caminhos de URL
-app.use("/", indexRouter); // Roteador para o caminho raiz
-app.use("/auth", authRouter); // Roteador para o caminho '/login'
-app.use("/cliente", clienteRouter); // Roteador para o caminho '/cliente'
-app.use("/admin", adminRouter); // Roteador para o caminho '/admin'
+app.use('/', indexRouter); // Roteador para o caminho raiz
+app.use('/auth', authRouter); // Roteador para o caminho '/login'
+app.use('/cliente', clienteRouter); // Roteador para o caminho '/cliente'
+app.use('/admin', adminRouter); // Roteador para o caminho '/admin'
 
 // Definição das tratativas de erros
 app.use(tratarErros.tratarNaoEncontrado);

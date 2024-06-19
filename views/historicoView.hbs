@@ -22,7 +22,7 @@
               <tr>
                 <td>{{formatDate this.data}}</td>
                 <td>{{this.hora}}</td>
-                <td>{{this.status}}</td>
+                <td class="{{getStatusClass this.status}}">{{this.status}}</td>
                 <td>{{this.observacao}}</td>
                 <td>
                   <div class="rating">

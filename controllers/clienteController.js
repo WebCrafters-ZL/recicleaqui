@@ -277,6 +277,7 @@ const historicoView = async function (req, res, next) {
   }
 };
 
+
 module.exports = {
   cadastrarCliente,
   atualizarCliente,
