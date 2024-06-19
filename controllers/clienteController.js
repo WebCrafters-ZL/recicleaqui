@@ -203,6 +203,7 @@ const clienteView = async function (req, res, next) {
     next(error); // Passa o erro para o próximo middleware de erro
   }
 };
+
 const clienteCadastrarColeta = async function (req, res, next) {
   try {
     const { data, hora, observacao } = req.body;
@@ -251,8 +252,6 @@ const clienteCadastrarColetaView = async function (req, res, next) {
   res.render("clienteCadastrarColetaView", { title: "RecicleAqui - Agendamento de coleta", script: "clienteCadastrarColetaView" });
 }
 
-
-
 const historicoView = async function (req, res, next) {
   try {
     // Buscar os dados do cliente com base no ID do usuário logado
@@ -261,16 +260,34 @@ const historicoView = async function (req, res, next) {
     });
 
     // Buscar as coletas do cliente
-    const coleta = await db.Coleta.findAll({
-      where: { cliente_id: dadosCliente.id },
+    const coletasPendentes = await db.Coleta.findAll({
+      where: { status: 'pendente', cliente_id: dadosCliente.id },
       order: [['data', 'DESC'], ['hora', 'DESC']] // Ordenar por data e hora
     });
 
-    // Renderizar a view 'historicoView' passando os agendamentos como parâmetro
+    const coletasAceitas = await db.Coleta.findAll({
+      where: { status: 'aceito', cliente_id: dadosCliente.id },
+      order: [['data', 'DESC'], ['hora', 'DESC']] // Ordenar por data e hora
+    });
+
+    const coletasInativas = await db.Coleta.findAll({
+      where: { status: ['rejeitado', 'cancelado'], cliente_id: dadosCliente.id },
+      order: [['data', 'DESC'], ['hora', 'DESC']] // Ordenar por data e hora
+    })
+
+    const coletasConcluidas = await db.Coleta.findAll({
+      where: { status: 'concluido', cliente_id: dadosCliente.id },
+      order: [['data', 'DESC'], ['hora', 'DESC']] // Ordenar por data e hora
+    });
+
+    // Renderizar a view 'historicoView' passando as coletas como parâmetro
     res.render("historicoView", {
       title: "RecicleAqui - Histórico de agendamento de coleta",
       script: "historicoView",
-      coleta
+      coletaPendente: coletasPendentes,
+      coletaAceita: coletasAceitas,
+      coletaInativa: coletasInativas,
+      coletaConcluida: coletasConcluidas
     });
   } catch (error) {
     next(error); // Passar o erro para o próximo middleware de erro
@@ -279,38 +296,20 @@ const historicoView = async function (req, res, next) {
 
 const clienteCancelarColeta = async function (req, res, next) {
   try {
-      // Extrair o ID da coleta do corpo da requisição
-      const { coletaId } = req.body;
+    // Extrair o ID da coleta do corpo da requisição
+    const { coletaId } = req.body;
 
-      // Atualiza o status da coleta para 'cancelado'
-      await db.Coleta.update({
-          status: 'cancelado'
-      }, { where: { id: coletaId } });
+    // Atualiza o status da coleta para 'cancelado'
+    await db.Coleta.update({
+      status: 'cancelado'
+    }, { where: { id: coletaId } });
 
-      // Redireciona ou envia uma resposta de sucesso
-      return res.status(200).json({ message: 'Coleta cancelada com sucesso.' });
+    // Redireciona ou envia uma resposta de sucesso
+    return res.status(200).json({ message: 'Coleta cancelada com sucesso.' });
   } catch (error) {
-      next(error); // Passa o erro para o próximo middleware de erro
+    next(error); // Passa o erro para o próximo middleware de erro
   }
 };
-
-const exibirColetasCanceladasRejeitadas = async function (req, res, next) {
-  try {
-      // Busque as coletas com status cancelado ou rejeitado no banco de dados
-      const coletasCanceladasRejeitadas = await Coleta.findAll({
-          where: {
-              status: ['cancelado', 'rejeitado']
-          }
-      });
-
-      res.render('coletasCanceladasRejeitadas', { coletas: coletasCanceladasRejeitadas });
-  } catch (error) {
-      // Tratar erros
-      next(error);
-  }
-};
-
-
 
 module.exports = {
   cadastrarCliente,
@@ -321,8 +320,5 @@ module.exports = {
   clienteCadastrarColetaView,
   clienteCadastrarColeta,
   historicoView,
-  clienteCancelarColeta,
-  exibirColetasCanceladasRejeitadas
+  clienteCancelarColeta
 };
-
-

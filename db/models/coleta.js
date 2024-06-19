@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
   Coleta.init({
     data: DataTypes.DATE,
     hora: DataTypes.TIME,
-    status: DataTypes.ENUM('pendente', 'aceito', 'rejeitado', 'cancelado'),
+    status: DataTypes.ENUM('pendente', 'aceito', 'rejeitado', 'cancelado', 'concluido'),
     observacao: DataTypes.TEXT,
     cliente_id: DataTypes.INTEGER
   }, {

@@ -19,7 +19,7 @@ module.exports = {
       },
       status: {
         allowNull: false,
-        type: Sequelize.ENUM('pendente', 'aceito', 'rejeitado', 'cancelado')
+        type: Sequelize.ENUM('pendente', 'aceito', 'rejeitado', 'cancelado', 'concluido')
       },
       observacao: {
         type: Sequelize.TEXT
