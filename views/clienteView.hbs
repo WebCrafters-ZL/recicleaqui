@@ -1,21 +1,15 @@
-<!-- Container principal da página de cliente -->
 <div class="container-fluid">
-  <!-- Container da página de cliente -->
   <div class="container">
-    <div class="row mb-4">
-      <div class="col"></div>
-      <div class="col"></div>
-      <div class="col align-self-start justify-content-end">
-        <a class="btn" href="/auth/logout" role="button">Sair</a>
-      </div>
+    <div class="d-flex justify-content-end mb-4"> <a class="btn btn-success" href="/auth/logout" role="button">Sair</a>
     </div>
+
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <div class="col">
         <div class="card" style="width: 18rem;">
           <div class="card-body">
             <h5 class="card-title">Perfil</h5>
             <p class="card-text">Editar ou excluir o seu cadastro</p>
-            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modalPerfil">
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalPerfil">
               Acessar
             </button>
           </div>
@@ -26,7 +20,7 @@
           <div class="card-body">
             <h5 class="card-title">Agendamento</h5>
             <p class="card-text">Agendar uma coleta</p>
-            <a class="btn" href="#" role="button">Acessar</a>
+            <a class="btn btn-success" href="/cliente/cadastrar-coleta" role="button">Acessar</a>
           </div>
         </div>
       </div>
@@ -35,25 +29,25 @@
           <div class="card-body">
             <h5 class="card-title">Histórico</h5>
             <p class="card-text">Histórico de coletas realizadas</p>
-            <a class="btn" href="#" role="button">Acessar</a>
+            <a class="btn btn-success" href="/cliente/historico-coleta" role="button">Acessar</a>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- Modais -->
   <div class="modal fade" id="modalPerfil" tabindex="-1" aria-labelledby="modalPerfilLabel">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalPerfilLabel">Perfil</h5>
+        <div class="modal-header bg-success text-white d-flex justify-content-center">
+          <!-- Adicionando classes para centralizar e dar cor branca -->
+          <h5 class="modal-title text-white">Perfil</h5> <!-- Adicionando a classe text-white para cor branca -->
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           {{> formAtualizarCliente}}
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Fechar</button>
         </div>
       </div>
     </div>
