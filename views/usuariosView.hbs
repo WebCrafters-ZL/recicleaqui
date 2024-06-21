@@ -12,23 +12,24 @@
                             <th>Razão Social</th>
                             <th>Nome Fantasia</th>
                             <th>E-mail</th>
-                            <th>Responsável</th> <!-- Nova coluna para o responsável -->
+                            <th>Responsável</th>
                             <th>Ação</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Aqui você pode inserir as informações dos administradores -->
+                        {{#each clients}}
                         <tr>
-                            <td>123.456.789/0001-01</td>
-                            <td>Empresa ABC</td>
-                            <td>ABC Co.</td>
-                            <td>admin@empresa.com</td>
-                            <td>Fulano da Silva</td> <!-- Nome do responsável -->
+                            <td>{{cnpj}}</td>
+                            <td>{{razaoSocial}}</td>
+                            <td>{{nomeFantasia}}</td>
+                            <td>{{Usuario.email}}</td>
+                            <td>{{responsavel}}</td>
                             <td>
-                                <button type="button" class="btn btn-danger">Deletar</button>
+                                <button type="button" class="btn btn-danger cancel-btn"
+                                    data-client-id="{{id}}">Deletar</button>
                             </td>
                         </tr>
-                        <!-- Repita esse bloco para cada administrador -->
+                        {{/each}}
                     </tbody>
                 </table>
             </div>
