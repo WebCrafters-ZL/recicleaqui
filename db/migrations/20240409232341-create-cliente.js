@@ -80,7 +80,8 @@ module.exports = {
             tableName: 'Usuarios',
           },
           key: 'id'
-        }
+        },
+        onDelete: 'CASCADE'  // Ação a ser tomada ao deletar o usuário associado
       },
       createdAt: {
         allowNull: false,

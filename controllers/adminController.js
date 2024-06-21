@@ -13,35 +13,67 @@ const clientesView = async function (req, res, next) {
     try {
         const clients = await db.Cliente.findAll({
             include: {
-                model: db.Usuario
+                model: db.Usuario // Incluindo o modelo Usuario para acessar os dados do usuário associado a cada cliente
             }
         });
-        res.render("clientesView", { title: "Lista de Clientes", clients });
+
+        // Mapeando os dados para adicionar o email do usuário a cada cliente
+        const clientsWithUserEmail = clients.map(client => ({
+            id: client.id,
+            cnpj: client.cnpj,
+            razaoSocial: client.razaoSocial,
+            nomeFantasia: client.nomeFantasia,
+            emailUsuario: client.Usuario.email,
+            responsavel: client.responsavel
+        }));
+        res.render("usuariosView", { title: "Lista de Clientes", clients: clientsWithUserEmail });
     } catch (error) {
         next(error);
     }
 };
 
-const usuariosView = async function (req, res, next) {
-    try {
-        res.render("usuariosView", { title: "Gerenciamento de Usuários" });
-    } catch (error) {
-        next(error);
-    }
-};
 
 const agendamentosView = async function (req, res) {
     try {
-        res.render("agendamentosView", { title: "Lista de Agendamentos"});
+        // Buscar as coletas do cliente
+        const coletasPendentes = await db.Coleta.findAll({
+            where: { status: 'pendente'},
+            order: [['data', 'DESC'], ['hora', 'DESC']]
+        });
+
+        const coletasAceitas = await db.Coleta.findAll({
+            where: { status: 'aceito'},
+            order: [['data', 'DESC'], ['hora', 'DESC']]
+        });
+
+        const coletasInativas = await db.Coleta.findAll({
+            where: { status: ['rejeitado', 'cancelado'], },
+            order: [['data', 'DESC'], ['hora', 'DESC']]
+        });
+
+        const coletasConcluidas = await db.Coleta.findAll({
+            where: { status: 'concluido' },
+            order: [['data', 'DESC'], ['hora', 'DESC']]
+        });
+
+        // Outras consultas necessárias para os dados que deseja exibir na view de agendamentos
+        res.render("agendamentosView", {
+            title: "Lista de Agendamentos",
+            script: "agendamentosView",
+            coletaPendente: coletasPendentes,
+            coletaAceita: coletasAceitas,
+            coletaInativa: coletasInativas,
+            coletaConcluida: coletasConcluidas
+        });
     } catch (error) {
-        console.error('Erro ao renderizar a página de agendamentos:', error);
-        res.status(500).send('Erro ao carregar a página de agendamentos');
+        next(error)
     }
 };
 
+
+
 module.exports = {
     adminView,
-    usuariosView,
     clientesView,
     agendamentosView
 };

@@ -19,14 +19,14 @@
                     <tbody>
                         {{#each clients}}
                         <tr>
-                            <td>{{cnpj}}</td>
-                            <td>{{razaoSocial}}</td>
-                            <td>{{nomeFantasia}}</td>
-                            <td>{{Usuario.email}}</td>
-                            <td>{{responsavel}}</td>
+                            <td>{{this.cnpj}}</td>
+                            <td>{{this.razaoSocial}}</td>
+                            <td>{{this.nomeFantasia}}</td>
+                            <td>{{this.emailUsuario}}</td>
+                            <td>{{this.responsavel}}</td>
                             <td>
                                 <button type="button" class="btn btn-danger cancel-btn"
-                                    data-client-id="{{id}}">Deletar</button>
+                                    data-client-id="{{this.id}}">Deletar</button>
                             </td>
                         </tr>
                         {{/each}}

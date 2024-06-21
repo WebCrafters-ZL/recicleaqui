@@ -50,6 +50,10 @@
                                     <td class="{{getStatusClass this.status}}">{{this.status}}</td>
                                     <td>{{this.observacao}}</td>
                                     <td>
+                                        <button type="button" class="btn btn-primary accept-btn"
+                                            data-coleta-id="{{this.id}}">Aceitar</button>
+                                    </td>
+                                    <td>
                                         <button type="button" class="btn btn-danger cancel-btn"
                                             data-coleta-id="{{this.id}}">Rejeitar</button>
                                     </td>
@@ -71,7 +75,6 @@
                                     <th>Nome Fantasia</th>
                                     <th>Data</th>
                                     <th>Hora</th>
-                                    <th>Status</th>
                                     <th>Observação</th>
                                     <th>Ação</th> 
                                 </tr>
@@ -82,7 +85,6 @@
                                 <tr>
                                     <td>{{formatDate this.data}}</td>
                                     <td>{{this.hora}}</td>
-                                    <td class="{{getStatusClass this.status}}">{{this.status}}</td>
                                     <td>{{this.observacao}}</td>
                                     <td>
                                         <button type="button" class="btn btn-danger cancel-btn"
@@ -135,7 +137,6 @@
                                     <th>Nome Fantasia</th>
                                     <th>Data</th>
                                     <th>Hora</th>
-                                    <th>Status</th>
                                     <th>Observação</th>
                                 </tr>
                             </thead>
@@ -145,7 +146,6 @@
                                 <tr>
                                     <td>{{formatDate this.data}}</td>
                                     <td>{{this.hora}}</td>
-                                    <td class="{{getStatusClass this.status}}">{{this.status}}</td>
                                     <td>{{this.observacao}}</td>
                                 </tr>
                                 {{/dataValues}}
