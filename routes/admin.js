@@ -7,7 +7,10 @@ const express = require("express");
 const router = express.Router();
 
 // Importa as funções do controlador adminController
-const { adminView } = require("../controllers/adminController");
+const { 
+    adminView,
+    usuariosView
+ } = require("../controllers/adminController");
 
 // Importa a função requerirLogin do middleware requerirLogin
 const requerirLogin = require("../middleware/requerirLogin");
@@ -15,10 +18,8 @@ const requerirLogin = require("../middleware/requerirLogin");
 // Definição da rota para o caminho '/' usando o método GET e associa a função adminView
 router.get("/", requerirLogin, adminView);
 
-// Definição da rota para '/gerenciar-cliente' (Coloque aqui a lógica do controlador apropriada)
-router.get("/gerenciar-cliente", requerirLogin, (req, res) => {
-    res.send('Página de gerenciamento de clientes ainda não implementada');
-});
+// Rota para a página de gerenciamento de usuários
+router.get("/usuarios", requerirLogin, usuariosView);
 
 // Exportação do roteador para uso em outros arquivos
 module.exports = router;

@@ -9,6 +9,15 @@ const adminView = async function (req, res, next) {
     }
 }
 
+const usuariosView = async function (req, res, next) {
+    try {
+        res.render("usuariosView", { title: "Gerenciamento de Usuários" }); // Renderiza a view 'usuariosView'
+    } catch (error) {
+        next(error);
+    }
+};
+
 module.exports = {
-    adminView
+    adminView,
+    usuariosView
 }
