@@ -38,8 +38,8 @@ router.get("/cadastrar-coleta", requerirLogin, clienteCadastrarColetaView);
 router.post("/cadastrar-coleta", requerirLogin, clienteCadastrarColeta);
 // Definição da rota para o caminho '/historico-coleta' usando o método GET e associa a função historicoView
 router.get("/historico-coleta", requerirLogin, historicoView);
-// Definição da rota para o caminho '/cancelar-coleta' usando o método PUT e associa a função clienteCancelarColeta
-router.put("/cancelar-coleta", requerirLogin, clienteCancelarColeta);
+// Definição da rota para o caminho '/cancelar-coleta' usando o método GET e associa a função clienteCancelarColeta
+router.get("/cancelar-coleta/:id", requerirLogin, clienteCancelarColeta);
 
 // Exportação do roteador para uso em outros arquivos
 module.exports = router;

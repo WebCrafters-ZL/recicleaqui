@@ -36,7 +36,7 @@
                                     <th>Hora</th>
                                     <th>Status</th>
                                     <th>Observação</th>
-                                    <th>Ação</th> 
+                                    <th>Ação</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -48,8 +48,8 @@
                                     <td class="{{getStatusClass this.status}}">{{this.status}}</td>
                                     <td>{{this.observacao}}</td>
                                     <td>
-                                        <button type="button" class="btn btn-danger cancel-btn"
-                                            data-coleta-id="{{this.id}}">Cancelar</button>
+                                        <a class="btn btn-danger" href="/cliente/cancelar-coleta/{{this.id}}"
+                                            role="button">Cancelar</a>
                                     </td>
                                 </tr>
                                 {{/dataValues}}
@@ -69,7 +69,7 @@
                                     <th>Hora</th>
                                     <th>Status</th>
                                     <th>Observação</th>
-                                    <th>Ação</th> 
+                                    <th>Ação</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -81,8 +81,8 @@
                                     <td class="{{getStatusClass this.status}}">{{this.status}}</td>
                                     <td>{{this.observacao}}</td>
                                     <td>
-                                        <button type="button" class="btn btn-danger cancel-btn"
-                                            data-coleta-id="{{this.id}}">Cancelar</button>
+                                        <a class="btn btn-danger" href="/cliente/cancelar-coleta/{{this.id}}"
+                                            role="button">Cancelar</a>
                                     </td>
                                 </tr>
                                 {{/dataValues}}

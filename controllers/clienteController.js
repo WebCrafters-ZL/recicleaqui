@@ -70,8 +70,14 @@ const cadastrarCliente = async function (req, res, next) {
           usuario_id: usuario.id
         });
 
-        // Redireciona para a rota de login após o cadastro bem-sucedido
-        return res.redirect("/auth");
+        res.send(`
+          <script>
+              alert('Cadastro efetuado com sucesso.');
+              setTimeout(function() {
+                  window.location.href = "/auth";
+              }, 2000);
+          </script>
+      `);
       }
     }
   } catch (error) {
@@ -146,8 +152,14 @@ const atualizarCliente = async function (req, res, next) {
           telefoneResponsavel,
         }, { where: { usuario_id: req.session.usuario.id } });
 
-        // Redireciona para a própria página do perfil de usuário
-        return res.redirect("/cliente");
+        res.send(`
+          <script>
+              alert('Cadastro atualizado com sucesso.');
+              setTimeout(function() {
+                  window.location.href = "/cliente";
+              }, 2000);
+          </script>
+      `);
       }
     }
   } catch (error) {
@@ -159,7 +171,14 @@ const excluirCliente = async function (req, res, next) {
   try {
     await db.Cliente.destroy({ where: { usuario_id: req.session.usuario.id } });
     await db.Usuario.destroy({ where: { id: req.session.usuario.id } })
-    res.redirect("/auth/logout");
+    res.send(`
+      <script>
+          alert('Cadastro excluído com sucesso.');
+          setTimeout(function() {
+              window.location.href = "/auth/logout";
+          }, 2000);
+      </script>
+  `);
   } catch (error) {
     next(error); // Passa o erro para o próximo middleware de erro
   }
@@ -237,7 +256,7 @@ const clienteCadastrarColeta = async function (req, res, next) {
                   alert('Coleta agendada com sucesso.');
                   setTimeout(function() {
                       window.location.href = "/cliente";
-                  }, 3000);
+                  }, 2000);
               </script>
           `);
     }
@@ -296,16 +315,21 @@ const historicoView = async function (req, res, next) {
 
 const clienteCancelarColeta = async function (req, res, next) {
   try {
-    // Extrair o ID da coleta do corpo da requisição
-    const { coletaId } = req.body;
 
     // Atualiza o status da coleta para 'cancelado'
     await db.Coleta.update({
       status: 'cancelado'
-    }, { where: { id: coletaId } });
+    }, { where: { id: req.params.id } });
 
-    // Redireciona ou envia uma resposta de sucesso
-    return res.status(200).json({ message: 'Coleta cancelada com sucesso.' });
+    res.send(`
+      <script>
+          alert('Coleta cancelada com sucesso.');
+          setTimeout(function() {
+              window.location.href = "/cliente/historico-coleta";
+          }, 2000);
+      </script>
+  `);
+
   } catch (error) {
     next(error); // Passa o erro para o próximo middleware de erro
   }

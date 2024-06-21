@@ -107,7 +107,6 @@ const agendamentosView = async function (req, res) {
 
         res.render("agendamentosView", {
             title: "Lista de Agendamentos",
-            script: "agendamentosView",
             coletaPendente: coletasPendentes,
             coletaAceita: coletasAceitas,
             coletaInativa: coletasInativas,
