@@ -1,19 +1,38 @@
-<div class="container mt-4">
-    <div class="row mb-4">
-        <div class="col text-center">
-            <h2>{{title}}</h2> <!-- Exibe o título da página -->
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-success text-white">
+            <h3 class="card-title text-center">Lista de Clientes</h3>
         </div>
-    </div>
-
-    <div class="row">
-        <div class="col text-center">
-            <p>Esta é a página de gerenciamento de usuários.</p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col text-center">
-            <a class="btn btn-secondary" href="/admin" role="button">Voltar</a> <!-- Botão de voltar -->
+        <div class="card-body">
+            <div class="table-responsive mt-3">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>CNPJ</th>
+                            <th>Razão Social</th>
+                            <th>Nome Fantasia</th>
+                            <th>E-mail</th>
+                            <th>Responsável</th> <!-- Nova coluna para o responsável -->
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Aqui você pode inserir as informações dos administradores -->
+                        <tr>
+                            <td>123.456.789/0001-01</td>
+                            <td>Empresa ABC</td>
+                            <td>ABC Co.</td>
+                            <td>admin@empresa.com</td>
+                            <td>Fulano da Silva</td> <!-- Nome do responsável -->
+                            <td>
+                                <button type="button" class="btn btn-danger">Deletar</button>
+                            </td>
+                        </tr>
+                        <!-- Repita esse bloco para cada administrador -->
+                    </tbody>
+                </table>
+            </div>
+            <a href="/admin" class="btn btn-success mt-3" role="button">Voltar</a>
         </div>
     </div>
 </div>
