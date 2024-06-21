@@ -1,7 +1,7 @@
 <div class="container mt-5">
     <div class="card">
         <div class="card-header bg-success text-white">
-            <h3 class="card-title text-center">Histórico de Coletas</h3>
+            <h3 class="card-title text-center">Histórico de Agendamentos</h3>
         </div>
         <div class="card-body">
             <!-- Nav Tabs -->
@@ -32,27 +32,29 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
+                                    <th>CNPJ</th>
+                                    <th>Nome Fantasia</th>
                                     <th>Data</th>
                                     <th>Hora</th>
-                                    <th>Status</th>
                                     <th>Observação</th>
-                                    <th>Ação</th> 
+                                    <th>Ação</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {{#each coletaPendente}}
-                                {{#dataValues}}
                                 <tr>
+                                    <td>{{this.cnpj}}</td>
+                                    <td>{{this.nomeFantasia}}</td>
                                     <td>{{formatDate this.data}}</td>
                                     <td>{{this.hora}}</td>
-                                    <td class="{{getStatusClass this.status}}">{{this.status}}</td>
                                     <td>{{this.observacao}}</td>
                                     <td>
+                                        <button type="button" class="btn btn-primary accept-btn"
+                                            data-coleta-id="{{this.id}}">Aceitar</button>
                                         <button type="button" class="btn btn-danger cancel-btn"
-                                            data-coleta-id="{{this.id}}">Cancelar</button>
+                                            data-coleta-id="{{this.id}}">Rejeitar</button>
                                     </td>
                                 </tr>
-                                {{/dataValues}}
                                 {{/each}}
                             </tbody>
                         </table>
@@ -65,27 +67,27 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
+                                    <th>CNPJ</th>
+                                    <th>Nome Fantasia</th>
                                     <th>Data</th>
                                     <th>Hora</th>
-                                    <th>Status</th>
                                     <th>Observação</th>
-                                    <th>Ação</th> 
+                                    <th>Ação</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {{#each coletaAceita}}
-                                {{#dataValues}}
                                 <tr>
+                                    <td>{{this.cnpj}}</td>
+                                    <td>{{this.nomeFantasia}}</td>
                                     <td>{{formatDate this.data}}</td>
                                     <td>{{this.hora}}</td>
-                                    <td class="{{getStatusClass this.status}}">{{this.status}}</td>
                                     <td>{{this.observacao}}</td>
                                     <td>
                                         <button type="button" class="btn btn-danger cancel-btn"
                                             data-coleta-id="{{this.id}}">Cancelar</button>
                                     </td>
                                 </tr>
-                                {{/dataValues}}
                                 {{/each}}
                             </tbody>
                         </table>
@@ -97,6 +99,8 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
+                                    <th>CNPJ</th>
+                                    <th>Nome Fantasia</th>
                                     <th>Data</th>
                                     <th>Hora</th>
                                     <th>Status</th>
@@ -105,14 +109,14 @@
                             </thead>
                             <tbody>
                                 {{#each coletaInativa}}
-                                {{#dataValues}}
                                 <tr>
+                                    <td>{{this.cnpj}}</td>
+                                    <td>{{this.nomeFantasia}}</td>
                                     <td>{{formatDate this.data}}</td>
                                     <td>{{this.hora}}</td>
                                     <td class="{{getStatusClass this.status}}">{{this.status}}</td>
                                     <td>{{this.observacao}}</td>
                                 </tr>
-                                {{/dataValues}}
                                 {{/each}}
                             </tbody>
                         </table>
@@ -125,33 +129,22 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
+                                    <th>CNPJ</th>
+                                    <th>Nome Fantasia</th>
                                     <th>Data</th>
                                     <th>Hora</th>
-                                    <th>Status</th>
                                     <th>Observação</th>
-                                    <th>Avaliação</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {{#each coletaConcluida}}
-                                {{#dataValues}}
                                 <tr>
+                                    <td>{{this.cnpj}}</td>
+                                    <td>{{this.nomeFantasia}}</td>
                                     <td>{{formatDate this.data}}</td>
                                     <td>{{this.hora}}</td>
-                                    <td class="{{getStatusClass this.status}}">{{this.status}}</td>
                                     <td>{{this.observacao}}</td>
-                                    <td>
-                                        <div class="rating">
-                                            <!-- Supondo que a avaliação esteja implementada -->
-                                            <i class="bi bi-star-fill text-warning"></i>
-                                            <i class="bi bi-star-fill text-warning"></i>
-                                            <i class="bi bi-star-fill text-warning"></i>
-                                            <i class="bi bi-star-fill text-warning"></i>
-                                            <i class="bi bi-star text-warning"></i>
-                                        </div>
-                                    </td>
                                 </tr>
-                                {{/dataValues}}
                                 {{/each}}
                             </tbody>
                         </table>
@@ -159,7 +152,7 @@
                 </div>
             </div>
 
-            <a href="/cliente" class="btn btn-success mt-3" role="button">Voltar</a>
+            <a href="/admin" class="btn btn-success mt-3" role="button">Voltar</a>
         </div>
     </div>
 </div>

@@ -5,18 +5,59 @@
         <div class="formulario-login show">
             <h2>Login</h2>
             <form id="formLogin" action="/auth/login" method="post">
-                <label for="email" class="form-label">E-mail</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-                <label for="senha" class="form-label">Senha</label>
-                <input type="password" class="form-control" name="senha" id="senha" required>
-                <a href="#" class="switch-link" id="redefinir-link">Esqueceu sua senha?</a>
-                <button type="submit" class="btn btn-primary">Entrar</button>
+                <div class="row">
+                    <div class="col mb-4">
+                        <div class="form-floating">
+                            <input type="email" class="form-control" id="email" name="email"
+                                placeholder="email@exemplo.com" required>
+                            <label for="email" class="form-label">E-mail</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-4">
+                        <div class="form-floating">
+                            <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha"
+                                required>
+                            <label for="senha" class="form-label">Senha</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-4">
+                        <a href="#" class="switch-link" id="redefinir-link">Esqueceu sua senha?</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-4">
+                        <button type="submit" class="btn btn-primary">Entrar</button>
+                    </div>
+                </div>
             </form>
-             <div class="formulario-redefinicao">
+        </div>
+        <div class="formulario-redefinicao">
             <h2>Redefinir senha</h2>
             <form id="formRedefinirSenha" action="/auth/redefinir-senha" method="post">
-                <label for="emailRedefinicao" class="form-label">E-mail</label>
-                <input type="email" class="form-control" id="emailRedefinicao" name="emailRedefinicao" required>
-                <a href="#" class="switch-link" id="login-link">Realizar login</a>
-                <button type="submit" class="btn btn-primary">Redefinir</button>
+                <div class="row">
+                    <div class="col mb-4">
+                        <div class="form-floating">
+                            <input type="email" class="form-control" id="emailRedefinicao" name="emailRedefinicao"
+                                placeholder="email@exemplo.com" required>
+                            <label for="emailRedefinicao" class="form-label">E-mail</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-4">
+                        <a href="#" class="switch-link" id="login-link">Realizar login</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-4">
+                        <button type="submit" class="btn btn-primary">Redefinir</button>
+                    </div>
+                </div>
             </form>
+        </div>
+    </div>
+</div>

@@ -14,6 +14,8 @@ RecicleAqui é um projeto web desenvolvido em Node.js e MySQL/MariaDB para facil
 - **Body-Parser**: Middleware para análise de dados das requisições.
 - **MySQL2**: Driver MySQL para Node.js.
 - **Sequelize**: ORM (Object-Relational Mapping) para interagir com o banco de dados.
+- **Nodemailer**: Módulo para envio de e-mails, usando [Ethereal](https://ethereal.email/) como servidor SMTP.
+- **Moment**: Módulo para manipulação de datas.
 ### Requisitos
 - Node.js instalado
 - MySQL/MariaDB instalado e configurado
@@ -30,6 +32,18 @@ RecicleAqui é um projeto web desenvolvido em Node.js e MySQL/MariaDB para facil
 ### Configuração das variáveis de ambiente
 1. Crie um arquivo .env na raiz do projeto, baseado no arquivo .env.example. 
     - **DICA**: Copie o conteúdo do .env.example e preencha apenas os valores, sem espaço após o **=**
+    ```
+    APP_PORT='Porta de acesso à aplicação'
+    SESSION_SECRET='Segredo para criptografar a sessão'
+    DB_NAME='Nome do banco de dados'
+    DB_USER='Usuário do banco de dados'
+    DB_PASSWORD='Senha do banco de dados'
+    DB_HOST='Hostname do servidor do banco de dados'
+    EMAIL_SMTP_HOST='Hostname do servidor SMTP'
+    EMAIL_SMTP_PORT='Porta do servidor SMTP'
+    EMAIL_USER='E-mail usado para enviar mensagens'
+    EMAIL_PASSWORD='Senha do e-mail'
+    ```
 2. Preencha as variáveis de ambiente no arquivo .env com as informações do seu ambiente.
 
 ### Inicialização do banco de dados

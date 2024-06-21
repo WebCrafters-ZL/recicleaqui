@@ -1,33 +1,50 @@
-<!-- Container principal da página de cliente -->
-<div class="container-fluid">
-    <!-- Container da página de cliente -->
+<div class="container-fluid mt-4">
     <div class="container">
         <div class="row mb-4">
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col align-self-start justify-content-end">
-                <a class="btn" href="/auth/logout" role="button">Sair</a>
+            <div class="col text-end">
+                <a class="btn btn-danger" href="/auth/logout" role="button">Sair</a>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col text-center">
+                <h2>{{title}}</h2> <!-- Exibe o título da página -->
+            </div>
+        </div>
+
         <div class="row row-cols-1 row-cols-md-3 g-4">
+            <!-- Card de Agendamentos -->
             <div class="col">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
+                <div class="card h-100">
+                    <div class="card-body text-center">
                         <h5 class="card-title">Agendamentos</h5>
-                        <p class="card-text">Consultar os agendamentos</p>
-                        <a class="btn" href="/admin/agendamentos" role="button">Acessar</a>
+                        <p class="card-text">Consultar e gerenciar os agendamentos.</p>
+                        <a class="btn btn-primary" href="/admin/agendamentos" role="button">Acessar</a>
                     </div>
                 </div>
             </div>
+
+            <!-- Card de Usuários -->
             <div class="col">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
+                <div class="card h-100">
+                    <div class="card-body text-center">
                         <h5 class="card-title">Usuários</h5>
-                        <p class="card-text">Consultar os usuários</p>
-                        <a class="btn" href="/admin/usuarios" role="button">Acessar</a>
+                        <p class="card-text">Consultar e gerenciar os usuários.</p>
+                        <a class="btn btn-primary" href="/admin/usuarios" role="button">Acessar</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo de Card Adicional (Relatórios) -->
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Relatórios</h5>
+                        <p class="card-text">Consultar relatórios de atividades.</p>
+                        <a class="btn btn-primary" href="/admin/relatorios" role="button">Acessar</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div
