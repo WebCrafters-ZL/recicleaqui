@@ -36,27 +36,75 @@ const clientesView = async function (req, res, next) {
 const agendamentosView = async function (req, res) {
     try {
         // Buscar as coletas do cliente
-        const coletasPendentes = await db.Coleta.findAll({
-            where: { status: 'pendente'},
-            order: [['data', 'DESC'], ['hora', 'DESC']]
+        const pendentes = await db.Coleta.findAll({
+            where: { status: 'pendente' },
+            order: [['data', 'DESC'], ['hora', 'DESC']],
+            include: {
+                model: db.Cliente
+            }
         });
 
-        const coletasAceitas = await db.Coleta.findAll({
-            where: { status: 'aceito'},
-            order: [['data', 'DESC'], ['hora', 'DESC']]
+        const aceitas = await db.Coleta.findAll({
+            where: { status: 'aceito' },
+            order: [['data', 'DESC'], ['hora', 'DESC']],
+            include: {
+                model: db.Cliente
+            }
         });
 
-        const coletasInativas = await db.Coleta.findAll({
+        const inativas = await db.Coleta.findAll({
             where: { status: ['rejeitado', 'cancelado'], },
-            order: [['data', 'DESC'], ['hora', 'DESC']]
+            order: [['data', 'DESC'], ['hora', 'DESC']],
+            include: {
+                model: db.Cliente
+            }
         });
 
-        const coletasConcluidas = await db.Coleta.findAll({
+        const concluidas = await db.Coleta.findAll({
             where: { status: 'concluido' },
-            order: [['data', 'DESC'], ['hora', 'DESC']]
+            order: [['data', 'DESC'], ['hora', 'DESC']],
+            include: {
+                model: db.Cliente
+            }
         });
 
-        // Outras consultas necessárias para os dados que deseja exibir na view de agendamentos
+        const coletasPendentes = pendentes.map(coleta => ({
+            id: coleta.id,
+            cnpj: coleta.Cliente.cnpj,
+            nomeFantasia: coleta.Cliente.nomeFantasia,
+            data: coleta.data,
+            hora: coleta.hora,
+            observacao: coleta.observacao
+        }));
+
+        const coletasAceitas = aceitas.map(coleta => ({
+            id: coleta.id,
+            cnpj: coleta.Cliente.cnpj,
+            nomeFantasia: coleta.Cliente.nomeFantasia,
+            data: coleta.data,
+            hora: coleta.hora,
+            observacao: coleta.observacao
+        }));
+
+        const coletasInativas = inativas.map(coleta => ({
+            id: coleta.id,
+            cnpj: coleta.Cliente.cnpj,
+            nomeFantasia: coleta.Cliente.nomeFantasia,
+            data: coleta.data,
+            hora: coleta.hora,
+            status: coleta.status,
+            observacao: coleta.observacao
+        }));
+
+        const coletasConcluidas = concluidas.map(coleta => ({
+            id: coleta.id,
+            cnpj: coleta.Cliente.cnpj,
+            nomeFantasia: coleta.Cliente.nomeFantasia,
+            data: coleta.data,
+            hora: coleta.hora,
+            observacao: coleta.observacao
+        }));
+
         res.render("agendamentosView", {
             title: "Lista de Agendamentos",
             script: "agendamentosView",
@@ -69,8 +117,6 @@ const agendamentosView = async function (req, res) {
         next(error)
     }
 };
-
-
 
 module.exports = {
     adminView,
