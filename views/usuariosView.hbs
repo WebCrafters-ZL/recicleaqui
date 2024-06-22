@@ -1,7 +1,7 @@
 <div class="container mt-5">
     <div class="card">
         <div class="card-header bg-success text-white">
-            <h3 class="card-title text-center">Lista de Clientes</h3>
+            <h3 class="card-title text-center">Gerenciamento de Clientes</h3>
         </div>
         <div class="card-body">
             <div class="table-responsive mt-3">
@@ -25,8 +25,8 @@
                             <td>{{this.emailUsuario}}</td>
                             <td>{{this.responsavel}}</td>
                             <td>
-                                <button type="button" class="btn btn-danger cancel-btn"
-                                    data-client-id="{{this.id}}">Deletar</button>
+                                <a class="btn btn-danger" href="/admin/deletar-cliente/{{this.id}}"
+                                    role="button">Deletar</a>
                             </td>
                         </tr>
                         {{/each}}

@@ -70,8 +70,14 @@ const cadastrarCliente = async function (req, res, next) {
           usuario_id: usuario.id
         });
 
-        // Redireciona para a rota de login após o cadastro bem-sucedido
-        return res.redirect("/auth");
+        res.send(`
+          <script>
+              alert('Cadastro efetuado com sucesso.');
+              setTimeout(function() {
+                  window.location.href = "/auth";
+              }, 2000);
+          </script>
+      `);
       }
     }
   } catch (error) {
@@ -146,8 +152,14 @@ const atualizarCliente = async function (req, res, next) {
           telefoneResponsavel,
         }, { where: { usuario_id: req.session.usuario.id } });
 
-        // Redireciona para a própria página do perfil de usuário
-        return res.redirect("/cliente");
+        res.send(`
+          <script>
+              alert('Cadastro atualizado com sucesso.');
+              setTimeout(function() {
+                  window.location.href = "/cliente";
+              }, 2000);
+          </script>
+      `);
       }
     }
   } catch (error) {
@@ -157,9 +169,15 @@ const atualizarCliente = async function (req, res, next) {
 
 const excluirCliente = async function (req, res, next) {
   try {
-    await db.Cliente.destroy({ where: { usuario_id: req.session.usuario.id } });
     await db.Usuario.destroy({ where: { id: req.session.usuario.id } })
-    res.redirect("/auth/logout");
+    res.send(`
+      <script>
+          alert('Cadastro excluído com sucesso.');
+          setTimeout(function() {
+              window.location.href = "/auth/logout";
+          }, 2000);
+      </script>
+  `);
   } catch (error) {
     next(error); // Passa o erro para o próximo middleware de erro
   }
@@ -180,7 +198,7 @@ const clienteView = async function (req, res, next) {
     });
     // Renderiza a view 'clienteView' passando os dados do cliente como parâmetros
     res.render("clienteView", {
-      title: "RecicleAqui - Perfil",
+      title: "RecicleAqui - Perfil de Usuário",
       cliente: dadosCliente,
       clienteId: dadosCliente.id,
       cnpj: dadosCliente.cnpj,
@@ -237,7 +255,7 @@ const clienteCadastrarColeta = async function (req, res, next) {
                   alert('Coleta agendada com sucesso.');
                   setTimeout(function() {
                       window.location.href = "/cliente";
-                  }, 3000);
+                  }, 2000);
               </script>
           `);
     }
@@ -262,32 +280,32 @@ const historicoView = async function (req, res, next) {
     // Buscar as coletas do cliente
     const coletasPendentes = await db.Coleta.findAll({
       where: { status: 'pendente', cliente_id: dadosCliente.id },
-      order: [['data', 'DESC'], ['hora', 'DESC']] // Ordenar por data e hora
+      order: [['data', 'ASC'], ['hora', 'ASC']], // Ordenar por data e hora
     });
 
     const coletasAceitas = await db.Coleta.findAll({
       where: { status: 'aceito', cliente_id: dadosCliente.id },
-      order: [['data', 'DESC'], ['hora', 'DESC']] // Ordenar por data e hora
+      order: [['data', 'ASC'], ['hora', 'ASC']], // Ordenar por data e hora
     });
 
     const coletasInativas = await db.Coleta.findAll({
       where: { status: ['rejeitado', 'cancelado'], cliente_id: dadosCliente.id },
-      order: [['data', 'DESC'], ['hora', 'DESC']] // Ordenar por data e hora
+      order: [['data', 'ASC'], ['hora', 'ASC']], // Ordenar por data e hora
     })
 
     const coletasConcluidas = await db.Coleta.findAll({
       where: { status: 'concluido', cliente_id: dadosCliente.id },
-      order: [['data', 'DESC'], ['hora', 'DESC']] // Ordenar por data e hora
+      order: [['data', 'ASC'], ['hora', 'ASC']], // Ordenar por data e hora
     });
 
     // Renderizar a view 'historicoView' passando as coletas como parâmetro
     res.render("historicoView", {
-      title: "RecicleAqui - Histórico de agendamento de coleta",
+      title: "RecicleAqui - Histórico de  coletas",
       script: "historicoView",
       coletaPendente: coletasPendentes,
       coletaAceita: coletasAceitas,
       coletaInativa: coletasInativas,
-      coletaConcluida: coletasConcluidas
+      coletaConcluida: coletasConcluidas,
     });
   } catch (error) {
     next(error); // Passar o erro para o próximo middleware de erro
@@ -296,16 +314,43 @@ const historicoView = async function (req, res, next) {
 
 const clienteCancelarColeta = async function (req, res, next) {
   try {
-    // Extrair o ID da coleta do corpo da requisição
-    const { coletaId } = req.body;
 
     // Atualiza o status da coleta para 'cancelado'
     await db.Coleta.update({
       status: 'cancelado'
+    }, { where: { id: req.params.id } });
+
+    res.send(`
+      <script>
+          alert('Coleta cancelada com sucesso.');
+          setTimeout(function() {
+              window.location.href = "/cliente/historico-coleta";
+          }, 2000);
+      </script>
+  `);
+
+  } catch (error) {
+    next(error); // Passa o erro para o próximo middleware de erro
+  }
+};
+
+const clienteAvaliarColeta = async function (req, res, next) {
+  try {
+    const { coletaId, avaliacao } = req.body;
+    // Atualiza o status da coleta para 'cancelado'
+    await db.Coleta.update({
+      avaliacao: avaliacao
     }, { where: { id: coletaId } });
 
-    // Redireciona ou envia uma resposta de sucesso
-    return res.status(200).json({ message: 'Coleta cancelada com sucesso.' });
+    res.send(`
+      <script>
+          alert('Coleta avaliada com sucesso.');
+          setTimeout(function() {
+              window.location.href = "/cliente/historico-coleta";
+          }, 2000);
+      </script>
+  `);
+
   } catch (error) {
     next(error); // Passa o erro para o próximo middleware de erro
   }
@@ -320,5 +365,6 @@ module.exports = {
   clienteCadastrarColetaView,
   clienteCadastrarColeta,
   historicoView,
-  clienteCancelarColeta
+  clienteCancelarColeta,
+  clienteAvaliarColeta
 };

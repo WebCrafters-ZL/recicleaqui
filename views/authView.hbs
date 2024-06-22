@@ -1,7 +1,7 @@
 <!-- Arquivo: views/authView.hbs -->
 <!-- Container principal da página de login -->
 <div class="container-fluid">
-    <div class="container">
+    <div class="container container-formulario">
         <div class="formulario-login show">
             <h2>Login</h2>
             <form id="formLogin" action="/auth/login" method="post">
@@ -30,7 +30,8 @@
                 </div>
                 <div class="row">
                     <div class="col mb-4">
-                        <button type="submit" class="btn btn-primary">Entrar</button>
+                        <button type="submit" class="btn btn-success">Entrar</button>
+                        <a href="/" class="btn btn-success " role="button" id="btnVoltar">Voltar</a>
                     </div>
                 </div>
             </form>
@@ -54,7 +55,8 @@
                 </div>
                 <div class="row">
                     <div class="col mb-4">
-                        <button type="submit" class="btn btn-primary">Redefinir</button>
+                        <button type="submit" class="btn btn-success">Redefinir</button>
+                        <a href="/" class="btn btn-success " role="button" id="btnVoltar">Voltar</a>
                     </div>
                 </div>
             </form>

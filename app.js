@@ -57,7 +57,8 @@ app.engine(
       getStatusClass: function (status) {
         switch (status.toLowerCase()) {
           case 'pendente': return 'text-warning';
-          case 'aceito': return 'text-success';
+          case 'aceito': return 'text-primary'
+          case 'concluido': return 'text-success';
           case 'rejeitado':
           case 'cancelado': return 'text-danger';
           default: return '';

@@ -91,7 +91,7 @@ const authRedefinirSenha = async function (req, res, next) {
     // Gera um token único para o usuário
     const token = crypto.randomBytes(20).toString('hex');
     // Define o link para redefinição de senha
-    const resetLink = `http://localhost:${process.env.APP_PORT}/auth/redefinir-senha/${token}`;
+    const resetLink = `http://localhost:${process.env.APP_PORT}/auth/alterar-senha/${token}`;
     // Atualiza as informações do usuário no banco de dados
     existeUsuario.tokenRedefinicaoSenha = token;
     existeUsuario.expiracaoTokenRedefinicaoSenha = Date.now() + 3600000; // 1 hora
@@ -122,7 +122,7 @@ const authAlterarSenhaView = async function (req, res, next) {
       }
     });
     if (existeUsuario) {
-      res.render("redefinirSenhaView", { title: "RecicleAqui - Redefinir Senha", token: req.params.token })
+      res.render("redefinirSenhaView", { title: "RecicleAqui - Redefinir Senha", token: req.params.token, stylesheet: "authView" })
     } else {
       // Se o token não for válido ou expirou, retorna um erro
       const error = new Error("Token inválido ou expirado");

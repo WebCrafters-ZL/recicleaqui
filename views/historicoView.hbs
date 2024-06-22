@@ -36,7 +36,7 @@
                                     <th>Hora</th>
                                     <th>Status</th>
                                     <th>Observação</th>
-                                    <th>Ação</th> 
+                                    <th>Ação</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -48,8 +48,8 @@
                                     <td class="{{getStatusClass this.status}}">{{this.status}}</td>
                                     <td>{{this.observacao}}</td>
                                     <td>
-                                        <button type="button" class="btn btn-danger cancel-btn"
-                                            data-coleta-id="{{this.id}}">Cancelar</button>
+                                        <a class="btn btn-danger" href="/cliente/cancelar-coleta/{{this.id}}"
+                                            role="button">Cancelar</a>
                                     </td>
                                 </tr>
                                 {{/dataValues}}
@@ -69,7 +69,7 @@
                                     <th>Hora</th>
                                     <th>Status</th>
                                     <th>Observação</th>
-                                    <th>Ação</th> 
+                                    <th>Ação</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -81,8 +81,8 @@
                                     <td class="{{getStatusClass this.status}}">{{this.status}}</td>
                                     <td>{{this.observacao}}</td>
                                     <td>
-                                        <button type="button" class="btn btn-danger cancel-btn"
-                                            data-coleta-id="{{this.id}}">Cancelar</button>
+                                        <a class="btn btn-danger" href="/cliente/cancelar-coleta/{{this.id}}"
+                                            role="button">Cancelar</a>
                                     </td>
                                 </tr>
                                 {{/dataValues}}
@@ -141,14 +141,21 @@
                                     <td class="{{getStatusClass this.status}}">{{this.status}}</td>
                                     <td>{{this.observacao}}</td>
                                     <td>
-                                        <div class="rating">
-                                            <!-- Supondo que a avaliação esteja implementada -->
-                                            <i class="bi bi-star-fill text-warning"></i>
-                                            <i class="bi bi-star-fill text-warning"></i>
-                                            <i class="bi bi-star-fill text-warning"></i>
-                                            <i class="bi bi-star-fill text-warning"></i>
-                                            <i class="bi bi-star text-warning"></i>
-                                        </div>
+                                        {{#if this.avaliacao}}
+                                            {{this.avaliacao}}/5
+                                        {{else}}
+                                        <form id="formAvaliacao" name="formAvaliacao" action="/cliente/avaliar-coleta" method="post">
+                                            <input type="hidden" name="coletaId" value="{{this.id}}">
+                                            <select class="form-select" name="avaliacao" id="avaliacao">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                            <button type="submit" class="btn btn-success">Avaliar</button>
+                                        </form>
+                                        {{/if}}
                                     </td>
                                 </tr>
                                 {{/dataValues}}

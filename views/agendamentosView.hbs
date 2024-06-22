@@ -1,7 +1,7 @@
 <div class="container mt-5">
     <div class="card">
         <div class="card-header bg-success text-white">
-            <h3 class="card-title text-center">Histórico de Agendamentos</h3>
+            <h3 class="card-title text-center">Gerenciamento de agendamentos</h3>
         </div>
         <div class="card-body">
             <!-- Nav Tabs -->
@@ -22,6 +22,10 @@
                 <li class="nav-item" role="presentation">
                     <a class="nav-link text-white bg-success" id="concluidas-tab" data-bs-toggle="tab"
                         href="#concluidas" role="tab" aria-controls="concluidas" aria-selected="false">Concluídas</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link text-white bg-success" id="relatorios-tab" data-bs-toggle="tab"
+                        href="#relatorios" role="tab" aria-controls="relatorios" aria-selected="false">Relatorios</a>
                 </li>
             </ul>
             <!-- Tab Content -->
@@ -49,10 +53,10 @@
                                     <td>{{this.hora}}</td>
                                     <td>{{this.observacao}}</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary accept-btn"
-                                            data-coleta-id="{{this.id}}">Aceitar</button>
-                                        <button type="button" class="btn btn-danger cancel-btn"
-                                            data-coleta-id="{{this.id}}">Rejeitar</button>
+                                        <a class="btn btn-primary" href="/admin/aceitar-coleta/{{this.id}}"
+                                            role="button">Aceitar</a>
+                                        <a class="btn btn-danger" href="/admin/rejeitar-coleta/{{this.id}}"
+                                            role="button">Rejeitar</a>
                                     </td>
                                 </tr>
                                 {{/each}}
@@ -84,8 +88,8 @@
                                     <td>{{this.hora}}</td>
                                     <td>{{this.observacao}}</td>
                                     <td>
-                                        <button type="button" class="btn btn-danger cancel-btn"
-                                            data-coleta-id="{{this.id}}">Cancelar</button>
+                                        <a class="btn btn-primary" href="/admin/concluir-coleta/{{this.id}}"
+                                            role="button">Concluir</a>
                                     </td>
                                 </tr>
                                 {{/each}}
@@ -134,6 +138,7 @@
                                     <th>Data</th>
                                     <th>Hora</th>
                                     <th>Observação</th>
+                                    <th>Avaliação</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -144,6 +149,13 @@
                                     <td>{{formatDate this.data}}</td>
                                     <td>{{this.hora}}</td>
                                     <td>{{this.observacao}}</td>
+                                    <td>
+                                        {{#if this.avaliacao}}
+                                        {{this.avaliacao}}/5
+                                        {{else}}
+                                        <p>Não avaliado</p>
+                                        {{/if}}
+                                    </td>
                                 </tr>
                                 {{/each}}
                             </tbody>
@@ -151,8 +163,37 @@
                     </div>
                 </div>
             </div>
+            <!-- Relatorios coletas -->
+            <div class="tab-pane fade" id="relatorios" role="tabpanel" aria-labelledby="relatorios-tab">
+                <div class="table-responsive mt-3">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>CNPJ</th>
+                                <th>Nome Fantasia</th>
+                                <th>Data</th>
+                                <th>Hora</th>
+                                <th>Status</th>
+                                <th>Observação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each coleta}}
+                            <tr>
+                                <td>{{this.cnpj}}</td>
+                                <td>{{this.nomeFantasia}}</td>
+                                <td>{{formatDate this.data}}</td>
+                                <td>{{this.hora}}</td>
+                                <td class="{{getStatusClass this.status}}">{{this.status}}</td>
+                                <td>{{this.observacao}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>              
+                </div>              
+            </div>
 
-            <a href="/admin" class="btn btn-success mt-3" role="button">Voltar</a>
+            <a href="/admin" class="btn btn-success" role="button">Voltar</a>      
         </div>
     </div>
 </div>

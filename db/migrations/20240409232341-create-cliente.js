@@ -47,6 +47,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       complemento: {
+        allowNull: true,
         type: Sequelize.STRING,
       },
       bairro: {
@@ -70,6 +71,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       telefoneResponsavel: {
+        allowNull: true,
         type: Sequelize.STRING,
       },
       usuario_id: {

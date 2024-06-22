@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     hora: DataTypes.TIME,
     status: DataTypes.ENUM('pendente', 'aceito', 'rejeitado', 'cancelado', 'concluido'),
     observacao: DataTypes.TEXT,
+    avaliacao: DataTypes.INTEGER,
     cliente_id: DataTypes.INTEGER
   }, {
     sequelize,
