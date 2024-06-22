@@ -10,9 +10,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       nome: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       cpf: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       usuario_id: {

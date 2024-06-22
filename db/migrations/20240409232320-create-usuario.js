@@ -23,12 +23,12 @@ module.exports = {
         type: Sequelize.ENUM('administrador', 'cliente')
       },
       tokenRedefinicaoSenha: {
-        type: Sequelize.STRING(255),
         allowNull: true,
+        type: Sequelize.STRING(255),
       },
       expiracaoTokenRedefinicaoSenha: {
-        type: Sequelize.DATE,
         allowNull: true,
+        type: Sequelize.DATE,
       },
       createdAt: {
         allowNull: false,
