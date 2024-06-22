@@ -32,23 +32,23 @@ const clientesView = async function (req, res, next) {
     }
 };
 
-const adminDeletarCliente = async (req, res , next) => {
+const adminDeletarCliente = async (req, res, next) => {
     try {
-     
-   //Buscar o cliente no banco de dados
-    const cliente = await db.Cliente.findByPk(req.params.id,{
-    });
-    
-    // Verificar se o cliente foi encontrado
-    if (!cliente) {
-    return res.status(404).json({message:'Cliente não encontrado' });
-    }
-   
-    // Excluir o usuário associado ao cliente
-    await db.Usuario.destroy({where: { id: cliente.usuario_id}});
-   
-   //Retornar uma resposta de sucesso
-   res.send(`
+
+        //Buscar o cliente no banco de dados
+        const cliente = await db.Cliente.findByPk(req.params.id, {
+        });
+
+        // Verificar se o cliente foi encontrado
+        if (!cliente) {
+            return res.status(404).json({ message: 'Cliente não encontrado' });
+        }
+
+        // Excluir o usuário associado ao cliente
+        await db.Usuario.destroy({ where: { id: cliente.usuario_id } });
+
+        //Retornar uma resposta de sucesso
+        res.send(`
    <script>
     alert('Cliente deletado com sucesso.');
    setTimeout(function() {
@@ -56,10 +56,10 @@ const adminDeletarCliente = async (req, res , next) => {
     }, 2000);
     </script>
    `);
-   } catch (error) {
-    next(error); // Passa o erro para o próximo middleware de erro
-   }
-   };
+    } catch (error) {
+        next(error); // Passa o erro para o próximo middleware de erro
+    }
+};
 
 
 const agendamentosView = async function (req, res) {
@@ -148,13 +148,13 @@ const agendamentosView = async function (req, res) {
 
 const aceitarColeta = async function (req, res, next) {
     try {
-  
-      // Atualiza o status da coleta para 'cancelado'
-      await db.Coleta.update({
-        status: 'aceito'
-      }, { where: { id: req.params.id } });
-  
-      res.send(`
+
+        // Atualiza o status da coleta para 'cancelado'
+        await db.Coleta.update({
+            status: 'aceito'
+        }, { where: { id: req.params.id } });
+
+        res.send(`
         <script>
             alert('Coleta confirmada com sucesso.');
             setTimeout(function() {
@@ -162,21 +162,21 @@ const aceitarColeta = async function (req, res, next) {
             }, 2000);
         </script>
     `);
-  
-    } catch (error) {
-      next(error); // Passa o erro para o próximo middleware de erro
-    }
-  };
 
-  const rejeitarColeta = async function (req, res, next) {
+    } catch (error) {
+        next(error); // Passa o erro para o próximo middleware de erro
+    }
+};
+
+const rejeitarColeta = async function (req, res, next) {
     try {
-  
-      // Atualiza o status da coleta para 'cancelado'
-      await db.Coleta.update({
-        status: 'rejeitado'
-      }, { where: { id: req.params.id } });
-  
-      res.send(`
+
+        // Atualiza o status da coleta para 'cancelado'
+        await db.Coleta.update({
+            status: 'rejeitado'
+        }, { where: { id: req.params.id } });
+
+        res.send(`
         <script>
             alert('Coleta rejeitada com sucesso.');
             setTimeout(function() {
@@ -184,21 +184,21 @@ const aceitarColeta = async function (req, res, next) {
             }, 2000);
         </script>
     `);
-  
-    } catch (error) {
-      next(error); // Passa o erro para o próximo middleware de erro
-    }
-  };
 
-  const concluirColeta = async function (req, res, next) {
+    } catch (error) {
+        next(error); // Passa o erro para o próximo middleware de erro
+    }
+};
+
+const concluirColeta = async function (req, res, next) {
     try {
-  
-      // Atualiza o status da coleta para 'cancelado'
-      await db.Coleta.update({
-        status: 'concluido'
-      }, { where: { id: req.params.id } });
-  
-      res.send(`
+
+        // Atualiza o status da coleta para 'cancelado'
+        await db.Coleta.update({
+            status: 'concluido'
+        }, { where: { id: req.params.id } });
+
+        res.send(`
         <script>
             alert('Coleta concluida com sucesso.');
             setTimeout(function() {
@@ -206,12 +206,24 @@ const aceitarColeta = async function (req, res, next) {
             }, 2000);
         </script>
     `);
-  
-    } catch (error) {
-      next(error); // Passa o erro para o próximo middleware de erro
-    }
-  };
 
+    } catch (error) {
+        next(error); // Passa o erro para o próximo middleware de erro
+    }
+};
+
+const relatoriosView = async function (req, res, next) {
+    try {
+        // Renderiza a view 'relatoriosView' passando o título da página como parâmetro
+        res.render("relatoriosView", {
+            title: "Recicle Aqui - Administração",
+            titulo: 'Relatórios',
+            descricao: 'Resumo dos relatórios disponíveis.'
+        });
+    } catch (error) {
+        next(error); // Passa o erro para o próximo middleware de erro
+    }
+}
 
 
 module.exports = {
@@ -221,5 +233,6 @@ module.exports = {
     adminDeletarCliente,
     aceitarColeta,
     rejeitarColeta,
-    concluirColeta
+    concluirColeta,
+    relatoriosView
 };
