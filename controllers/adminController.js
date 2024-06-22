@@ -1,4 +1,5 @@
 const db = require("../db/models");
+const pdfMake = require('pdfmake');
 
 const adminView = async function (req, res, next) {
     try {
@@ -26,7 +27,7 @@ const clientesView = async function (req, res, next) {
             emailUsuario: client.Usuario.email,
             responsavel: client.responsavel
         }));
-        res.render("usuariosView", { title: "Lista de Clientes", clients: clientsWithUserEmail });
+        res.render("usuariosView", { title: "RecicleAqui - Gerenciamento de Clientes", clients: clientsWithUserEmail });
     } catch (error) {
         next(error);
     }
@@ -67,7 +68,7 @@ const agendamentosView = async function (req, res) {
         // Buscar as coletas do cliente
         const pendentes = await db.Coleta.findAll({
             where: { status: 'pendente' },
-            order: [['data', 'DESC'], ['hora', 'DESC']],
+            order: [['data', 'ASC'], ['hora', 'ASC']],
             include: {
                 model: db.Cliente
             }
@@ -75,7 +76,7 @@ const agendamentosView = async function (req, res) {
 
         const aceitas = await db.Coleta.findAll({
             where: { status: 'aceito' },
-            order: [['data', 'DESC'], ['hora', 'DESC']],
+            order: [['data', 'ASC'], ['hora', 'ASC']],
             include: {
                 model: db.Cliente
             }
@@ -83,7 +84,7 @@ const agendamentosView = async function (req, res) {
 
         const inativas = await db.Coleta.findAll({
             where: { status: ['rejeitado', 'cancelado'], },
-            order: [['data', 'DESC'], ['hora', 'DESC']],
+            order: [['data', 'ASC'], ['hora', 'ASC']],
             include: {
                 model: db.Cliente
             }
@@ -91,7 +92,14 @@ const agendamentosView = async function (req, res) {
 
         const concluidas = await db.Coleta.findAll({
             where: { status: 'concluido' },
-            order: [['data', 'DESC'], ['hora', 'DESC']],
+            order: [['data', 'ASC'], ['hora', 'ASC']],
+            include: {
+                model: db.Cliente
+            }
+        });
+
+        const todas = await db.Coleta.findAll({
+            order: [['data', 'ASC'], ['hora', 'ASC']],
             include: {
                 model: db.Cliente
             }
@@ -135,12 +143,24 @@ const agendamentosView = async function (req, res) {
             avaliacao: coleta.avaliacao
         }));
 
+        const coletas = todas.map(coleta => ({
+            id: coleta.id,
+            cnpj: coleta.Cliente.cnpj,
+            nomeFantasia: coleta.Cliente.nomeFantasia,
+            data: coleta.data,
+            hora: coleta.hora,
+            status: coleta.status,
+            observacao: coleta.observacao,
+            avaliacao: coleta.avaliacao
+        }));
+
         res.render("agendamentosView", {
-            title: "Lista de Agendamentos",
+            title: "RecicleAqui - Gerenciamento de Agendamentos",
             coletaPendente: coletasPendentes,
             coletaAceita: coletasAceitas,
             coletaInativa: coletasInativas,
-            coletaConcluida: coletasConcluidas
+            coletaConcluida: coletasConcluidas,
+            coleta: coletas,
         });
     } catch (error) {
         next(error)
@@ -213,19 +233,6 @@ const concluirColeta = async function (req, res, next) {
     }
 };
 
-const relatoriosView = async function (req, res, next) {
-    try {
-        // Renderiza a view 'relatoriosView' passando o título da página como parâmetro
-        res.render("relatoriosView", {
-            title: "Recicle Aqui - Administração",
-            titulo: 'Relatórios',
-            descricao: 'Resumo dos relatórios disponíveis.'
-        });
-    } catch (error) {
-        next(error); // Passa o erro para o próximo middleware de erro
-    }
-}
-
 
 module.exports = {
     adminView,
@@ -235,5 +242,4 @@ module.exports = {
     aceitarColeta,
     rejeitarColeta,
     concluirColeta,
-    relatoriosView
 };

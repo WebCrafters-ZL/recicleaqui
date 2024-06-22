@@ -198,7 +198,7 @@ const clienteView = async function (req, res, next) {
     });
     // Renderiza a view 'clienteView' passando os dados do cliente como parâmetros
     res.render("clienteView", {
-      title: "RecicleAqui - Perfil",
+      title: "RecicleAqui - Perfil de Usuário",
       cliente: dadosCliente,
       clienteId: dadosCliente.id,
       cnpj: dadosCliente.cnpj,
@@ -280,32 +280,32 @@ const historicoView = async function (req, res, next) {
     // Buscar as coletas do cliente
     const coletasPendentes = await db.Coleta.findAll({
       where: { status: 'pendente', cliente_id: dadosCliente.id },
-      order: [['data', 'DESC'], ['hora', 'DESC']] // Ordenar por data e hora
+      order: [['data', 'ASC'], ['hora', 'ASC']], // Ordenar por data e hora
     });
 
     const coletasAceitas = await db.Coleta.findAll({
       where: { status: 'aceito', cliente_id: dadosCliente.id },
-      order: [['data', 'DESC'], ['hora', 'DESC']] // Ordenar por data e hora
+      order: [['data', 'ASC'], ['hora', 'ASC']], // Ordenar por data e hora
     });
 
     const coletasInativas = await db.Coleta.findAll({
       where: { status: ['rejeitado', 'cancelado'], cliente_id: dadosCliente.id },
-      order: [['data', 'DESC'], ['hora', 'DESC']] // Ordenar por data e hora
+      order: [['data', 'ASC'], ['hora', 'ASC']], // Ordenar por data e hora
     })
 
     const coletasConcluidas = await db.Coleta.findAll({
       where: { status: 'concluido', cliente_id: dadosCliente.id },
-      order: [['data', 'DESC'], ['hora', 'DESC']] // Ordenar por data e hora
+      order: [['data', 'ASC'], ['hora', 'ASC']], // Ordenar por data e hora
     });
 
     // Renderizar a view 'historicoView' passando as coletas como parâmetro
     res.render("historicoView", {
-      title: "RecicleAqui - Histórico de agendamento de coleta",
+      title: "RecicleAqui - Histórico de  coletas",
       script: "historicoView",
       coletaPendente: coletasPendentes,
       coletaAceita: coletasAceitas,
       coletaInativa: coletasInativas,
-      coletaConcluida: coletasConcluidas
+      coletaConcluida: coletasConcluidas,
     });
   } catch (error) {
     next(error); // Passar o erro para o próximo middleware de erro
