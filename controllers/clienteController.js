@@ -169,7 +169,6 @@ const atualizarCliente = async function (req, res, next) {
 
 const excluirCliente = async function (req, res, next) {
   try {
-    await db.Cliente.destroy({ where: { usuario_id: req.session.usuario.id } });
     await db.Usuario.destroy({ where: { id: req.session.usuario.id } })
     res.send(`
       <script>

@@ -146,9 +146,80 @@ const agendamentosView = async function (req, res) {
     }
 };
 
+const aceitarColeta = async function (req, res, next) {
+    try {
+  
+      // Atualiza o status da coleta para 'cancelado'
+      await db.Coleta.update({
+        status: 'aceito'
+      }, { where: { id: req.params.id } });
+  
+      res.send(`
+        <script>
+            alert('Coleta confirmada com sucesso.');
+            setTimeout(function() {
+                window.location.href = "/admin/agendamentos";
+            }, 2000);
+        </script>
+    `);
+  
+    } catch (error) {
+      next(error); // Passa o erro para o próximo middleware de erro
+    }
+  };
+
+  const rejeitarColeta = async function (req, res, next) {
+    try {
+  
+      // Atualiza o status da coleta para 'cancelado'
+      await db.Coleta.update({
+        status: 'rejeitado'
+      }, { where: { id: req.params.id } });
+  
+      res.send(`
+        <script>
+            alert('Coleta rejeitada com sucesso.');
+            setTimeout(function() {
+                window.location.href = "/admin/agendamentos";
+            }, 2000);
+        </script>
+    `);
+  
+    } catch (error) {
+      next(error); // Passa o erro para o próximo middleware de erro
+    }
+  };
+
+  const concluirColeta = async function (req, res, next) {
+    try {
+  
+      // Atualiza o status da coleta para 'cancelado'
+      await db.Coleta.update({
+        status: 'concluido'
+      }, { where: { id: req.params.id } });
+  
+      res.send(`
+        <script>
+            alert('Coleta concluida com sucesso.');
+            setTimeout(function() {
+                window.location.href = "/admin/agendamentos";
+            }, 2000);
+        </script>
+    `);
+  
+    } catch (error) {
+      next(error); // Passa o erro para o próximo middleware de erro
+    }
+  };
+
+
+
 module.exports = {
     adminView,
     clientesView,
     agendamentosView,
-    adminDeletarCliente
+    adminDeletarCliente,
+    aceitarColeta,
+    rejeitarColeta,
+    concluirColeta
 };

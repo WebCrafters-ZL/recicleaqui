@@ -49,10 +49,10 @@
                                     <td>{{this.hora}}</td>
                                     <td>{{this.observacao}}</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary accept-btn"
-                                            data-coleta-id="{{this.id}}">Aceitar</button>
-                                        <button type="button" class="btn btn-danger cancel-btn"
-                                            data-coleta-id="{{this.id}}">Rejeitar</button>
+                                        <a class="btn btn-primary" href="/admin/aceitar-coleta/{{this.id}}"
+                                            role="button">Aceitar</a>
+                                        <a class="btn btn-danger" href="/admin/rejeitar-coleta/{{this.id}}"
+                                            role="button">Rejeitar</a>
                                     </td>
                                 </tr>
                                 {{/each}}
@@ -84,8 +84,8 @@
                                     <td>{{this.hora}}</td>
                                     <td>{{this.observacao}}</td>
                                     <td>
-                                        <button type="button" class="btn btn-danger cancel-btn"
-                                            data-coleta-id="{{this.id}}">Cancelar</button>
+                                        <a class="btn btn-primary" href="/admin/concluir-coleta/{{this.id}}"
+                                            role="button">Concluir</a>
                                     </td>
                                 </tr>
                                 {{/each}}

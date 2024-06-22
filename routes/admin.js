@@ -11,7 +11,10 @@ const {
     adminView,
     agendamentosView,
     clientesView,
-    adminDeletarCliente
+    adminDeletarCliente,
+    aceitarColeta,
+    rejeitarColeta,
+    concluirColeta
  } = require("../controllers/adminController");
 
 // Importa a função requerirLogin do middleware requerirLogin
@@ -26,6 +29,15 @@ router.get("/deletar-cliente/:id",requerirLogin, adminDeletarCliente);
 
 // Rota para a página de gerenciamento de Agendamentos
 router.get("/agendamentos", requerirLogin, agendamentosView);
+
+//Rota para aceitar coletas
+router.get("/aceitar-coleta/:id",requerirLogin, aceitarColeta);
+
+//Rota para aceitar coletas
+router.get("/rejeitar-coleta/:id",requerirLogin, rejeitarColeta);
+
+//Rota para aceitar coletas
+router.get("/concluir-coleta/:id",requerirLogin, concluirColeta);
 
 
 
