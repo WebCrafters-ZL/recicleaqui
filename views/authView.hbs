@@ -2,14 +2,14 @@
 <!-- Container principal da página de login -->
 <div class="container-fluid">
     <div class="container">
-        <div class="container mt-5">
         <div class="formulario-login show">
             <h2>Login</h2>
             <form id="formLogin" action="/auth/login" method="post">
                 <div class="row">
                     <div class="col mb-4">
                         <div class="form-floating">
-                            <input type="email" class="form-control" id="email" name="email" placeholder="email@exemplo.com" required>
+                            <input type="email" class="form-control" id="email" name="email"
+                                placeholder="email@exemplo.com" required>
                             <label for="email" class="form-label">E-mail</label>
                         </div>
                     </div>
@@ -17,7 +17,8 @@
                 <div class="row">
                     <div class="col mb-4">
                         <div class="form-floating">
-                            <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha" required>
+                            <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha"
+                                required>
                             <label for="senha" class="form-label">Senha</label>
                         </div>
                     </div>
@@ -29,14 +30,36 @@
                 </div>
                 <div class="row">
                     <div class="col mb-4">
-                        <div class="d-flex justify-content-between">
-                            <button type="submit" class="btn btn-success">Entrar</button>
-                            <a href="/" class="btn btn-success " role="button" id="btnVoltar">Voltar</a>
-                        </div>
+                        <button type="submit" class="btn btn-success">Entrar</button>
+                        <a href="/" class="btn btn-success " role="button" id="btnVoltar">Voltar</a>
                     </div>
                 </div>
             </form>
         </div>
-    </div>
+        <div class="formulario-redefinicao">
+            <h2>Redefinir senha</h2>
+            <form id="formRedefinirSenha" action="/auth/redefinir-senha" method="post">
+                <div class="row">
+                    <div class="col mb-4">
+                        <div class="form-floating">
+                            <input type="email" class="form-control" id="emailRedefinicao" name="emailRedefinicao"
+                                placeholder="email@exemplo.com" required>
+                            <label for="emailRedefinicao" class="form-label">E-mail</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-4">
+                        <a href="#" class="switch-link" id="login-link">Realizar login</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-4">
+                        <button type="submit" class="btn btn-success">Redefinir</button>
+                        <a href="/" class="btn btn-success " role="button" id="btnVoltar">Voltar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
