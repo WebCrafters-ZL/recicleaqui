@@ -1,5 +1,4 @@
 const db = require("../db/models");
-const pdfMake = require('pdfmake');
 
 const adminView = async function (req, res, next) {
     try {
