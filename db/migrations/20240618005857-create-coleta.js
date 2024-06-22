@@ -32,7 +32,8 @@ module.exports = {
             tableName: 'Clientes',
           },
           key: 'id'
-        }
+        },
+        onDelete: 'CASCADE'  
       },
       createdAt: {
         allowNull: false,

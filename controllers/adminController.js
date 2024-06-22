@@ -32,6 +32,35 @@ const clientesView = async function (req, res, next) {
     }
 };
 
+const adminDeletarCliente = async (req, res , next) => {
+    try {
+     
+   //Buscar o cliente no banco de dados
+    const cliente = await db.Cliente.findByPk(req.params.id,{
+    });
+    
+    // Verificar se o cliente foi encontrado
+    if (!cliente) {
+    return res.status(404).json({message:'Cliente não encontrado' });
+    }
+   
+    // Excluir o usuário associado ao cliente
+    await db.Usuario.destroy({where: { id: cliente.usuario_id}});
+   
+   //Retornar uma resposta de sucesso
+   res.send(`
+   <script>
+    alert('Cliente deletado com sucesso.');
+   setTimeout(function() {
+    window.location.href= "/admin/usuarios";
+    }, 2000);
+    </script>
+   `);
+   } catch (error) {
+    next(error); // Passa o erro para o próximo middleware de erro
+   }
+   };
+
 
 const agendamentosView = async function (req, res) {
     try {
@@ -120,5 +149,6 @@ const agendamentosView = async function (req, res) {
 module.exports = {
     adminView,
     clientesView,
-    agendamentosView
+    agendamentosView,
+    adminDeletarCliente
 };

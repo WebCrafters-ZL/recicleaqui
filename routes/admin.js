@@ -10,7 +10,8 @@ const router = express.Router();
 const { 
     adminView,
     agendamentosView,
-    clientesView
+    clientesView,
+    adminDeletarCliente
  } = require("../controllers/adminController");
 
 // Importa a função requerirLogin do middleware requerirLogin
@@ -19,6 +20,10 @@ const requerirLogin = require("../middleware/requerirLogin");
 router.get("/", requerirLogin, adminView);
 // Rota para a página de gerenciamento de usuários
 router.get("/usuarios", requerirLogin, clientesView);
+// Rota para deletar clientes
+router.get("/deletar-cliente/:id",requerirLogin, adminDeletarCliente);
+
+
 // Rota para a página de gerenciamento de Agendamentos
 router.get("/agendamentos", requerirLogin, agendamentosView);
 

@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "usuario_id",
         sourceKey: "id"
       });
+      this.hasOne(models.Coleta, {
+        foreignKey: 'cliente_id',
+        onDelete: 'CASCADE',
+      });
     }
   }
   // Inicialização do modelo Cliente com os atributos e opções
