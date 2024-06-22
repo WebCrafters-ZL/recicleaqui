@@ -22,7 +22,12 @@ module.exports = {
         type: Sequelize.ENUM('pendente', 'aceito', 'rejeitado', 'cancelado', 'concluido')
       },
       observacao: {
+        allowNull: false,
         type: Sequelize.TEXT
+      },
+      avaliacao: {
+        allowNull: true,
+        type: Sequelize.INTEGER
       },
       cliente_id: {
         allowNull: false,

@@ -131,7 +131,8 @@ const agendamentosView = async function (req, res) {
             nomeFantasia: coleta.Cliente.nomeFantasia,
             data: coleta.data,
             hora: coleta.hora,
-            observacao: coleta.observacao
+            observacao: coleta.observacao,
+            avaliacao: coleta.avaliacao
         }));
 
         res.render("agendamentosView", {

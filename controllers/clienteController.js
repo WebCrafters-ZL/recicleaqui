@@ -334,6 +334,28 @@ const clienteCancelarColeta = async function (req, res, next) {
   }
 };
 
+const clienteAvaliarColeta = async function (req, res, next) {
+  try {
+    const { coletaId, avaliacao } = req.body;
+    // Atualiza o status da coleta para 'cancelado'
+    await db.Coleta.update({
+      avaliacao: avaliacao
+    }, { where: { id: coletaId } });
+
+    res.send(`
+      <script>
+          alert('Coleta avaliada com sucesso.');
+          setTimeout(function() {
+              window.location.href = "/cliente/historico-coleta";
+          }, 2000);
+      </script>
+  `);
+
+  } catch (error) {
+    next(error); // Passa o erro para o próximo middleware de erro
+  }
+};
+
 module.exports = {
   cadastrarCliente,
   atualizarCliente,
@@ -343,5 +365,6 @@ module.exports = {
   clienteCadastrarColetaView,
   clienteCadastrarColeta,
   historicoView,
-  clienteCancelarColeta
+  clienteCancelarColeta,
+  clienteAvaliarColeta
 };

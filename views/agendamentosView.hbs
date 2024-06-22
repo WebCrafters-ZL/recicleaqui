@@ -134,6 +134,7 @@
                                     <th>Data</th>
                                     <th>Hora</th>
                                     <th>Observação</th>
+                                    <th>Avaliação</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -144,6 +145,13 @@
                                     <td>{{formatDate this.data}}</td>
                                     <td>{{this.hora}}</td>
                                     <td>{{this.observacao}}</td>
+                                    <td>
+                                        {{#if this.avaliacao}}
+                                            {{this.avaliacao}}/5
+                                        {{else}}
+                                            <p>Não avaliado</p>
+                                        {{/if}}
+                                    </td>
                                 </tr>
                                 {{/each}}
                             </tbody>

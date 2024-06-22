@@ -12,7 +12,8 @@ const {
   clienteCadastrarColetaView,
   clienteCadastrarColeta,
   historicoView,
-  clienteCancelarColeta
+  clienteCancelarColeta,
+  clienteAvaliarColeta
 } = require("../controllers/clienteController"); // Importa as funções do controlador clienteController
 
 // Criação de um novo roteador usando o método Router() do Express
@@ -40,6 +41,8 @@ router.post("/cadastrar-coleta", requerirLogin, clienteCadastrarColeta);
 router.get("/historico-coleta", requerirLogin, historicoView);
 // Definição da rota para o caminho '/cancelar-coleta' usando o método GET e associa a função clienteCancelarColeta
 router.get("/cancelar-coleta/:id", requerirLogin, clienteCancelarColeta);
+// Definição da rota para o caminho '/cancelar-coleta' usando o método POST e associa a função clienteAvaliarColeta
+router.post("/avaliar-coleta", requerirLogin, clienteAvaliarColeta);
 
 // Exportação do roteador para uso em outros arquivos
 module.exports = router;
